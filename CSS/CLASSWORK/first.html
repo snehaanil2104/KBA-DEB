@@ -1,0 +1,72 @@
+<!-- 02/09-monday -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- INLINE CSS -->
+    <style>
+        p{
+            font-size: large;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            color: #548293;
+            font-style: italic;
+            text-align: right;
+            text-decoration: line-through;
+
+        }
+        .nav{
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+
+        }
+        .nav li{
+            margin-right: 20px;
+
+        }
+        .nav li a{
+            text-decoration: none;
+            color: rgb(209, 32, 156);
+        }
+        
+        
+
+    </style>
+   
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Styling page</title>
+</head>
+<body>
+    <!-- EMBEDDED TYPE CSS -->
+     <!-- adds styling elements as style="" -->
+     <h5 style="font-family: 'Courier New', Courier, monospace; color: #0b6f85;font-style: italic; text-align: center;text-decoration: underline;background-color: rgb(246, 210, 113);">welcome</h5>
+     <!-- END OF EMBEDDED CSS -->
+      <!-- INLINE CSS -->
+      <p>first styling sheet</p>
+      <nav>
+       <ul class="nav">
+        <!-- here nav is a class and li are pseudo classes -->
+        <li><a href="#home">home</a></li>
+        <li><a href="#aboutus">about us</a></li>
+        <li><a href="#services">services</a></li>
+        <li><a href="#contact">contact</a></li>
+       </ul>
+      </nav>
+      <!-- DIV TAG IS USED TO CREATE DIFFERENT SECTIONS IN A SINGLE LARGE PAGE -->
+      <div>
+        <p style="color: red; text-align: center; background-color: bisque; text-decoration: underline;">welcome to css</p>
+      </div>
+      <div>
+        <p style="color: red; text-align: right; background-color: bisque; text-decoration: line-through;">welcome</p>
+      </div>
+
+      <div style="background-color:rgb(75, 173, 171);">
+        <h3>Hello
+        <p style="display: inline;">How</p>
+        <p style="text-align: left; text-decoration: line-through;">are</p>
+        <p style="text-align: left; text-decoration: none;">you?</p>
+     </div>
+      <!--END OF INLINE CSS -->
+</body>
+</html>

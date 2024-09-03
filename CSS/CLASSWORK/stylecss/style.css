@@ -1,0 +1,10 @@
+.column1{
+    float: left;
+    height: 800px;
+    width: 33%;
+    border-left: 10px green solid;
+    border-width: 1px;
+    
+    
+   
+}

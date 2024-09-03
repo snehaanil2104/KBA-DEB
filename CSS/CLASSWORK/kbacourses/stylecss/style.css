@@ -1,0 +1,137 @@
+body{
+    background-color:#f6bdef ;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    justify-content:center;
+}
+.login-box{
+    width: 360px;
+    height: 420px;
+    margin:auto;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow:1px grey;
+    margin-top: 200px;
+}
+h1{
+    text-align: center;
+    padding-top: 20px;
+    color: #800080;
+}
+form{
+    width: 300px;
+    margin-left: 20px;
+}
+form label{
+    display: flex;
+    margin-top: 20px;
+    margin: auto;
+    font-size: 16px;
+    padding: 10px;
+    max-width: 350px;
+
+    
+}
+input[type=text],select{
+    width: 320px;
+    padding: 7px;
+    display: flex;
+    border: 1px solid ;
+    border-radius: 4px;
+    font-size: 15px;
+
+}
+form input{
+    width:100%;
+    padding: 7px;
+}
+input[type="button"]{
+    width: 100px;
+    height: 40px;
+    font-size: 18px;
+    margin-top: 40px;
+    background-color:#800080;
+    border-radius: 5px;
+    color: white;
+    border: none;
+}
+input .a .p{
+    text-decoration: none;
+
+}
+.part2{
+    text-align: center;
+    margin-top: 40px;
+    
+}
+.part2 a{
+    color: #800080;
+    text-decoration: none;
+}
+.part1{
+    float: right; 
+    margin-top: 50px;
+}
+.part1 a{
+    color: #800080;
+    text-decoration: none;
+}
+.signup-box{
+    width: 370px;
+    height: 550px;
+    margin:auto;
+    background-color: white;
+    border-radius: 10px;
+    margin-top: 100px;
+
+
+}
+.navbar{
+    background:white ;
+    width: 98%;
+    margin-top: none;
+    height: 60px;
+    padding: 0 20px 0 20px;
+
+}
+.navdiv{
+    display: flex;align-items: center;justify-content: space-between;
+}
+/* .logo img{ 
+    float:left
+    width: 10px;
+    height: 10px;
+
+} */
+ li{
+    list-style: none;
+    display: inline-block;
+    color: #800080;
+    font-size: 16px;
+ }
+ li a{ 
+    font-family: bold;
+    margin-right: 25px;
+ }
+
+ .add-course{
+    background-color:white;
+    width: 380px;
+    height: 600px;
+    border-radius: 10px;
+    box-shadow: 1px;
+    margin: auto;
+    margin-top: 70px;
+    
+ }
+
+ .btn input[type="button"]{
+    width: 340px;
+    height: 40px;
+    font-size: 18px;
+    margin-top: 40px;
+    background-color:#800080;
+    border-radius: 20px;
+    color: white;
+    border: none;
+}
+

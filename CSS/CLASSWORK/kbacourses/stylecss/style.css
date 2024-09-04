@@ -96,12 +96,12 @@ input .a .p{
 .navdiv{
     display: flex;align-items: center;justify-content: space-between;
 }
-/* .logo img{ 
-    float:left
-    width: 10px;
-    height: 10px;
+.logo img{ 
+    float:left;
+    width: 60px;
+    height: 50px;
 
-} */
+}
  li{
     list-style: none;
     display: inline-block;

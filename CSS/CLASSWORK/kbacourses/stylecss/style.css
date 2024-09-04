@@ -2,6 +2,7 @@ body{
     background-color:#f6bdef ;
     font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     justify-content:center;
+    margin: 0%;
 }
 .login-box{
     width: 360px;
@@ -139,5 +140,109 @@ input[type=text],select{
     border-radius: 20px;
     color: white;
     border: none;
+}
+
+.div1{
+  text-align: center;
+   height: 50px;
+   font-size: 26px;
+}
+.div1 h2{
+    color: #710e71;
+}
+.div1 h2 p{
+    font-size: small;
+}
+.div1 h3{
+    text-align: left;
+    margin-left: 20px;
+}
+.div1 input[type=button]{
+    width: 340px;
+    height: 40px;
+    font-size: 18px;
+    margin-top: 70px;
+    background-color:#800080;
+    border-radius: 20px;
+    color: white;
+    border: none;
+
+}
+.box1{
+    width: 500px;
+    height: 500px;
+    border: 7px solid rgb(97, 96, 96);
+    background-color: white ;
+    padding-top: 10px;
+    margin-left: 20px;
+    
+}
+.box1 a{
+    float: left;
+}
+.div3{
+     display: flex;
+     justify-content: space-between;
+
+}
+
+.div3 img{
+    float: left;
+    width:450px;
+    height:250px;
+    margin-left: 20px;
+}
+.div2{
+    margin-top: 100px;
+    background-color:#d9a3d9 ;
+    height: 220px;
+    display: grid;
+}
+.div2 p{
+    color:#800080;
+}
+.col{
+    background-color: #d9a3d9;
+    width: 800px;
+    height: 700px;
+    margin: auto;
+    margin-top: 100px;
+    border-radius: 10px;
+    
+}
+.col img{
+    margin: 20px 160px 0 ;
+}
+.col h4{
+    color:#5b1e5b;
+    margin-left: 20px;
+}
+.col p{
+    margin-left: 30px;
+}
+.col ul li{
+    list-style: disc;
+    display: list-item;
+    margin-right: 20px;
+}
+.main a{
+    text-align: left;
+    font-size: 20px;
+    color: black;
+    margin-left: 550px;
+   
+
+}
+
+.button1 input[type="button"]{
+    width: 150px;
+    height: 40px;
+    font-size: 18px;
+    margin-top: 40px;
+    background-color:#800080;
+    border-radius: 20px;
+    color: white;
+    border: none;
+    display: inline;
 }
 

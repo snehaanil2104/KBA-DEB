@@ -31,15 +31,7 @@ form label{
 
     
 }
-input[type=text],select{
-    width: 320px;
-    padding: 7px;
-    display: flex;
-    border: 1px solid ;
-    border-radius: 4px;
-    font-size: 15px;
 
-}
 form input{
     width:100%;
     padding: 7px;
@@ -58,20 +50,21 @@ input .a .p{
     text-decoration: none;
 
 }
+
+.part1{
+    float: right; 
+    margin-top: 50px;
+}
+.part1 a{
+    color: #800080;
+    text-decoration: none;
+}
 .part2{
     text-align: center;
     margin-top: 40px;
     
 }
 .part2 a{
-    color: #800080;
-    text-decoration: none;
-}
-.part1{
-    float: right; 
-    margin-top: 50px;
-}
-.part1 a{
     color: #800080;
     text-decoration: none;
 }
@@ -85,12 +78,23 @@ input .a .p{
 
 
 }
+input[type=text],select{
+    width: 320px;
+    padding: 7px;
+    display: flex;
+    border: 1px solid ;
+    border-radius: 4px;
+    font-size: 15px;
+
+}
 .navbar{
     background:white ;
     width: 98%;
-    margin-top: none;
-    height: 60px;
-    padding: 0 20px 0 20px;
+    margin-top: 0%;
+    height: 90px;
+    padding: 10px 20px 10px 20px;
+    display:grid;
+    
 
 }
 .navdiv{

@@ -1,0 +1,106 @@
+body{
+    background-color:#f8f4f8 ;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    margin: 0%;
+}
+.navbar{
+    background-color: #ecf2f3;
+    overflow: hidden;
+}
+.navbar a:hover{
+    background-color:#78a5ac ;
+    border-radius: 5px;
+    
+}
+.navbar a{
+   display: flex;
+   float: right;
+   text-align: right;
+   text-decoration: none;
+   padding: 14px 16px; 
+}
+h1{
+    text-align: center;
+}
+img{
+    width: 300px;
+    margin-left: 780px;
+    margin-top: 50px;
+}
+.div1{
+    margin-top: 30px;
+    text-align: center;
+}
+.div1 input[type="text"]{
+    border-color: rgb(99, 99, 158);
+}
+.div1 input[type="button"]{
+    background-color: rgb(100, 159, 241);
+    margin-left: 10px;
+}
+h2{
+    text-align: left;
+}
+form{
+    width: 300px;
+    margin-left: 20px;
+}
+form label{
+    display: flex;
+    margin-top: 20px;
+    margin: auto;
+    font-size: 16px;
+    padding: 10px;
+    max-width: 350px;
+
+    
+}
+form input{
+    width:100%;
+    padding: 7px;
+}
+.container{
+    background-color: rgb(217, 217, 233);
+    width: 700px;
+    margin: auto;
+    height: 550px;
+ }
+ .container h1{
+    margin-left: 10px;
+    text-align: left;
+ }
+
+
+ .btn input[type="button"]{
+    width: 150px;
+    height: 40px;
+    font-size: 18px;
+    margin-top: 40px;
+    background-color:#4752a4;
+    border-radius: 20px;
+    color: white;
+    border: none;
+}
+input[type=text],select{
+    width: 300px;
+    padding: 7px;
+    display: flex;
+    border: 1px solid ;
+    border-radius: 4px;
+    font-size: 15px;
+
+}
+.main{
+    margin-top: 100px;
+    border: 1px groove;
+    
+}
+.sub h2{
+    text-align: center;
+}
+.sub span{
+    font-weight: bold;
+}
+.sub p{
+    text-align: center;
+}

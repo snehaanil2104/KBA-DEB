@@ -127,7 +127,7 @@ input[type=text],select{
     border-radius: 10px;
     box-shadow: 1px;
     margin: auto;
-    margin-top: 70px;
+    margin-top: 150px;
     
  }
 
@@ -145,13 +145,14 @@ input[type=text],select{
 .div1{
   text-align: center;
    height: 50px;
-   font-size: 26px;
+   font-size: 24px;
 }
 .div1 h2{
+    margin-top: 150px;
     color: #710e71;
 }
 .div1 h2 p{
-    font-size: small;
+    font-size: smaller;
 }
 .div1 h3{
     text-align: left;
@@ -171,14 +172,15 @@ input[type=text],select{
 .box1{
     width: 500px;
     height: 500px;
-    border: 7px solid rgb(97, 96, 96);
-    background-color: white ;
+    border: 7px rgb(97, 96, 96);
+    border-radius: 15px;
+    background-color: rgb(206, 171, 212) ;
     padding-top: 10px;
     margin-left: 20px;
     
 }
 .box1 a{
-    float: left;
+    float: center;
 }
 .div3{
      display: flex;
@@ -206,7 +208,7 @@ input[type=text],select{
     width: 800px;
     height: 700px;
     margin: auto;
-    margin-top: 100px;
+    margin-top: 30px;
     border-radius: 10px;
     
 }
@@ -224,14 +226,13 @@ input[type=text],select{
     list-style: disc;
     display: list-item;
     margin-right: 20px;
+
 }
 .main a{
     text-align: left;
     font-size: 20px;
     color: black;
     margin-left: 550px;
-   
-
 }
 
 .button1 input[type="button"]{
@@ -246,7 +247,7 @@ input[type=text],select{
     display: inline;
 }
 .contact{
-    margin-top: 50px;
+    margin-top: 150px;
 }
 .contact h2{
     text-align: center;
@@ -286,3 +287,13 @@ input[type=text],select{
     text-align: center;
     color: #710e71;
 }
+.courses{
+    margin-top: 100px;
+}
+.box1 p{
+    text-align: center;
+    font-size: large;
+    font-weight: 100;
+}
+
+

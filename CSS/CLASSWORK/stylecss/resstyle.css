@@ -1,0 +1,17 @@
+@media only screen and (max-width=600px){
+    .column1{
+        width: 100%;
+      }
+     .pic img{
+        width: 10px;
+        height: 30px;
+        
+      }
+      .column1 p{
+        font-size: 5px;
+      }
+        .column1 span{
+        font-size: 10px;
+      }
+
+}

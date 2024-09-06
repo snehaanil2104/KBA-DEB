@@ -33,10 +33,15 @@ img{
 }
 .div1 input[type="text"]{
     border-color: rgb(99, 99, 158);
+   height: 30px;
+   font-size: larger;
+
 }
 .div1 input[type="button"]{
     background-color: rgb(100, 159, 241);
-    margin-left: 10px;
+   margin-left: 10px;
+   height: 40px;
+   font-size: larger;
 }
 h2{
     text-align: left;
@@ -81,7 +86,7 @@ form input{
     color: white;
     border: none;
 }
-input[type=text],select{
+.container input[type=text],select{
     width: 300px;
     padding: 7px;
     display: flex;
@@ -89,6 +94,9 @@ input[type=text],select{
     border-radius: 4px;
     font-size: 15px;
 
+}
+.container select{
+    width: 316px;
 }
 .main{
     margin-top: 100px;

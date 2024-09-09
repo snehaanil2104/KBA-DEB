@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Course</title>
+    <!-- <link rel="stylesheet" href="stylecss/style.css"> -->
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+        <div class="bg-amber-300 h-16 ">
+            <nav class="flex float-right mt-3">
+                <div class="mt-2 flex justify-end space-x-8 mr-2">
+                <a href="home.html">Home</a>
+                <a href="courses.html">Courses</a>
+                <a href="cntct.html">Contact Us</a>
+                <a href="addcourse.html">Add Course</a>
+                <a href="login.html">Logout</a>
+            </div>
+        </nav>
+            <img class="flex flex-left " src="/CSS/CLASSWORK/img/kbalogo.png" height="=70px" width="68px" alt="kbalogo"> </div>
+         </div>
+    <div class="bg-blue-300 mt-32 p-8 max-w-md mx-auto rounded-lg  ">
+        <h1 class="font-mono text-2xl indent-32 font-bold">Add Course</h1>
+        <div class="mt-4"><label for="">Course Name:</label></div>
+        <div class="mt-4"><input class="w-80 h-9" type="text" placeholder="eg. Certified Blockchain Associate"></div>
+        <div class="mt-4"><label for="">Course ID:</label></div>    
+        <div class="mt-4"><input class="w-80 h-9" type="text" placeholder="eg. 1"></div>    
+        <div class="mt-4"><label for="course-type">Course Type:</label></div>    
+        <div class="mt-4"><select class="w-80 h-9" name="" id="course-type">
+            <option value="self-paced">Self-Paced</option>
+            <option value="hybrid">Hybrid</option>
+        </select></div>    
+        <div class="mt-4"><label for="description">Description:</label></div>    
+        <div class="mt-4"> <textarea name="description" id="" rows="5" cols="31" placeholder="small description on the course"></textarea></div>    
+        <div class="mt-4"><label for="price">Price:</label></div>    
+        <div class="mt-4"><select class="w-80 h-9" name="" id="price">
+            <option value="price1">Rs. 5000</option>
+            <option value="price2">Rs. 6000</option>
+        </select></div>   
+         <div><button  class="mt-4  border-2 border-stone-950 bg-amber-300 px-2  focus:ring-2 ring-blue-500">Add Course</button></div>
+        </div>
+
+</form>
+</body>
+</html>

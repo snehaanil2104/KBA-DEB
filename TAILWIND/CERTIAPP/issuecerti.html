@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Issue Certificate</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+    <body class="bg-gray-200">
+        <div class="flex justify-end p-2">
+             <a class="bg-sky-500 rounded w-24 h-10 p-2 pl-6 mr-4 text-justify text-slate-100" href="home.html">Home</a>
+                    <a class="rounded w-40 h-10 p-2 pl-6 text-justify" href="issuecerti.html">Issue Certificate</a>
+        </div>
+        <div class="text-2xl font-extrabold">
+    <h2>Certificate Dapp</h2>
+        </div>
+    <div class="bg-blue-300 bg-blue-300 mt-32 p-8 max-w-xl mx-auto rounded-lg">
+        <div class="font-mono text-2xl font-bold"><h1>Issue New Certificate</h1></div>
+            <div  class="mt-8"><label for="course">Select Course*</label></div>
+                <div  class="mt-4"><select class="w-80 h-9 ring-2 hover:ring-4" name="" id="course">
+                    <option value="Certified Blockchain Associate">Certified Blockchain Associate</option>
+                    <option value="Certified Ethereum Developer">Certified Ethereum Developer</option>
+                </select>
+                </div>
+                <div  class="mt-4"><label for="">Course ID*</label></div>
+                <div  class="mt-4"><input class="w-80 h-9 ring-2 hover:ring-4" type="text" placeholder="Certificate ID"></div>
+                <div  class="mt-4"><label for="name">Candidate Name*</label></div> 
+                <div  class="mt-4"><input class="w-80 h-9 ring-2 hover:ring-4" type="text" placeholder="Name"></div>
+                <div  class="mt-4"><label for="grade">Select Grade*</label></div>
+                <div  class="mt-4"><select class="w-80 h-9 ring-2 hover:ring-4" name="" id="course">
+                    <option value="GRADE1">S</option>
+                    <option value="GRADE2">A+</option>
+                    <option value="GRADE3">B+</option>
+                    <option value="GRADE4">C+</option>
+                </select>
+                </div>
+                <div class="mt-4"><label for="date">Issue Date</label></div>
+                <div  class="mt-4"><input class="w-80 h-9 ring-2 hover:ring-4" type="date"></div>
+                <div><button  class="mt-4  border-2 border-stone-950 bg-amber-300 px-2  focus:ring-2 ring-blue-500">Add Course</button></div>
+            </div>
+    </div>
+</body>
+</html>

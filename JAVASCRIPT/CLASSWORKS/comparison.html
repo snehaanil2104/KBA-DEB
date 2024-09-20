@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let a=7;
+        let b=13;
+        let k=(a<b && b>a) //<,> :relational operators  &&logical operators
+        document.write("<br> the value of k is : ",k)   //the o/p is true which is a boolean datatype. therefor, JS also supports boolean datatype
+        let l=(a<b || b>a)
+        document.write("<br> the value of l is : ",l)
+        let p=!k // ! NOT operator
+        document.write("<br> the value of k is : ",k, "<br> the value of p is : ",p) 
+
+
+        if(a<b)
+        {
+            document.write("<br>",`${a} is smaller than ${b}`)
+        }
+        else{
+            document.write(`${a} is greater than ${b}`)
+        }
+    </script>
+</body>
+</html>

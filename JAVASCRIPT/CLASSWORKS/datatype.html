@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- p tag should write outside of script tag -->
+    <p id="demo"></p> 
+    <script>
+        let x; //declaring variable x.  {we can declare variables using let&const..early days var was the one that used instead of let} 
+        x=5;
+        y=10;
+        //document.getElementById("demo").innerHTML=x
+        document.getElementById("demo").innerHTML=x+y+"years" //here + is acting as both additional operator and concatination operator
+        s="3"
+        document.write("type of data of x is : ",typeof x) //typeof is used to specify the datatype
+        document.write("<br> type of data of s is : ",typeof s)
+        let p=null; 
+        d=p
+        document.write("<br>", p)
+        document.write("<br> type of data of p is : ",typeof d)
+        //comparison of const and let
+        const m=20;
+        document.write("<br> value of m is : ",m)
+        { //scope of the statement is with in the curly braces
+            let x=25;
+            document.write("<br>the value of x in this sub block is : ",x)
+        }
+        document.write("<br>the value of x now is : ",x)
+    </script>
+
+    <!-- data types supported by JS are:boolean,numbers,string -->
+     <!-- semicolon(;) is not mandetory in JS -->
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LMS-Add Book</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="shortcut icon" href="/TAILWIND/ASSIGNMENTS/LMS/lblogo.jpeg" type="image/x-icon">
+</head>
+<body class="bg-gray-100">
+    <div  class="grid grid-cols-2 shadow-md shadow-emerald-500/50  p-2">
+        <div>
+            <img src="/TAILWIND/ASSIGNMENTS/LMS/logo.jpeg" alt="" class="w-18 h-16 flex justify-start">
+        </div>
+        <div class="flex items-center justify-end p-2 space-x-8">
+                <a href="home.html"class="w-22 p-2 hover:ring-4 rounded-full ring-emerald-500">Home</a>
+                <a href="addbook.html"class="w-22 p-2  ring-4 rounded-full ring-emerald-500">Add Book</a>
+                <a href="viewbook.html"class="w-22 p-2 hover:ring-4 rounded-full ring-emerald-500">View Book</a>
+                <a href="login.html"class="w-22 p-2 hover:ring-4 rounded-full ring-emerald-500">Login</a>
+        
+        </div>
+    </div>
+    <div class="bg-emerald-100 mt-12 p-8 max-w-md mx-auto rounded-lg ">
+        <h1 class="font-mono text-2xl indent-32 font-bold">Add Book</h1>
+        <div class="mt-4"><label for="">Book  Title:</label></div>
+        <div class="mt-4"><input class="w-80 h-9 ring-2 hover:ring-4 ring-emerald-500" type="text" placeholder=""></div>
+        <div class="mt-4"><label for="">Author Name:</label></div>    
+        <div class="mt-4"><input class="w-80 h-9 ring-2 hover:ring-4 ring-emerald-500" type="text" placeholder=""></div>    
+        <div class="mt-4"><label for="course-type">Genre:</label></div> 
+        <div class="mt-4"><input class="w-80 h-9 ring-2 hover:ring-4 ring-emerald-500" type="text" placeholder=""></div>
+        <div class="mt-4"><label for="price">Published:</label></div> 
+        <div class="mt-4"><input class="w-80 h-9 ring-2 hover:ring-4 ring-emerald-500" type="text" placeholder=""></div>   
+        <div class="mt-4"><label for="price">ISBN:</label></div>  
+        <div class="mt-4"><input class="w-80 h-9 ring-2 hover:ring-4 ring-emerald-500" type="text" placeholder=""></div> 
+        <div class="mt-4 "><label for="description">Description:</label></div>    
+        <div class="mt-4 "> <textarea name="description" id="" rows="5" cols="31" placeholder="small description on the book"></textarea></div>        
+         <div><button  class="mt-4 ml-56 border-2 border-stone-950 bg-emerald-600 px-2  focus:ring-2 ring-blue-500">Add book</button></div>
+        </div>
+</body>
+</html>

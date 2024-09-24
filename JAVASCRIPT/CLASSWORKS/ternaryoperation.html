@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ternary</title>
+</head>
+<body>
+    <script>
+        let a=(20>10)?20:10;
+        document.write(a);
+        let b=(20>10)?(20>30)?20:30:(10>30)?10:30; //(20>10) is the 1st condition; so if the condition is true the result will be the 1st part which is (20>30)?20:30 ; else[if the 1st condition is false], the result will be 2nd part which is (10>30)?10:30 
+        document.write("<br>",b)
+//BITWISE AND & OR
+        let x=5;
+        let y=3;
+        z=x&y
+        document.write("<br>",z)
+
+        let r=7;
+        let m=13;
+        s=r|m;
+        document.write("<br>",s)
+    </script>
+</body>
+</html>

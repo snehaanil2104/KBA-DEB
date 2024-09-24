@@ -1,0 +1,22 @@
+<!-- 24/09-tuesday -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="mydiv">
+        <h1>Hello World</h1>
+    </div>
+    <script>
+        let element= document.createElement("p"); //creating an element in the memory space by using createElement
+        element.innerHTML="Welcome to the world of javascript";
+        document.getElementById("mydiv").appendChild(element);//appendChild is used to add the existing elements
+        let element1= document.createElement("input"); 
+        element1.placeholder="Enter the name";
+        document.getElementById("mydiv").appendChild(element1);
+    </script>
+</body>
+</html>

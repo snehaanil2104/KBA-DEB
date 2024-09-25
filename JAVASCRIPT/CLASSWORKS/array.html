@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Array</title>
+</head>
+<body>
+    <script>
+        let a=[1,2,3,4,5,6,7];
+        document.write("the value in 3rd position is : ",a[3],"<br>");
+        document.write("the value in 5th position is : ",a[4],"<br>")
+        document.write("the sum of values in 3rd and 5th position is : ",a[3]+a[5],"<br>");
+        
+        
+        // const array = [1,2,3,4,5,6];
+        // document.write("the array is : ",array)
+
+        document.write("The array is : ")
+        for(let i=0;i<7;i++){
+            document.write(a[i]);
+        }
+
+        document.write("<br>The sum of array is :")
+        sum=0;
+        for(let i=0;i<a.length;i++){ //array_name.length
+            sum+=a[i]; 
+        }
+        document.write(sum);
+
+        document.write("<br>New array:")
+        for(let i=0;i<a.length;i++){
+            a[i]=a[i]+2;
+        }
+        document.write(a);
+        </script>
+</body>
+</html>

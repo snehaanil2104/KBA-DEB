@@ -152,7 +152,49 @@
     </script>
 
 <!-- Compare “Hello World” & “hEllO World” and display the result & its type. -->
-    
-    
+    <script>
+    const str1 = "Hello World";
+    const str2 = "hEllO World";
+    const result = str1 === str2;
+    const type1 = typeof str1;   
+    const type2 = typeof str2; 
+    document.write("<br> result is:",result);
+    document.write("<br>type is:",type1);
+    document.write("<br>type is:",type2)
+    </script>
+
+<!-- Print this statement “ I am ___ yrs of old and my brother is 10 yrs older to me. He is now __ years old.” -->
+    <script>
+        const myAge = 20;
+        const brotherAge = myAge + 10;
+
+        const statement = `<br>I am ${myAge} yrs old and my brother is 10 yrs older than me. He is now ${brotherAge} years old.`;
+
+        document.write(statement);
+    </script>
+
+<!-- Consider this statement “ My name is ________.(declaring fname & lastname in uppercase). I live in ____(uppercase). -->
+    <script>
+        const fname = "Sneha".toUpperCase();
+        const lastname = "S".toUpperCase();
+        const city = "kayamkulam".toUpperCase(); 
+
+        const statementx = `<br>  My name is ${fname} ${lastname}. I live in ${city}.`;
+
+        document.write(statementx);
+    </script>
+
+<!-- Consider these two statements “I like to play video games.” “I don’t like Hide & seek”. Change 'like' to 'don't like'. -->
+
+    <script>
+        let statement1 = "I like to play video games.";
+        let statement2 = "I don't like Hide & seek.";
+
+// Change 'like' to 'don't like'
+    statement1 = statement1.replace("like", "don't like");
+    statement2 = statement2.replace("like", "don't like");
+    document.write("<br>" ,statement1);
+    document.write("<br>",statement2);
+    </script>
 </body>
 </html>

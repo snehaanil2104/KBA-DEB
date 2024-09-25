@@ -12,7 +12,7 @@
     </div>
     <script>
         let element=document.createElement("p");
-        element.innerHTML="Hello! My name is Sneha,and i'm currently studying at KBA";
+        element.textContent="Hello! My name is Sneha,and i'm currently studying at KBA";
         document.getElementById("mydiv").appendChild(element);
         
     </script>
@@ -86,45 +86,31 @@
      Dropdown.appendChild(option6);
      </script>
 
-<!-- On the KBA site you created add a radio button showing your experience on KBA(like good, bad, average). -->
- <br>
- <br>
- <br>
-    <!-- <input type="radio" 
-     name=value value="good">good
-    <input type="radio" name="value" value="bad">bad
-    <input type="radio" name="value" value="average">average
-     <script>
-
-     </script> -->
-     <div id="exp">
-        <h2>On the KBA site you created add a radio button showing your experience on KBA(like good, bad, average)</h2>
-    </div>
-    <script>
-        {   
-            let optn1 = document.createTextNode("Good");
-            let element = document.createElement("input");
-            element.type = "radio";
-            element.value = "good";
-            document.getElementById("exp").appendChild(element);
-            document.getElementById("exp").appendChild(optn1);
-
-            let optn2 = document.createTextNode("Bad");
-            let element1 = document.createElement("input");
-            element1.type = "radio";
-            element1.value = "bad";
-            document.getElementById("exp").appendChild(element1);
-            document.getElementById("exp").appendChild(optn2);
-
-            let optn3 = document.createTextNode("Average");
-            let element2 = document.createElement("input");
-            element2.type = "radio";
-            element2.value = "avg";
-            document.getElementById("exp").appendChild(element2);
-            document.getElementById("exp").appendChild(optn3);
-
-        }
-    </script>
+        <div  id="radio">
+            <h2>On the KBA site you created add a radio button showing your experience on KBA(like good, bad, average)</h2>
+        </div>
+        <script>
+            let  kbaradio= document.getElementById("radio");
+            
+            let radio1=document.createElement("input");
+            radio1.type="radio";
+            radio1.name="feedback";
+            kbaradio.appendChild(radio1);
+            kbaradio.appendChild(document.createTextNode("Good"));
+        
+            let radio2=document.createElement("input");
+            radio2.type="radio";
+            radio2.name="feedback";
+            kbaradio.appendChild(radio2);
+            kbaradio.appendChild(document.createTextNode("Bad"));
+        
+            let radio3=document.createElement("input");
+            radio3.type="radio";
+            radio3.name="feedback";
+            kbaradio.appendChild(radio3);
+            kbaradio.appendChild(document.createTextNode("Average"));
+         </script>
+    
 
 <!-- Create a dropdown for list of cakes and print the value of second option -->
     <h2> Create a dropdown for list of cakes and print the value of second option </h2>
@@ -154,8 +140,9 @@
 <!-- Print your full name storing fname & lname. Print in Uppercase. -->
  <h2>Print your full name storing fname & lname. Print in Uppercase.</h2>
     <script>
-        let name="Sneha S";
-        document.write("<br><br><br>",name.toUpperCase());
+        let f_name="Sneha";
+        let l_name="S";
+        document.write(`<br>${f_name.toUpperCase()}&nbsp;${l_name.toUpperCase()}`);
     </script>
 
 <!-- “You can study anything if you have a will to do it”.Take the substrings “You can study”, “you”,”will”,”do it” and combine as a sentence. -->
@@ -230,7 +217,29 @@
     statement1 = statement1.replace("like", "don't like");
     statement2 = statement2.replace("like", "don't like");
     document.write("<br>" ,statement1);
-    document.write("<br>",statement2);
+    document.write("<br>",statement2,"<br>");
     </script>
+
+<!-- Write a JavaScript program to compute the sum of the two given integers. If the sum is in the range 50..80 return 65 otherwise return 80 (using ternary operator). -->
+ <h2>Write a JavaScript program to compute the sum of the two given integers. If the sum is in the range 50..80 return 65 otherwise return 80 (using ternary operator).</h2>
+    <script>
+        let a=30;
+        let b=25;
+        let sum=a+b;
+        let Result=(sum >= 50 && sum <= 80) ? 65 : 80;
+        document.write(Result,"<br><br>");
+    </script>
+
+<!-- Program to find whether the person is eligible for voting using ternary operator -->
+    <h2>Program to find whether the person is eligible for voting using ternary operator</h2>
+    <script>
+        let age=17;
+        let eligibility = (age >= 18) ? "eligible for voting" : "not eligible for voting";
+        document.write(eligibility);
+    </script>
+   
+
+
+
 </body>
 </html>

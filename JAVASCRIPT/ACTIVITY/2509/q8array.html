@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let a = [20, 25, 30, 35, 40, 45, 50, 55];
+        document.write("array:");
+        for(i=0;i<a.length;i++){
+            document.write(a[i],"&nbsp;")
+        }
+let first = a.slice(0, 3);
+let second = a.slice(3);
+
+document.write("<br>First array: ", first,"<br>");
+document.write("Second array: ", second,"<br>");
+    </script>
+</body>
+</html>

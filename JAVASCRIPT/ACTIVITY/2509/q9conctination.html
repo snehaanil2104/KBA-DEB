@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        document.write("Write a program to concatinate a[2,4,6,8] b=[1,3,5,7] as a single array<br><br>")
+        let a=[2,4,6,8]
+        let b=[1,3,5,7]
+        let c=[];
+        document.write("first array: ")
+        for(i=0;i<a.length;i++)
+    {
+        document.write(a[i],"&nbsp;&nbsp;")
+    }
+    document.write("<br>second array: ")
+        for(i=0;i<b.length;i++)
+    {
+        document.write(b[i],"&nbsp;&nbsp;")
+    }
+    for(i=0;i<a.length;i++)
+    {
+      c[i]=a[i]
+    }
+    j=a.length;
+    for(i=0;i<b.length;i++,j++){
+        c[j]=b[i]
+    }
+
+    document.write("<br>concatinated array : ")
+    for(i=0;i<(a.length+b.length);i++){
+        document.write(c[i],"&nbsp;&nbsp;") 
+    }
+    </script>
+</body>
+</html>

@@ -8,7 +8,7 @@
 <body>
     <!-- Program to print a para about yourself using createElement() , textContent & append child. -->
     <div id="mydiv">
-        <h1>About Myself</h1>
+        <h2>About Myself</h2>
     </div>
     <script>
         let element=document.createElement("p");
@@ -17,7 +17,7 @@
         
     </script>
     <!-- Make an unordered list of cinemas on html page using javascript. -->
-    <h1>List of Cinemas</h1>
+    <h2>List of Cinemas</h2>
     <ul id="cinemaList"></ul>
     <script>
 
@@ -41,7 +41,7 @@
     </script>
 
     <!-- Create a dropdown for programming language classes offered on html page using javascript. -->
-    <h1>Select One</h1>
+    <h2>Create a dropdown for programming language classes offered on html page using javascript.</h2>
     <select id="plDropdown"></select>
     <script>
 
@@ -64,7 +64,7 @@
      </script>
 
     <!-- Create a dropdown containing name of books on the book shop page after List of Book heading. -->
-    <h1>Books</h1>
+    <h2>Create a dropdown containing name of books on the book shop page</h2>
     <select id="bkDropdown"></select>
     <script>
 
@@ -90,16 +90,44 @@
  <br>
  <br>
  <br>
-    <input type="radio" 
+    <!-- <input type="radio" 
      name=value value="good">good
     <input type="radio" name="value" value="bad">bad
     <input type="radio" name="value" value="average">average
      <script>
 
-     </script>
+     </script> -->
+     <div id="exp">
+        <h2>On the KBA site you created add a radio button showing your experience on KBA(like good, bad, average)</h2>
+    </div>
+    <script>
+        {   
+            let optn1 = document.createTextNode("Good");
+            let element = document.createElement("input");
+            element.type = "radio";
+            element.value = "good";
+            document.getElementById("exp").appendChild(element);
+            document.getElementById("exp").appendChild(optn1);
+
+            let optn2 = document.createTextNode("Bad");
+            let element1 = document.createElement("input");
+            element1.type = "radio";
+            element1.value = "bad";
+            document.getElementById("exp").appendChild(element1);
+            document.getElementById("exp").appendChild(optn2);
+
+            let optn3 = document.createTextNode("Average");
+            let element2 = document.createElement("input");
+            element2.type = "radio";
+            element2.value = "avg";
+            document.getElementById("exp").appendChild(element2);
+            document.getElementById("exp").appendChild(optn3);
+
+        }
+    </script>
 
 <!-- Create a dropdown for list of cakes and print the value of second option -->
-    <h1>Select One</h1>
+    <h2> Create a dropdown for list of cakes and print the value of second option </h2>
     <select id="cDropdown"></select>
     <script>
 
@@ -120,16 +148,18 @@
     cake3.textContent="redvelvet";
     dropDown.appendChild(cake3);
 
-    document.write(`selected: `)
+    document.write(`selected: `,cake2.value)
     </script>
 
 <!-- Print your full name storing fname & lname. Print in Uppercase. -->
+ <h2>Print your full name storing fname & lname. Print in Uppercase.</h2>
     <script>
         let name="Sneha S";
         document.write("<br><br><br>",name.toUpperCase());
     </script>
 
 <!-- “You can study anything if you have a will to do it”.Take the substrings “You can study”, “you”,”will”,”do it” and combine as a sentence. -->
+ <h2>“You can study anything if you have a will to do it”.Take the substrings “You can study”, “you”,”will”,”do it” and combine as a sentence.</h2>
 
     <script>
         let sentence1="You can study anything if you have a will to do it"
@@ -139,12 +169,14 @@
     </script>
 
 <!-- “MongoDB is a decentralised distributed ledger.MongoDB can eliminate centralisation.” Replace MongoDB with Blockchain. -->
+ <h2>“MongoDB is a decentralised distributed ledger.MongoDB can eliminate centralisation.” Replace MongoDB with Blockchain. </h2>
     <script>
         let originaltext="MongoDB is a decentralised distributed ledger . MongoDB can eliminate centralisation.";
         let newtext=originaltext.replace(/MongoDB/g,"Blockchain"); // /g is a flag used to perform global serach.this means tht the regular exp will replace all the occurrance of  a match in str.
         document.write(newtext,"<br>")
     </script>
 <!-- Print the string “MongoDB is a decentralised distributed ledger” using substring/substr. -->
+ <h2> Print the string “MongoDB is a decentralised distributed ledger” using substring/substr. </h2>
     <script>
         let text="MongoDB is a decentralised distributed ledger";
         document.write(text.substring(0,45),"<br>");
@@ -152,6 +184,7 @@
     </script>
 
 <!-- Compare “Hello World” & “hEllO World” and display the result & its type. -->
+ <h2>Compare “Hello World” & “hEllO World” and display the result & its type</h2>
     <script>
     const str1 = "Hello World";
     const str2 = "hEllO World";
@@ -164,6 +197,7 @@
     </script>
 
 <!-- Print this statement “ I am ___ yrs of old and my brother is 10 yrs older to me. He is now __ years old.” -->
+ <h2> Print this statement “ I am ___ yrs of old and my brother is 10 yrs older to me. He is now __ years old.”</h2>
     <script>
         const myAge = 20;
         const brotherAge = myAge + 10;
@@ -174,6 +208,7 @@
     </script>
 
 <!-- Consider this statement “ My name is ________.(declaring fname & lastname in uppercase). I live in ____(uppercase). -->
+ <h2>Consider this statement “ My name is ________.(declaring fname & lastname in uppercase). I live in ____(uppercase).</h2>
     <script>
         const fname = "Sneha".toUpperCase();
         const lastname = "S".toUpperCase();
@@ -185,6 +220,7 @@
     </script>
 
 <!-- Consider these two statements “I like to play video games.” “I don’t like Hide & seek”. Change 'like' to 'don't like'. -->
+ <h2> Consider these two statements “I like to play video games.” “I don’t like Hide & seek”. Change 'like' to 'don't like'.</h2>
 
     <script>
         let statement1 = "I like to play video games.";

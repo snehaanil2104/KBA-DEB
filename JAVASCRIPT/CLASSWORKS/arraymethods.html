@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let a=[9,8,7,6]
+        a.push(5);
+        document.write("<br>5 pushed: ",a)
+        a.pop()
+        document.write("<br>5 removed: ",a)
+        let b=[2,3,4,5]
+        b=a.toString();
+        document.write(`<br>tostring &nbsp&nbsp&nbsp`,b[1])
+        let c=[3,4,5,7]
+        let d=a.concat(c);
+        document.write("<br>concat: c=",d)
+        let e=[7,4,5,9]
+        let f=a.concat(c,e)
+        document.write("<br>",f)
+
+        c.splice(2,0,2,3)               //The splice method is used to add, remove, or replace elements in an array. The syntax is:array.splice(startIndex, deleteCount, item1, item2, ..., itemN);
+
+        document.write("<br>splice: c=",c)
+
+        let k=c.slice(2,4)              //This takes elements (or characters, if c is a string) from the array/string c starting at index 2 up to, but not including, index 4.
+        document.write("<br>slice: ",k)
+        document.write("<br>" ,c.reverse());
+        document.write("<br>" ,c.sort());
+        let n=c.indexOf(4);
+        document.write("<br>index: " ,n);
+        document.write("<br>", c.join("*"))
+
+    </script>
+</body>
+</html>

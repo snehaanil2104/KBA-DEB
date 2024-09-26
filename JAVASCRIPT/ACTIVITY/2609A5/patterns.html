@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //1.
+        for(let i=1;i<=4;i++){
+            for(let j=1;j<=i;j++){
+            document.write(i +" ")
+        }
+        document.write("<br>")
+            }
+
+
+            document.write("<br> <br>")
+       //2.
+        let count=1;
+        for(let a=0;a<=3;a++) {
+            for(let b=0;b<=a;b++){
+                document.write(count + " ")
+                count++;
+            }
+            document.write("<br>")
+        } 
+
+        document.write("<br> <br>")
+        //3.
+        let num=0;
+        for(let c=0;c<3;c++){
+            for(d=0;d<3;d++){
+                document.write(" ")
+                num=num+2
+                document.write(num)
+            }
+            document.write("<br>")
+        }
+        document.write("<br> <br>")
+        //4.
+        for(let g=0;g<3;g++){
+            for(let h=0;h<3-g;h++){
+                document.write(" ")
+                document.write("*")
+            }
+            document.write("<br>")
+        }
+        document.write("<br> <br>")
+        //4.
+        let Num=0;
+        for(let e=0;e<3;e++){
+            for(let f=0;f<3-e;f++){
+                document.write(" ")
+                Num=Num+2
+                document.write(Num)
+            }
+            document.write("<br>")
+        }
+    </script>
+</body>
+</html>

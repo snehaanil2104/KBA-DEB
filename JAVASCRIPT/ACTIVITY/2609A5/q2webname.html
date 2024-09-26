@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+   <script>
+    document.write("Get the website name from a particular url")
+    // Example URL
+let url = "https://www.example.com/page?param=value";
+
+// Create a URL object.bcoz the URL object provides convenient properties to access different parts of the URL (such as protocol, hostname, pathname, search parameters, etc.).
+
+
+let urlObj = new URL(url);
+
+// Get the hostname (website name)
+let websiteName = urlObj.hostname;
+
+document.write("<br>Website name: ", websiteName);
+   </script> 
+</body>
+</html>

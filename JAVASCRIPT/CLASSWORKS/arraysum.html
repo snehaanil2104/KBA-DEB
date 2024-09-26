@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>array sum</title>
+</head>
+<body>
+    <!-- 26/09-thursday -->
+<script>
+    let d=[1,2,3,4,5]
+    let b=[6,7,8,9,1]
+    let  c=[]
+    for(i=0;i<5;i++){
+        c[i]=d[i]+b[i]
+      }
+      let sum =0;
+      for(x in c){
+        document.write(c[x],"<br>");
+        sum=sum+c[x]
+     }
+     document.write("sum is: ",sum)
+    //   for(x in c){                       //for in method
+    //     document.write(c[x]);            // x acts as index
+    //   }
+
+      for(x of c){
+        document.write("<br",x);
+      }
+      
+     </script>
+</body>
+</html>

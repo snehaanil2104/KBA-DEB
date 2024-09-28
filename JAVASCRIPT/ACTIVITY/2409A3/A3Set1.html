@@ -18,136 +18,152 @@
     </script>
     <!-- Make an unordered list of cinemas on html page using javascript. -->
     <h2>List of Cinemas</h2>
-    <ul id="cinemaList"></ul>
+    <div id="mydiv1"></div>
     <script>
+        {
+            let element = document.createElement("ul");
+            element = document.createElement("li");
+            element.innerHTML = "Intestellar"
+            document.getElementById("mydiv1").appendChild(element);
 
-         const cinemaList= document.getElementById("cinemaList");
+            element = document.createElement("li");
+            element.innerHTML = "Manichithrathazhu"
+            document.getElementById("mydiv1").appendChild(element);
 
-         const cinema1=document.createElement("li");
-         cinema1.textContent="PVR";
-         cinemaList.appendChild(cinema1);
-
-         const cinema2=document.createElement("li");
-         cinema2.textContent="INOX";
-         cinemaList.appendChild(cinema2);
-
-         const cinema3=document.createElement("li");
-         cinema3.textContent="ARIES PLEX";
-         cinemaList.appendChild(cinema3);
-
-         const cinema4=document.createElement("li");
-         cinema4.textContent="CINEPOLIS";
-         cinemaList.appendChild(cinema4);
+            element = document.createElement("li");
+            element.innerHTML = "Your Name"
+            document.getElementById("mydiv1").appendChild(element);
+        }
     </script>
 
     <!-- Create a dropdown for programming language classes offered on html page using javascript. -->
     <h2>Create a dropdown for programming language classes offered on html page using javascript.</h2>
-    <select id="plDropdown"></select>
+    <div id="mydiv2">
+
+    </div>
     <script>
 
-     const dropdown= document.getElementById("plDropdown");
+        let selectInp = document.createElement("select")
+        let option1 = document.createElement("option")
 
-     const option1=document.createElement("option");
-     option1.value="classlistdiv";
-     option1.textContent="classlistdiv";
-     dropdown.appendChild(option1);
+        option1.innerHTML = "Python"
+        selectInp.appendChild(option1)
 
-     const option2=document.createElement("option");
-     option2.value="classitems";
-     option2.textContent="classitems";
-     dropdown.appendChild(option2);
+        let option2 = document.createElement("option")
+        option2.innerHTML = "HTML"
+        selectInp.appendChild(option2)
 
-     const option3=document.createElement("option");
-     option3.value="classinfo";
-     option3.textContent="classinfo";
-     dropdown.appendChild(option3);
-     </script>
+        let option3 = document.createElement("option")
+        option3.innerHTML = "Java"
+        selectInp.appendChild(option3)
+        document.getElementById("mydiv2").appendChild(selectInp)
+    </script>
 
     <!-- Create a dropdown containing name of books on the book shop page after List of Book heading. -->
     <h2>Create a dropdown containing name of books on the book shop page</h2>
-    <select id="bkDropdown"></select>
+    <div id="mydiv3">
+
+    </div>
     <script>
+        {
+            let selectInp = document.createElement("select")
+            let option1 = document.createElement("option")
 
-     const  Dropdown= document.getElementById("bkDropdown");
+            option1.innerHTML = "Mercury Island"
+            selectInp.appendChild(option1)
 
-     const option4=document.createElement("option");
-     option4.value="KAFKA ON THE SHORE";
-     option4.textContent="KAFKA ON THE SHORE";
-     Dropdown.appendChild(option4);
+            let option2 = document.createElement("option")
+            option2.innerHTML = "Kafka on the Shore"
+            selectInp.appendChild(option2)
 
-     const option5=document.createElement("option");
-     option5.value="MERCURY ISLAND";
-     option5.textContent="MERCURY ISLAND";
-     Dropdown.appendChild(option5);
+            let option3 = document.createElement("option")
+            option3.innerHTML = "Atomic Habits"
+            selectInp.appendChild(option3)
+            document.getElementById("mydiv3").appendChild(selectInp)
+        }
 
-     const option6=document.createElement("option");
-     option6.value="ATOMIC HABITS";
-     option6.textContent="ATOMIC HABITS";
-     Dropdown.appendChild(option6);
-     </script>
+    </script>
 
-        <div  id="radio">
+        
             <h2>On the KBA site you created add a radio button showing your experience on KBA(like good, bad, average)</h2>
-        </div>
+            <div  id="mydiv4">
+                <div id="good">
+                    <label for="radio">GOOD</label>
+                </div>
+                <div id="bad">
+                    <label for="radio">BAD</label>
+                </div>
+                <div id="avg">
+                    <label for="radio">AVERAGE</label>
+                </div>
+           </div>
         <script>
-            let  kbaradio= document.getElementById("radio");
-            
-            let radio1=document.createElement("input");
-            radio1.type="radio";
-            radio1.name="feedback";
-            kbaradio.appendChild(radio1);
-            kbaradio.appendChild(document.createTextNode("Good"));
-        
-            let radio2=document.createElement("input");
-            radio2.type="radio";
-            radio2.name="feedback";
-            kbaradio.appendChild(radio2);
-            kbaradio.appendChild(document.createTextNode("Bad"));
-        
-            let radio3=document.createElement("input");
-            radio3.type="radio";
-            radio3.name="feedback";
-            kbaradio.appendChild(radio3);
-            kbaradio.appendChild(document.createTextNode("Average"));
+            {
+            let element=document.createElement("input");
+            element.type="radio";
+            element.name="feedback";
+            document.getElementById("good").appendChild(element);
+
+            let element1=document.createElement("input");
+            element1.type="radio";
+            element1.name="feedback";
+            document.getElementById("bad").appendChild(element1);
+
+            let element2=document.createElement("input");
+            element2.type="radio";
+            element2.name="feedback";
+            document.getElementById("avg").appendChild(element2);
+        }
          </script>
     
 
 <!-- Create a dropdown for list of cakes and print the value of second option -->
-    <h2> Create a dropdown for list of cakes and print the value of second option </h2>
-    <select id="cDropdown"></select>
-    <script>
+<h2>Create a dropdown for list of cakes and print the value of second option.</h2>
+<br>
+<div id="mydiv5"></div>
 
-    const dropDown= document.getElementById("cDropdown");
+<script>
+    {
+        let selectInp = document.createElement("select")
+        let option1 = document.createElement("option")
+        // first option
+        option1.innerHTML = "Chocolate"
+        option1.value = "Chocolate"
+        selectInp.appendChild(option1)
+        // second option
+        let option2 = document.createElement("option")
+        option2.innerHTML = "Red Velvate"
+        option2.value = "Red Velvate"
+        selectInp.appendChild(option2)
+        // third option
+        let option3 = document.createElement("option")
+        option3.innerHTML = "Vanila"
+        option3.value = "vanila"
+        selectInp.appendChild(option3)
+        document.getElementById("mydiv5").appendChild(selectInp)
 
-    const cake1=document.createElement("option");
-    cake1.value="blackforest";
-    cake1.textContent="blackforest";
-    dropDown.appendChild(cake1);
+        document.write("<br>",option2.value)
 
-    const cake2=document.createElement("option");
-    cake2.value="whiteforest";
-    cake2.textContent="whiteforest";
-    dropDown.appendChild(cake2);
 
-    const cake3=document.createElement("option");
-    cake3.value="redvelvet";
-    cake3.textContent="redvelvet";
-    dropDown.appendChild(cake3);
+    }
 
-    document.write(`selected: `,cake2.value)
-    </script>
+</script>
 
 <!-- Print your full name storing fname & lname. Print in Uppercase. -->
  <h2>Print your full name storing fname & lname. Print in Uppercase.</h2>
+ <div id="mydiv6"></div>
     <script>
         let f_name="Sneha";
         let l_name="S";
-        document.write(`<br>${f_name.toUpperCase()}&nbsp;${l_name.toUpperCase()}`);
+        let name = f_name + ' ' + l_name;
+            document.write("<br> Full Name :", name.toUpperCase());
     </script>
 
 <!-- “You can study anything if you have a will to do it”.Take the substrings “You can study”, “you”,”will”,”do it” and combine as a sentence. -->
  <h2>“You can study anything if you have a will to do it”.Take the substrings “You can study”, “you”,”will”,”do it” and combine as a sentence.</h2>
+ <div id="mydiv7">
 
+ </div>
     <script>
         let sentence1="You can study anything if you have a will to do it"
         //using slice function
@@ -157,10 +173,14 @@
 
 <!-- “MongoDB is a decentralised distributed ledger.MongoDB can eliminate centralisation.” Replace MongoDB with Blockchain. -->
  <h2>“MongoDB is a decentralised distributed ledger.MongoDB can eliminate centralisation.” Replace MongoDB with Blockchain. </h2>
+    <p id="mydiv8"></p>
+
     <script>
-        let originaltext="MongoDB is a decentralised distributed ledger . MongoDB can eliminate centralisation.";
-        let newtext=originaltext.replace(/MongoDB/g,"Blockchain"); // /g is a flag used to perform global serach.this means tht the regular exp will replace all the occurrance of  a match in str.
-        document.write(newtext,"<br>")
+        let str = 'MongoDB is a decentralised distributed ledger . MongoDB can eliminate centralisation';
+        document.write(str);
+        let result = str.replaceAll("MongoDB", "Blockchain");
+        document.write("<br><br>", result);
+
     </script>
 <!-- Print the string “MongoDB is a decentralised distributed ledger” using substring/substr. -->
  <h2> Print the string “MongoDB is a decentralised distributed ledger” using substring/substr. </h2>
@@ -175,10 +195,10 @@
     <script>
     const str1 = "Hello World";
     const str2 = "hEllO World";
-    const result = str1 === str2;
+    const r = str1 === str2;
     const type1 = typeof str1;   
     const type2 = typeof str2; 
-    document.write("<br> result is:",result);
+    document.write("<br> result is:",r);
     document.write("<br>type is:",type1);
     document.write("<br>type is:",type2)
     </script>

@@ -28,11 +28,11 @@
     <p class="text-center">Our friendly team is here to help.</p>
     <p class="text-center text-purple-600">hello@merakiui.com</p>
    </div> 
-   <div  class="justify-center items-center ml-12">
+   <div  class="justify-center items-center ml-4">
     <img class="size-12 ml-64 mb-6 mt-44" src="/TAILWIND/KBACOURSES/images/location.jpeg" alt="">
-    <h3 class="text-center font-bold">Office</h3>
-    <p class="text-center">Come say hello at our office HQ..</p>
-    <p class="text-center text-purple-600">100 Smith Street Collingwood VIC 3066 AU.</p>
+    <h3 class="text-center font-bold mr-12">Office</h3>
+    <p class="text-center mr-12">Come say hello at our office HQ..</p>
+    <p class="text-center text-purple-600 mr-12">100 Smith Street Collingwood VIC 3066 AU.</p>
    </div> 
    <div  class="justify-center items-center ml-12">
     <img class="size-12 ml-64 mb-6 mt-44" src="/TAILWIND/KBACOURSES/images/phone.jpeg" alt="">
@@ -42,5 +42,39 @@
    </div> 
 </div>
 </div>
+<div id="mydiv4" class="mt-72 flex justify-center space-x-8">
+  <div><span class="mr-8 text-purple-900 font-bold">Share your experience:</span></div>
+  <div id="good">
+      <label for="radio" class="font-bold">GOOD</label>
+  </div>
+  <div id="bad">
+      <label for="radio" class="font-bold">BAD</label>
+  </div>
+  <div id="avg">
+      <label for="radio" class="font-bold">AVERAGE</label>
+  </div>
+</div>
+<script>
+{
+  let element = document.createElement("input");
+  element.type = "radio";
+  element.name = "feedback";
+  document.getElementById("good").appendChild(element);
+
+  let element1 = document.createElement("input");
+  element1.type = "radio";
+  element1.name = "feedback";
+  document.getElementById("bad").appendChild(element1);
+
+  let element2 = document.createElement("input");
+  element2.type = "radio";
+  element2.name = "feedback";
+  document.getElementById("avg").appendChild(element2);
+}
+</script>
+
+
+  
+
 </body>
 </html>

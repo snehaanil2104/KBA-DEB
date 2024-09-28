@@ -1,0 +1,24 @@
+<!-- 27/09-friday -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2D array</title>
+</head>
+<body>
+    <script>
+        let a=[[]];
+        a=[[1,2,3],[4,5,6],[7,8,9]]
+        for(i=0;i<3;i++){     // < no.of rows
+            for(j=0;j<3;j++){  // < no.of elements in a row
+                //The outer for loop iterates over each row, while the inner for loop iterates over each element within the current row.
+                document.write(" ")
+                document.write(a[i][j]);  //a[i][j]: Refers to an element in a two-dimensional array a at row i and column j.
+
+            }
+            document.write("<br>")
+        }
+    </script>
+</body>
+</html>

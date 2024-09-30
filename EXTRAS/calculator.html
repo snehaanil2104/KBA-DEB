@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <style>
+body{
+    background-color: #aed6f1 ;
+}    
+
+.main h2{
+
+background-color: black;
+    color: rgb(48, 128, 48);
+    text-align: center;
+    height: 50px;
+padding-top: 30px;
+border-style: solid;
+border-color: white;
+border-width: 10px;
+outline-style: solid;
+outline-color: rgb(73, 73, 136);
+border-radius: 10px;
+
+    
+}
+
+.main{
+
+    margin: auto;
+    background-color: antiquewhite;
+    width: 340px;
+    height: 500px;
+    border-radius: 50px 50px 50px 50px;
+    padding: 7px;
+   
+}
+ 
+.main .section1{
+    background-color: rgb(71, 71, 172);
+    height: 120px;
+    padding: 20px;
+    width: 300px;
+    margin: auto;
+    border-top-right-radius: 40px;
+    border-top-left-radius: 40px;
+  
+  
+}
+.main h1{
+    background-color: black;
+    color: rgb(48, 128, 48);
+    text-align: center;
+    height: 50px;
+    padding-top: 30px;
+    border-style: solid;
+    border-color: white;
+    border-width: 10px;
+    outline-style: solid;
+    outline-color: rgb(73, 73, 136);
+    border-radius: 10px;
+
+}
+.section2{
+    width: 300px;
+    background-color: brown;
+    margin: auto;
+    padding: 20px;
+    border-bottom-left-radius: 40px;
+  border-bottom-right-radius: 40px;
+  
+}
+
+.row2 .col{
+    margin-right: 20px;
+}
+input{
+    width: 40px;
+    height: 40px;
+    background-color: #52a85f;
+    color: white;
+    margin-top: 20px;
+    border-radius: 9px;
+    outline: none;
+}
+</style>
+</head>
+<body>
+    <div class="main">
+        
+        <div class="section1">
+            <h1>38+99=?</h1>
+        </div>
+            <div class="section2">
+                <div class="row1" style="display: flex; justify-content: space-between;">
+                    <div class="col"><input type="button" value="&#9211;"></div>
+                    <div class="col" style="text-align: right; position: relative; right: 19px;"><input type="button" value="&#247">
+                   </div>
+                   </div>
+        <!-- row 2 -->
+         <div class="row2" style="display: flex;">
+            <div class="col">
+                <input type="button" value="">
+            </div>
+            <div class="col">
+                <input type="button" style="background-color:#52a85f;" value="7">
+            </div>
+            <div class="col">
+                <input type="button"style="background-color: #6b9cd0;" value="8">
+            </div>
+            <div class="col">
+                <input type="button"style="background-color:#52a85f;" value="9">
+            </div>
+            <div class="col">
+                <input type="button" value="-">
+            </div>
+         </div>
+         <!-- row3 -->
+         <div class="row2" style="display: flex;">
+            <div class="col"><input type="button" value=""></div>
+            <div class="col"><input type="button" style="background-color: #6b9cd0;" value="4"></div>
+            <div class="col"><input type="button" style="background-color:#52a85f;" value="5"></div>
+            <div class="col"><input type="button" style="background-color: #6b9cd0;" value="6"></div>
+            <div class="col"><input type="button" value="*"></div>
+         </div>
+         <!-- row4 -->
+         <div class="row2" style="display: flex;">
+            <div class="col"><input type="button" value=""></div>
+            <div class="col"><input type="button" style="background-color: #52a85f;" value="1"></div>
+            <div class="col"><input type="button" style="background-color: #6b9cd0;" value="2"></div>
+            <div class="col"><input type="button" style="background-color: #52a85f;" value="3"></div>
+            <div class="col"><input type="button" value="+"></div>
+         </div>
+         <!-- row5 -->
+         <div class="row2" style="display: flex;">
+            <div class="col"><input type="button" value=""></div>
+            <div class="col"><input type="button" style="background-color: #6b9cd0;" value="0"></div>
+            <div class="col"><input type="button" style="background-color: #52a85f;" value="."></div>
+            <div class="col"><input type="button" style="background-color: #6b9cd0;" value="= /"></div>
+            <div class="col"><input type="button" value="C"></div>
+         </div>
+
+    
+    </div>
+   </div> 
+</body>
+</html>

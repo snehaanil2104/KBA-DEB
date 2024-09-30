@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Defining and using functions</title>
+</head>
+<body>
+    <h1>Defining and using functions</h1>
+    <p>Open your browser to see the output</p>
+    <script>
+        //function definition
+        function add(a,b){
+           return a+b; //function body
+        }
+        //function call
+        let sum = add(5,10);
+        console.log('Sum is:',sum)
+    </script>
+    <script>
+        //we can call a function multiple times but can't use a avariable more than once
+        function product(a,b){
+           return a*b;
+        }
+        let result = product(5,10);
+        console.log('Product is:',result)
+    </script>
+     <script>
+        function div(a,b){
+           return a/b;
+        }
+        let quotient= div(5,10);
+        console.log('quotient is:',quotient)
+    </script>
+</body>
+</html>

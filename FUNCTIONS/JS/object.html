@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Object-Introduction</title>
+</head>
+<body>
+    <h1>JavaScript Object-Introduction</h1>
+    <p>Open your browser to see the output</p>
+    <script>
+        //object in js example
+
+        //defining oject as key:value pairs
+        let person ={           //An object person is created using the object literal {}.
+            name :"Bob",
+            age :20,
+            city :"Trivandrum",
+            greet : function(){   //This calls the greet method of the person object.
+
+                console.log('Hello,'+ this.name);  //this returns the object within it's scope
+            }
+        }
+        console.log(person.name);
+        console.log(person.age);
+        console.log(person.city);
+        person.greet();
+    </script>
+</body>
+</html>

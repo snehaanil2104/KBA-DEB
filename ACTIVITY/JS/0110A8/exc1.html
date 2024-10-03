@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- Define an arrow function greetLater that takes a parameter name and logs "Hello, [name]" after 2 seconds. Use setTimeout to delay the log. The arrow function should use the global this context. Explain why the this context behaves the way it does in an arrow function. -->
+    <h1>Output Displayed in console</h1>
+    <script>
+           let person ={
+            name : "sneha",
+            greetLater : function(){  //normal function
+                setTimeout(() => {
+                    console.log("hello," + this.name)
+                }, 2000);
+            }
+           
+        };
+        person.greetLater();
+        
+            </script>
+    
+</body>
+</html>

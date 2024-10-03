@@ -7,11 +7,12 @@
 </head>
 <body>
     <!-- Define a function userInfo that accepts a username as a parameter and logs "Welcome, [username]". Inside this function, define and immediately invoke another function named displayMessage that logs "User [username] has logged in". Ensure that both functions have access to the username variable. -->
-     <!-- <label for="nameInput">Username:</label>
-     <input type="text" id="nameInput"> -->
+     <label for="nameInput">Username:</label>
+     <input type="text" id="nameInput">
      <!-- <button onclick="userInfo()">login</button> -->
-     <!-- <p id="output"></p>
+     
      <button type="button" onclick="displayMessage()">Submit</button>
+     <p id="output"></p>
  <p id="message"></p>
      <script>
          function userInfo(){
@@ -31,28 +32,9 @@
                 messageElement.textContent = `please enter your username` 
             }
         }
-     </script> -->
-     <form action="">
-        <label>Username: </label>
-        <input type="text" id="username">
-        <button type="button" onclick="userInfo()">Login</button>
-        <p id="display"></p>
-     </form>
-
-     <script>
-        function userInfo(username){
-            let user = document.getElementById("username").value
-            document.getElementById("display")
-            document.write("User " + user + "logged in")
-        }
-        if (user){
-            document.write("welcome" + user)
-            document.write("<br> User" + user + "logged in")
-        }
-        else{
-            alert("please enter your username")
-        }
      </script>
+     
+
 
 
 </body>

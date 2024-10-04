@@ -6,82 +6,68 @@
     <title>Document</title>
 </head>
 <body>
-    <!-- Create a simple task manager. Allow users to input a task and add it to a list. Each task should display a "Remove" button next to it. When clicked, the button should remove the task from the list. Additionally, implement an "Edit" button for each task. Clicking the "Edit" button should replace the task text with an input field pre-filled with the current task text. After editing, clicking a "Save" button should update the task. -->
-    <h1>Output Displayed in console</h1>
-    <h1>Task Manager</h1>
-    
-    <input type="text" id="taskInput" placeholder="Enter a new task">
-    <button onclick="addTask()">Add Task</button>
-    
-    <div class="task-list" id="taskList"></div>
-    
+    <!-- Create a simple task manager. Allow users to input a task and add it to a list. Each task 
+    should display a "Remove" button next to it. When clicked, the button should remove the task from
+    the list. Additionally, implement an "Edit" button for each task. Clicking the "Edit" button 
+    should replace the task text with an input field pre-filled with the current task text. After
+    editing,clicking a "Save" button should update the task.
+     -->
+    <h2>task manager</h2>
+    <label for="task" > enter a task</label>
+    <input type="text" id="task">
+    <button onclick="addtask()">add to task</button>
+    <ul id="tasklist"></ul>
     <script>
-        // Function to add a task
-        function addTask() {
-            const taskInput = document.getElementById("taskInput");
-            const taskText = taskInput.value.trim();
-            
-            if (taskText === "") {
-                alert("Please enter a task.");
-                return;
-            }
+        function addtask()
+        {
+            const taskinput=document.getElementById('task');
+            const tasklist=document.getElementById('tasklist');
+            if (taskinput)
+        {
+            const li=document.createElement('li');
+            let taskText = taskinput.value;  // Store the task text
+            li.textContent = taskText;
+//remove button
 
-            const taskList = document.getElementById("taskList");
-
-            // Create a div to hold the task and buttons
-            const taskDiv = document.createElement("div");
-            taskDiv.className = "task";
-
-            // Create a span to hold the task text
-            const taskSpan = document.createElement("span");
-            taskSpan.textContent = taskText;
-            taskDiv.appendChild(taskSpan);
-
-            // Create the Remove button
-            const removeButton = document.createElement("button");
-            removeButton.textContent = "Remove";
-            removeButton.onclick = function() {
-                taskList.removeChild(taskDiv);
+            const removebutton=document.createElement('button');
+            removebutton.textContent='remove';
+            removebutton.onclick=function(){
+                tasklist.removeChild(li);
             };
-            taskDiv.appendChild(removeButton);
+// edit button
+            const editbutton=document.createElement('button');
+            editbutton.textContent='edit';
+            editbutton.onclick=function(){
 
-            // Create the Edit button
-            const editButton = document.createElement("button");
-            editButton.textContent = "Edit";
-            editButton.onclick = function() {
-                const currentText = taskSpan.textContent;
-                const inputField = document.createElement("input");
-                inputField.type = "text";
-                inputField.value = currentText;
-                taskDiv.replaceChild(inputField, taskSpan);
-
-                // Change Edit button to Save button
-                editButton.textContent = "Save";
-                editButton.onclick = function() {
-                    const newText = inputField.value.trim();
-                    if (newText === "") {
-                        alert("Task cannot be empty.");
-                        return;
-                    }
-                    taskSpan.textContent = newText;
-                    taskDiv.replaceChild(taskSpan, inputField);
-                    editButton.textContent = "Edit";
-                    editButton.onclick = arguments.callee; // Rebind the Edit functionality
-                };
+                const newTask = document.createElement("input");
+                    newTask.type = 'text';
+                    newTask.value = taskText;  // Use the stored task text
+    
+                    // Clear the list item's text and insert the input field
+                    li.textContent = '';
+                    li.appendChild(newTask);
+    
+                    // Save button
+                    const savebutton = document.createElement('button');
+                    savebutton.textContent = 'Save';
+                    savebutton.onclick = function () {
+                        taskText = newTask.value;  // Update the stored task text
+                        li.textContent = taskText;  // Update the list item with the new text
+                        li.appendChild(removebutton);  // Re-append buttons after updating
+                        li.appendChild(editbutton);
+                    };
+    
+                    li.appendChild(savebutton);
             };
-            taskDiv.appendChild(editButton);
 
-            // Add the task to the list
-            taskList.appendChild(taskDiv);
-
-            // Clear the input field
-            taskInput.value = "";
+            li.appendChild(removebutton);
+            tasklist.appendChild(li);
+            taskinput.value='';
+            li.appendChild(editbutton);
+            tasklist.appendChild(li);
+            taskinput.value='';
+        }
         }
     </script>
-
-</body>
-</html>
-
-
 </body>
 </html>

@@ -1,12 +1,59 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <!-- Modify the task manager from Exercise 4 to store the tasks in the browser's localStorage. This ensures that tasks persist even after refreshing the page. When the page is loaded, retrieve and display the saved tasks from localStorage. Ensure that tasks can still be added, edited, and removed, with the changes reflected in localStorage. -->
-     
+<!-- Modify the task manager from Exercise 4 to store the tasks in the browser's localStorage. This ensures that tasks persist even after refreshing the page. When the page is loaded, retrieve and display the saved tasks from localStorage. Ensure that tasks can still be added, edited, and removed, with the changes reflected in localStorage. -->
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Advanced task manager with priorities</title>
+        <style>
+            ul{list-style-type: none;
+            padding: 0;
+        }
+            li{margin: 5px 0;
+            }
+            button{
+                margin-left: 10px;
+            }
+            
+        </style>
+    </head>
+    <body>
+        <h1>Trying out localStorage</h1>
+        <input type="text" id="taskInput" placeholder="Enter your task">
+        <button onclick="addTask()">Add Task</button>
+        <ul id="taskList"></ul>
+        <script>
+            //function to add new task
+            function addTask(){
+                const taskInput = document.getElementById('taskInput');
+                const taskValue = taskInput.value.trim();
+                if(taskValue !==''){
+                    saveTaskToLocalStorage(taskValue);
+                    createTaskElement(taskValue);
+                    taskInput.value =''; //clear input
+                }
+            }
+            //function to save a task to localstorage
+            function saveTaskToLocalStorage(task){
+                let tasks = getTaskFromLocalStorage();
+                tasks.push(task);
+                localStorage.setItem('tasks',JSON.stringify(tasks));
+            }
+            //function to get all tasks from local storage
+            function getTaskFromLocalStorage(){
+                const tasks = localStorage.getItem('tasks');
+                return tasks ? JSON.parse(tasks): [];
+            }
+            //function to create task element
+            function createTaskElement(task) {
+            const taskList = document.getElementById('taskList');
+            const li = document.createElement('li');
+            li.textContent = task;
+            }
+            //add remove button
+            
+        </script>
+    </body>
+    </html>
 </body>
 </html>

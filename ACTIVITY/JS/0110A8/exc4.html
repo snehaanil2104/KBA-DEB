@@ -39,25 +39,25 @@
             editbutton.textContent='edit';
             editbutton.onclick=function(){
 
-                const newTask = document.createElement("input");
-                    newTask.type = 'text';
-                    newTask.value = taskText;  // Use the stored task text
+            const newTask = document.createElement("input");
+            newTask.type = 'text';
+            newTask.value = taskText;  // Use the stored task text
     
-                    // Clear the list item's text and insert the input field
-                    li.textContent = '';
-                    li.appendChild(newTask);
+// Clear the list item's text and insert the input field
+            li.textContent = '';
+            li.appendChild(newTask);
     
-                    // Save button
-                    const savebutton = document.createElement('button');
-                    savebutton.textContent = 'Save';
-                    savebutton.onclick = function () {
-                        taskText = newTask.value;  // Update the stored task text
-                        li.textContent = taskText;  // Update the list item with the new text
-                        li.appendChild(removebutton);  // Re-append buttons after updating
-                        li.appendChild(editbutton);
-                    };
+// Save button
+            const savebutton = document.createElement('button');
+            savebutton.textContent = 'Save';
+            savebutton.onclick = function () {
+            taskText = newTask.value;  // Update the stored task text
+            li.textContent = taskText;  // Update the list item with the new text
+            li.appendChild(removebutton);  // Re-append buttons after updating
+            li.appendChild(editbutton);
+            };
     
-                    li.appendChild(savebutton);
+            li.appendChild(savebutton);
             };
 
             li.appendChild(removebutton);

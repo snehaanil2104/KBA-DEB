@@ -1,0 +1,6 @@
+ul{list-style-type: none;}
+li{margin: 10px 0;}
+.watched{text-decoration: line-through; color: gray;}
+.priority-high{color: rgb(83, 34, 106);}
+.priority-medium{color: rgb(150, 77, 133);}
+.priority-low{color: green;}

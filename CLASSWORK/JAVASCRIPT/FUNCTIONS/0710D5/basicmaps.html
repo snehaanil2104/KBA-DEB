@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Map methods</title>
+    <script>
+        function demonstrateMapMethods(){
+            const myMap = new Map();
+            //setting values
+            myMap.set("name","Alice");
+            myMap.set(10,"Number Key");
+            myMap.set(true,"Boolean Key");
+            //getting values
+            document.getElementById('getName').innerHTML='Name:' + myMap.get('name');
+            //checking if a avalue exists
+            document.getElementById('hasKey').innerHTML="Has a key 10:" + myMap.has(10);
+            //remove a key value pair
+            myMap.delete("name");
+            document.getElementById('afterDelete').innerHTML='After deleting name:' + myMap.has("name"); //false
+            //clear all elements in a map
+            myMap.clear();
+            document.getElementById('afterClear').innerHTML='After clearing map, size:'+ myMap.size; //0
+        }
+    </script>
+</head>
+<body>
+    <h1>Map Methods</h1>
+    <h2>Map Operations</h2>
+    <button onclick="demonstrateMapMethods()">Run Map Methods</button>
+    <div id="getName"></div>
+    <div id="hasKey"></div>
+    <div id="afterDelete"></div>
+    <div id="afterClear"></div>
+</body>
+</html>

@@ -4,26 +4,76 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Expense Tracker Application</title>
-    <style>
-         ul{list-style-type:circle}
-        li{margin: 5px 0;}
-        .completed{text-decoration: line-through; color: gray;}
-        .priority-high{color: green;}
-        .priority-medium{color: blue;}
-        .priority-low{color: purple;}
-    </style>
 </head>
+<style>
+    button
+    {
+        margin-left: 10px;
+    }
+    ul{
+        list-style-type: none;
+    }
+    li{
+        margin: 5px 0;
+    }
+    .completed {
+        text-decoration: line-through;
+        color: gray;
+    }
+    .food{
+        color: green;
+    }
+    .transport{
+        color: blue;
+    }
+    .entertainment{
+        color: purple;
+    }
+    #description
+    {
+        margin-left: 40px;
+    }
+    #amount
+    {
+        margin-left: 55px;
+    }
+    #category
+    {
+        margin-left: 10px;
+    }
+    .main{
+        border: 2px solid black;
+        width: 600px;
+    }
+    .sub
+    {
+        padding: 50px;
+    }
+    h1{
+        text-align: center;
+    }
+</style>
 <body>
-    <h1>Expense Tracker Application</h1>
-    <label for="description">Enter a expense description:</label>
-    <input type="text" id="description"><br>
-    <label for="amount">Enter amount:</label>
-    <input type="text" id="amount"><br>
-    <label for="category">Enter category(1-food, 2-transport, 3-entertainment):</label>
-    <input type="text" id="category"><br>
-    <button onclick="addExpense()">Add Expense</button>
-    <ul id="expenseList"></ul>
-
-    <script src="functionality.js"></script>
+ <div class="main">
+    <div class="sub">
+        <h1>Expense Tracker Application</h1>
+        <div id="alert"></div>
+        <label for="desription">Enter the Expense desription</label>
+        <input type="text" id="description">
+        <br>
+        <br>
+        <label for="amount">Enter the Expense amount</label>
+        <input type="text" id="amount">
+        <br>
+        <br>
+        <label for="category"> expense category. <br> (Food, Transport, Entertainment)</label>
+        <input type="text" id="category">
+        <br>
+        <br>
+        <button onclick="addExpense()">Add to expense</button>
+        <ul id="expenseList"></ul>
+        <script src="functionality.js"></script>
+    </div>
+ </div>
 </body>
 </html>

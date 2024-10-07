@@ -39,7 +39,7 @@ function addMovie(){
         editButton.textContent = 'Edit';
 
         editButton.onclick= function(){
-            const newTask = prompt('Edit movie:',movie);
+            const newMovie= prompt('Edit movie:',movie);
             if(newMovie!==null && newMovie.trim()!==''){
                 const movieIndex = movies.indexOf(movie);
                 movies[movieIndex] = newMovie; 

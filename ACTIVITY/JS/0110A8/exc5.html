@@ -23,7 +23,7 @@
         <button onclick="addTask()">Add Task</button>
         <ul id="taskList"></ul>
         <script>
-            //function to add new task
+            //function to add a new task
             function addTask(){
                 const taskInput = document.getElementById('taskInput');
                 const taskValue = taskInput.value.trim();
@@ -35,25 +35,48 @@
             }
             //function to save a task to localstorage
             function saveTaskToLocalStorage(task){
-                let tasks = getTaskFromLocalStorage();
+                let tasks = getTasksFromLocalStorage();
                 tasks.push(task);
                 localStorage.setItem('tasks',JSON.stringify(tasks));
             }
             //function to get all tasks from local storage
-            function getTaskFromLocalStorage(){
+            function getTasksFromLocalStorage(){
                 const tasks = localStorage.getItem('tasks');
                 return tasks ? JSON.parse(tasks): [];
             }
-            //function to create task element
-            function createTaskElement(task) {
-            const taskList = document.getElementById('taskList');
-            const li = document.createElement('li');
-            li.textContent = task;
+    
+            //function to create a task element
+            function createTaskElement(task){
+                const taskList = document.getElementById('taskList');
+                const li = document.createElement('li');
+                li.textContent = task;
+                //add remove button
+                const removeButton = document.createElement('button');
+                removeButton.textContent = 'Remove';
+                removeButton.onclick = function(){
+                    removeTask(task);
+                    taskList.removeChild(li);
+                };
+                li.appendChild(removeButton);
+                taskList.appendChild(li);
             }
-            //add remove button
+            //function to remove a task from localstorage
+            function removeTask(taskToRemove){
+                let tasks = getTasksFromLocalStorage();
+                tasks = tasks.filter(task => task !==taskToRemove);
+                localStorage.setItem('tasks',JSON.stringify(tasks));
+            }
+            //load tasks when page loads or refreshes
+            window.onload = function(){
+                loadTasks();
+            };
+            function loadTasks(){
+                const tasks = getTasksFromLocalStorage();
+                tasks.forEach(task => {
+                    createTaskElement(task);
+                });
+            }
             
         </script>
-    </body>
-    </html>
-</body>
-</html>
+        </body>
+        </html>

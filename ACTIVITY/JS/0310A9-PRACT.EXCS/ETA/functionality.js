@@ -1,84 +1,100 @@
 let expenses=[];
-let descriptions=[];
-let amounts=[];
+let amountvalues=[];
 let categories =[];
 
+function addExpense()
+{
+    const descriptionInput=document.getElementById('description');
+    const amountInput=document.getElementById('amount');
+    const categoryInput=document.getElementById('category');
+    const expenseList=document.getElementById('expenseList');
 
-function addExpense(){
-    const expenseInput = document.getElementById('expense');
-    const descriptionInput = document.getElementById('description');
-    const amountInput = document.getElementById('amount');
-    const categoryInput = document.getElementById('category');
-    const expenseList = document.getElementById('expenseList');
+    let description=descriptionInput.value.trim();
+    let amount=Number(amountInput.value.trim());
+    let category=categoryInput.value.trim();
 
-
-    let expense = expenseInput.value.trim();
-    let description = descriptionInput.value.trim();
-    let amount= parseFloat(amountInput.value.trim());
-    let category = Number(categoryInput.value.trim());
-
-    if(expense!=='' && description !== ''  && !isNaN(amount) && amount > 0 && !isNaN(category) && category>=1 && category<=3){
-        expenses.push(expense);
-        descriptions.push(description);
-        amounts.push(amount);
+    if (description!== '' && !isNaN(amount))
+    {
+        expenses.push(description);
+        amountvalues.push(amount);
         categories.push(category);
 
-        const li = document.createElement('li');
-        li.textContent = `${description} - $${amount.toFixed(2)}`;
+        const li=document.createElement('li');
+        let descriptiontext=descriptionInput.value;
+        li.textContent=descriptiontext;
 
-        switch(category){
-            case 1:
+        switch(category.toLowerCase())
+        {
+            case 'food':
                 li.classList.add('food');
                 break;
-            case 2:
+            case 'transport':
                 li.classList.add('transport');
                 break;
-            case 3:
+            case 'entertainment':
                 li.classList.add('entertainment');
-                break;    
+                break;
+            
         }
-        const completeButton = document.createElement('button');
-        completeButton.textContent = ' Complete';
-        completeButton.onclick = function(){
+    // completedbutton
+        const completebutton=document.createElement('button');
+        completebutton.textContent='completed';
+        completebutton.onclick=function(){
             li.classList.toggle('completed');
         };
-        li.appendChild(completeButton);
+        li.appendChild(completebutton);
 
-        const editButton = document.createElement('button');
-        editButton.textContent = 'Edit';
+        //editbutton
+        const editbutton=document.createElement('button');
+        editbutton.textContent='edit';
+        editbutton.onclick=function()
+        {
+            // new input 
+            li.textContent='';
+            // Create a new input for editing
+            const newdescription=document.createElement('input');
+            newdescription.type='text';
+            newdescription.value=descriptiontext;
+            li.appendChild(newdescription);
 
-        editButton.onclick= function(){
-            const newDescription= prompt('Edit description:',description);
-            if(newDescription!==null && newDescription.trim()!==''){
-                const descriptionIndex = descriptions.indexOf(description);
-                descriptions[descriptionIndex] = newDescription; 
-                li.firstChild.textContent = newDescription; 
-                // li.textContent = `${newDescription} - $${amount.toFixed(2)}`;
-                // li.appendChild(completeButton);
-                // li.appendChild(editButton);
-                // li.appendChild(removeButton);
-            }
+
+          // Save button for edited movie
+            const savebutton=document.createElement('button');
+            savebutton.textContent='save';
+            savebutton.onclick=function()
+            {
+                descriptiontext=newdescription.value.trim();
+                li.textContent=descriptiontext;
+                li.appendChild(completebutton);
+                li.appendChild(editbutton);
+                li.appendChild(removebutton);
+            };
+            li.appendChild(savebutton);
         };
-        li.appendChild(editButton);
+        li.appendChild(editbutton);
 
-        const removeButton = document.createElement('button');removeButton.textContent = ' Remove';
-
-        removeButton.onclick = function(){
-            expenseList.removeChild(li);
-            const expenseIndex =expenses.indexOf(expense);
-            expenses.splice(expenseIndex,1);
-            descriptions.splice(expenseIndex,1);
-            amounts.splice(expenseIndex,1);
-            categories.splice(expenseIndex,1);
+            //removebutton
+            const removebutton=document.createElement('button');
+            removebutton.textContent='remove';
+            removebutton.onclick=function()
+            {
+                expenseList.removeChild(li);
+                const expenseindex=expenses.indexOf(description);
+                expenses.splice(expenseindex,1);
+                amount.splice(descriptiontext,1);
+                category.splice(descriptiontext,1);
+            };
+            li.appendChild(removebutton);
+            expenseList.appendChild(li);
+            descriptionInput.value='';
+            amountInput.value='';
+            categoryInput.value='';
         }
-        li.appendChild(removeButton);
-        expenseList.appendChild(li);
+    
+    else
+    {
+        alert('please enter a valid task and category');
 
-        expenseInput.value ='';
-        descriptionInput.value ='';
-        amountInput.value ='';
-        categoryInput.value ='';
-    }else {
-        alert('please fill all fields accordingly');
     }
+
 }

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart</title>
+</head>
+  <!-- using array -->
+  <script>
+    function shoppingcarteg1(){
+        const shoppingcart1= new Map()
+        shoppingcart1.set("Apple",[3,30])//30 price for each
+        shoppingcart1.set("Orange",[5,25])
+        shoppingcart1.set("Watermelon",[2,100])
+
+        let totalcost1 =0
+        shoppingcart1.forEach((product)=>{
+            totalcost1 += product[0] * product[1];
+        });
+        document.getElementById('totalcost1').innerHTML='Total Cost: '+ totalcost1;
+        document.getElementById('cartsize1').innerHTML='Number of item: '+ shoppingcart1.size
+
+    }
+</script>
+<script>
+    function shoppingCartExample() {
+        const shoppingCart = new Map();
+        shoppingCart.set("Apple", 2)
+        shoppingCart.set("Banana", 3);
+        shoppingCart.set("Milk", 1);
+        const prices = {
+            "Apple": 80,
+            "Banana": 50,
+            "Milk": 28
+        }
+        let totalCost = 0;
+        shoppingCart.forEach((quantity, item) => {
+
+            totalCost += prices[item] * quantity;
+        });
+        console.log(totalCost)
+        document.getElementById('totalCost').innerHTML='Total Cost : ' + totalCost;
+        document.getElementById('costSize').innerHTML='Number of Items: ' + shoppingCart.size;
+
+    }
+</script>
+
+</head>
+<body>
+<h1>Shopping cart Example</h1>
+<h2>Calculate Total Cost</h2>
+<button onclick="shoppingCartExample()">Show Shopping Cart</button>
+<div id="totalCost"></div>
+<div id="costsize"></div>
+<h4>Using array</h4>
+<button onclick="shoppingcarteg1()">Show Shopp-Cart </button>
+<div id="totalcost1"></div>
+<div id="cartsize1"></div>
+</body>
+</html>

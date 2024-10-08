@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Fitness Activity Tracker</title>
+    <style>
+        body{
+            border: 2px solid black;
+            width: 550px;
+            margin-left: 600px;
+            margin-top: 150px;
+            border-radius: 20px;
+        }
+        h1{
+            text-align: center;
+            color: #944f1e;
+        }
+        #activity{
+            margin-left: 200px;
+        }
+        #intensitylevel{
+            margin-left: 20px;
+        }
+        ul{
+            list-style-type: square;
+        }
+        button{
+            margin-left: 50px;
+        }
+        label{
+            margin-left: 10px;
+        }
+        .low{
+            color: green;
+        }
+        .medium{
+            color: orange;
+        }
+        .high{
+            color: red;
+        }
+        .completed{
+            text-decoration: line-through;
+            color: grey;
+        }
+        
+    </style>
+</head>
+<body>
+    <div id="main">
+        <h1> Fitness Activity Tracker</h1>
+        <div id="sub">
+        <label for="activity">Activity Name :</label>
+        <input type="text" id="activity"><br><br>
+        <label for="intensitylevel">Intensity Level(1-Low, 2-Medium, 3-High):</label>
+        <input type="text" id="intensitylevel"><br><br>
+        <button onclick="addActivity()">Add Activity</button>
+        <ul id="activityList"></ul>
+    </div>
+    
+    <script src="functionality.js">
+
+    </script>
+    </div>
+</body>
+</html>

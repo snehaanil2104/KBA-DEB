@@ -145,3 +145,4 @@ function checkout(){
         console.log("Your cart is empty. Add items before checking out.");
     }
 }
+askCommand();

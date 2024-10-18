@@ -11,6 +11,7 @@ app.get('/',(req,res)=>{
 })
 
 app.post('/signup', async(req,res)=>{
+    try{
     console.log("Hi");
     const data = req.body;
     console.log(data.FirstName);
@@ -25,9 +26,14 @@ app.post('/signup', async(req,res)=>{
     user.set(UserName,{  FirstName,LastName,Password:newP,Role})
     console.log(user.get(UserName));
     res.status(201).json({message:"data saved"})
-    } 
+    } }
+    catch(error){
+        res.status(500).json(error)
+    }
 })
+
 
 app.listen(port,()=>{                                   
     console.log(`Server is listening to port ${port}`)
+
 })

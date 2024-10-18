@@ -6,12 +6,7 @@ app.use(json())
 const port=3000;
 const user=new Map();
 
-app.get('/',(req,res)=>{
-    res.send("Hello World")
-})
-
 app.post('/signup', async(req,res)=>{
-    console.log("Hi");
     const data = req.body;
     console.log(data.FirstName);
 

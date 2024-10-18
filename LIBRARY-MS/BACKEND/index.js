@@ -8,10 +8,10 @@ const user=new Map();
 
 app.post('/signup', async(req,res)=>{
     const data = req.body;
-    console.log(data.FirstName);
+    // console.log(data.FirstName);
 
     const{ FirstName,LastName,UserName,Password, Role}=data;
-    console.log(FirstName);
+    // console.log(FirstName);
     if(user.has(UserName)){
         res.status(409).json({message:"already exist"})
     }else{

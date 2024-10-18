@@ -18,7 +18,7 @@ app.post('/signup', async(req,res)=>{
     const{ FirstName,LastName,UserName,Password, Role}=data;
     console.log(FirstName);
     if(user.has(UserName)){
-        res.status(201).json({message:"already exist"})
+        res.status(400).json({message:"already exist"})
     }else{
         const newP = await bcrypt.hash(Password,10)
     console.log(newP);

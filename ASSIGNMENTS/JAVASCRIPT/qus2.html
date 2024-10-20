@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <label for="">Name:</label>
+    <input type="text"><br><br>
+    <label for="">Address:</label>
+    <textarea name="" id=""></textarea><br><br>
+    <div>
+    <label for="radio">Degree:</label>
+    <label for="radio" id="btech"></label>
+    <label for="radio" id="mtech"></label>
+    <script>
+        let element=document.createElement("input");
+        element.type="radio";
+        element.name="degree";
+        document.getElementById("btech").appendChild(element);
+        let input = document.createElement("input1");
+        input.type = "radio";
+        input.innerText = "BTech";
+        document.getElementById("btech").appendChild(input);
+        
+
+        let element1=document.createElement("input");
+        element1.type="radio";
+        element1.name="degree";
+        document.getElementById("mtech").appendChild(element1);
+        let input1=docuent.createElement("input");
+        input1.type="radio";
+        input1.innerText="MTech";
+        document.getElementById("mtech").appendChild(input1);
+    </script>
+    </div>
+</body>
+</html>

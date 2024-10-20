@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <label for="side">Enter side of square:</label>
+        <input type="text" id="side"><br><br>
+        <button onclick="squareArea()">Area of square</button>
+        <p id="result1"></p>
+    </div>
+   
+    <div>
+        <label for="length">Enter the length:</label>
+        <input type="text" id="length"><br><br>
+        <label for="breadth">Enter the breadth:</label>
+        <input type="text" id="breadth"><br><br>
+        <button onclick="rectangleArea()">Area of rectangle</button>
+        <p id="result2"></p>
+    </div>
+    <div>
+        <label for="radius">Enter radius:</label>
+        <input type="text" id="radius"><br><br>
+        <button onclick="circleRadius()">Area of circle</button>
+        <p id="result3"></p>
+    </div>
+    <script>
+        function squareArea(){
+            let side= document.getElementById("side").value;
+            let result1;
+            result1=side*side;
+            document.getElementById("result1").textContent=result1;
+        }
+        function rectangleArea(){
+            let length= document.getElementById("length").value;
+            let breadth= document.getElementById("breadth").value;
+            let result2=length*breadth;
+            document.getElementById("result2").textContent=result2;
+        }
+        function circleRadius(){
+            let radius= document.getElementById("radius").value;
+            let pi=3.14;
+            let result3=pi*radius*radius;
+            document.getElementById("result3").textContent=result3;
+        }
+    </script>
+</body>
+</html>

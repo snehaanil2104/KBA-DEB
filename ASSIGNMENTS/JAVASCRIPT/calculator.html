@@ -4,6 +4,46 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Functional Calculator</title>
+    <style>
+        body{
+            font-family: Arial, Helvetica, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background:  #f0f0f0;
+        }
+        #calculator{
+            background-color: #8a829e;
+            border-radius: 10px;
+            box-shadow: 0px 0px 15px rgba(0,0,0,0.2);
+            padding: 20px;
+            text-align: center;
+            width: 250px;
+        }
+        #result{
+            width: 90%;
+            padding: 10px;
+            font-size: 1.5em;
+            text-align: right;
+            margin-bottom: 10px;
+            border: 1px solid black;
+            
+        }
+        #buttons{
+            display: grid;
+            grid-template-columns: repeat(3,1fr);
+            grid-gap: 10px;
+        }
+        .button{
+            padding: 15px;
+            font-size: 1.2em;
+            border: none;
+            border-radius: 5px;
+            background-color: rgb(112, 58, 122);
+        }
+    </style>
    
 </head>
 <body>

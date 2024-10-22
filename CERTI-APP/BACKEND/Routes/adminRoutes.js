@@ -1,9 +1,11 @@
 import { Router } from "express";
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
+import { authenticate } from "../Middleware/auth.js";
 
 const adminRoute=Router();
 const user=new Map();
+const course=new Map();
 const secretKey='hi'
 
 adminRoute.get('/',(req,res)=>{
@@ -50,4 +52,32 @@ adminRoute.post('/login',async(req,res)=>{
         }
     }
 })
+    adminRoute.post('/issuecerti',authenticate, (req,res)=>{
+   
+        if(req.Role=='admin'){
+            console.log('admin logged successfully')
+            try{
+                const data=req.body;
+                const {CourseName,CourseId,CandidateName,Grade,IssueDate}=data;
+               
+                if(course.has(CourseId)){
+                    res.status(400).json({message:"certificate issued!!"})
+                    console.log("certificate already issued!!")
+                    
+                }else{
+                    course.set(CourseId,{CourseName,CandidateName,Grade,IssueDate})
+                    console.log(course.get(CourseId))
+                    console.log('certificate issueing..!');
+                    console.log(`This is to certify that ${CandidateName} has successfully completed ${CourseName} with ${Grade} on ${IssueDate}`);
+                    res.send("certificate  issued successfully!!")
+                }
+        }
+        catch(error){
+            res.status(500).json(error)
+        }
+    }else{
+        console.log('invalid');
+    }
+    });
+
 export {adminRoute};

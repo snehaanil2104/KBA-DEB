@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Question 4</title>
+</head>
+<body>
+    <h2>Enter Student Names</h2>
+    <div>
+        <label for="studentName">Name: </label>
+        <input type="text" id="studentName" placeholder="Enter student's name">
+        <button onclick="addStudent()">Add Student</button>
+    </div>
+    
+    <h2>Select Roll Number to Display Name</h2>
+    <div>
+        <label for="rollNumber">Roll Number: </label>
+        <select id="rollNumber">
+            <option value="">Select Roll Number</option>
+        </select>
+        <button onclick="displayStudentName()">Show Name</button>
+    </div>
+    
+    <h3 id="studentNameDisplay"></h3>
+
+    <script>
+        let students = [];
+
+        // Function to add student to array and dropdown
+        function addStudent() {
+            const studentName = document.getElementById('studentName').value;
+            if (studentName) {
+                students.push(studentName);
+                
+                // Add roll number option to dropdown
+                const rollDropdown = document.getElementById('rollNumber');
+                const option = document.createElement('option');
+                option.value = students.length - 1; // zero-indexed roll number
+                option.text = students.length; // display roll number as 1-based index
+                rollDropdown.add(option);
+
+                // Clear input field
+                document.getElementById('studentName').value = "";
+            } else {
+                alert('Please enter a valid name.');
+            }
+        }
+
+        // Function to display student name based on roll number
+        function displayStudentName() {
+            const rollNumber = document.getElementById('rollNumber').value;
+            const studentNameDisplay = document.getElementById('studentNameDisplay');
+
+            if (rollNumber !== "") {
+                studentNameDisplay.innerText = "Student Name: " + students[rollNumber];
+            } else {
+                studentNameDisplay.innerText = "Please select a roll number.";
+            }
+        }
+    </script>
+</body>
+</html>

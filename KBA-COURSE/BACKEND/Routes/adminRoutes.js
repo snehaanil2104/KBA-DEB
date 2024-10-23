@@ -20,15 +20,15 @@ adminRoute.post('/signup', async(req,res)=>{
     try{
     console.log("Hi");
     const data = req.body;
-    console.log(data.FirstName);
+    // console.log(data.FirstName);
 
     const{ FirstName,LastName,UserName,Password, Role}=data;
-    console.log(FirstName);
+    // console.log(FirstName);
     if(user.has(UserName)){
         res.status(400).json({message:"already exist"})
     }else{
         const newP = await bcrypt.hash(Password,10)
-    console.log(newP);
+    // console.log(newP);
     user.set(UserName,{FirstName,LastName,Password:newP,Role});
     console.log(user.get(UserName));
     res.status(201).json({message:"data saved"})

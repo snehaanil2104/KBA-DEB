@@ -1,5 +1,9 @@
 import jwt from 'jsonwebtoken';
-const secretKey='hi';
+import dotenv from 'dotenv';
+
+dotenv.config();
+
+const secretKey=process.env.SecretKey;
 
 const authenticate=(req,res,next)=>{
     const cookies=req.headers.cookie;

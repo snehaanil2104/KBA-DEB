@@ -2,11 +2,14 @@ import { Router } from "express";
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import { authenticate } from "../Middleware/auth.js";
+import dotenv, { config } from 'dotenv';
+
+dotenv.config();
 
 const adminRoute=Router();
 const user=new Map();
 const course=new Map();
-const secretKey='hi'
+const secretKey=process.env.SecretKey;
 
 adminRoute.get('/',(req,res)=>{
     res.send("Hello World")
@@ -79,5 +82,11 @@ adminRoute.post('/login',async(req,res)=>{
         console.log('invalid');
     }
     });
+    //logout
+    adminRoute.post('/logout',(req,res)=>{
+    res.clearCookie('authToken');
+    res.send('logout successfully');
+    console.log('logout successfully');
+})
 
 export {adminRoute};

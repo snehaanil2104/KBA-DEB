@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Signup</title>
-    <link rel="stylesheet" href="stylecss/signup.css">
+    <!-- <link rel="stylesheet" href="stylecss/signup.css"> -->
    <script>
         async function handleSubmit(event){
            event.preventDefault();
@@ -29,10 +29,12 @@
                 Role:role
             })
            });
+           console.log(response);
+           
            console.log(response.status);
            if(response.status==201){
-            window.location.href='./signup.html'
-            // alert("successfully registered!")
+            window.location.href='./login.html'
+            alert("successfully registered!")
            }
            else if(response.status==400){
             alert("already exist")
@@ -48,7 +50,7 @@
 <body>
 
         <nav>
-            <div class="div1"><img src="kbalogo.png" alt=""></div>
+            <!-- <div class="div1"><img src="kbalogo.png" alt=""></div> -->
             <div class="div2">
             <a href="home.html">Home</a>
             <a href="courses.html">Courses</a>

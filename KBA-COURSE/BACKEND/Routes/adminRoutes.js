@@ -79,13 +79,14 @@ adminRoute.post('/addcourse',authenticate, (req,res)=>{
             // console.log(data);
 
             if(course.has(CourseId)){
-                res.status(400).json({message:"Course Already Exist!!"})
+                // res.status(400).json({message:"Course Already Exist!!"})
                 console.log("Course Already Exist!!")
                 res.send("Course Already Exist!!")
             }else{
                 course.set(CourseId,{CourseName,CourseType,Description,Price})
                 console.log(course.get(CourseId))
                 console.log('Course added successfully!');
+                // res.status(201).json({ message: "Course Details Uploaded" });
                 res.send('Course updated successfully!');
             }
     }
@@ -216,7 +217,6 @@ adminRoute.put('/updatecourse', authenticate,(req,res)=>{
 }
 })
 
-//delete course
 //detele course
 
 adminRoute.delete('/deletecourse',authenticate,(req,res)=>{
@@ -240,6 +240,33 @@ adminRoute.delete('/deletecourse',authenticate,(req,res)=>{
         else{
             res.send('course not found !')
         }
+    }
+})
+
+adminRoute.get('/viewuser',authenticate,(req,res)=>{
+    try{
+        const user=req.Role;
+        res.json({user});}
+    catch{
+        res.status(404).json({message:"user not authorized"});
+    }
+})
+
+adminRoute.get('/viewcourse',(req,res)=>{
+    try{
+        console.log(course.size);
+        if(course.size!=0){
+            // res.status(200).json({message:'successfull'})
+            res.send(Array.from(course.entries()))
+        }
+        else{
+            res.status(404).json({message:'Not Found'});
+        }
+        
+    }
+    catch{
+        res.status(500).json({message:"internal server error"})
+
     }
 })
 

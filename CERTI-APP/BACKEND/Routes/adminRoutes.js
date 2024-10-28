@@ -36,7 +36,7 @@ adminRoute.post('/signup', async(req,res)=>{
 })
 adminRoute.post('/login',async(req,res)=>{
     const {UserName,Password}=req.body;
-    console.log(UserName);
+    // console.log(UserName);
     const result=user.get(UserName)
     console.log(result);
 
@@ -56,31 +56,32 @@ adminRoute.post('/login',async(req,res)=>{
     }
 })
     adminRoute.post('/issuecerti',authenticate, (req,res)=>{
-   
-        if(req.Role=='admin'){
-            console.log('admin logged successfully')
-            try{
-                const data=req.body;
-                const {CourseName,CourseId,CandidateName,Grade,IssueDate}=data;
-               
-                if(course.has(CourseId)){
+        try{
+            const data=req.body;
+                const {CourseName,CertiId,CandidateName,Grade,IssueDate}=data;
+       
+                if(req.Role=='admin'){
+                console.log("admin logged successfully")
+    
+                if(course.has(CertiId)){
                     res.status(400).json({message:"certificate issued!!"})
                     console.log("certificate already issued!!")
                     
                 }else{
-                    course.set(CourseId,{CourseName,CandidateName,Grade,IssueDate})
-                    console.log(course.get(CourseId))
+                    course.set(CertiId,{CourseName,CandidateName,Grade,IssueDate})
+                    console.log(course.get(CertiId))
                     console.log('certificate issueing..!');
                     console.log(`This is to certify that ${CandidateName} has successfully completed ${CourseName} with ${Grade} on ${IssueDate}`);
                     res.send("certificate  issued successfully!!")
                 }
-        }
-        catch(error){
-            res.status(500).json(error)
-        }
+       
     }else{
         console.log('invalid');
     }
+}
+catch(error){
+    res.status(500).json(error)
+}
     });
     //logout
     adminRoute.post('/logout',(req,res)=>{

@@ -3,9 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Question 7</title>
+    <title>Exp-7</title>
 </head>
 <body>
-    
+
+    <label for="">Enter Element :</label>
+    <input type="text" id="element"><br>
+    <button onclick="add()">ADD</button> <br>
+    <label for="">Search :</label>
+    <input type="text" id="search" oninput="searchArray()" placeholder="search for  a number">
+    <p id="searchResult"></p>
+    <p>Entered array: <span id="entered"></span></p>
+     <p>Sorted array: <span id="sorted"></span></p>
+     <p>Reversed array: <span id="reverse"></span></p>
+
+
+    <script>
+        let array = [];  
+
+        function add() {
+            let element = document.getElementById("element").value;
+            let num = Number(element);
+            if (!isNaN(num)) { 
+                array.push(num);
+                updateDisplay();
+            } else {
+                alert("Please enter a valid number.");
+            }
+            document.getElementById("element").value = ""; 
+        }
+
+        function updateDisplay() {
+            document.getElementById("entered").textContent = array.join(", ");
+            document.getElementById("sorted").textContent = [...array].sort().join(", ");
+            document.getElementById("reverse").textContent = [...array].reverse().join(", ");
+        }
+
+        function searchArray() {
+            let searchInput = document.getElementById("search").value;
+            let num = Number(searchInput);
+            if (!isNaN(num)) {
+                if (array.includes(num)) {
+                    document.getElementById("searchResult").textContent =` ${num} is in the entered array.`;
+                } else {
+                    document.getElementById("searchResult").textContent = `${num} is not in the entered array.`;
+                }
+            } else {
+                document.getElementById("searchResult").textContent = ""; 
+            }
+        }
+    </script>
 </body>
 </html>

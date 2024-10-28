@@ -16,6 +16,7 @@ const authenticate=(req,res,next)=>{
             console.log(verified);
             req.UserName=verified.UserName;
             req.Role=verified.Role;
+            // const role= req.Role;
             break;
             
         }

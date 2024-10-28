@@ -3,37 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Question 2</title>
+    <title>Exp1</title>
 </head>
 <body>
-    <label for="">Name:</label>
-    <input type="text"><br><br>
-    <label for="">Address:</label>
-    <textarea name="" id=""></textarea><br><br>
-    <div>
-    <label for="radio">Degree:</label>
-    <label for="radio" id="btech"></label>
-    <label for="radio" id="mtech"></label>
-    <script>
-        let element=document.createElement("input");
-        element.type="radio";
-        element.name="degree";
-        document.getElementById("btech").appendChild(element);
-        let input = document.createElement("input1");
-        input.type = "radio";
-        input.innerText = "BTech";
-        document.getElementById("btech").appendChild(input);
-        
 
-        let element1=document.createElement("input");
-        element1.type="radio";
-        element1.name="degree";
-        document.getElementById("mtech").appendChild(element1);
-        let input1=docuent.createElement("input");
-        input1.type="radio";
-        input1.innerText="MTech";
-        document.getElementById("mtech").appendChild(input1);
-    </script>
-    </div>
+    <label for="">Name :</label>
+    <input type="text" name="" id=""> <br>
+    <label for="">Address :</label>
+    <textarea name="" id=""></textarea> <br>
+
+    <label for="">Degree :</label> 
+        <input type="radio" id="option1" name="options" value="option1" >
+        <label for="option1" class="text-white py-2 px-4 border p-2 cursor-pointer">BTech</label>
+      
+        <input type="radio" id="option1" name="options" value="option1" >
+        <label for="option1" class="text-white py-2 px-4 border p-2 cursor-pointer">MTech </label>
+      
+        <input type="radio" id="option1" name="options" value="option1" >
+        <label for="option1" class="text-white py-2 px-4 border p-2 cursor-pointer">MCA</label>
+
+        <input type="radio" id="option1" name="options" value="option1" >
+        <label for="option1" class="text-white py-2 px-4 border p-2 cursor-pointer " onchange="dropdown()"> 
+            <select name="" id="options" class="appearance-none">
+                <option value="">Others</option>
+                <option value="">BCA</option>
+                <option value="">PGDCA</option>
+                <option value="">BCOM</option>
+                <option value="">MPhil</option>
+
+
+            </select>
+        </label>
+        <script>
+          function dropdown() {
+            const options = document.getElementById('options');
+            options.classList.toggle('hidden');}
+        </script>
+      
 </body>
 </html>

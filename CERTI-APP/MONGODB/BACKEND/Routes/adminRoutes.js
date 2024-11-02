@@ -3,14 +3,23 @@ import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import { authenticate } from "../Middleware/auth.js";
 import dotenv, { config } from 'dotenv';
+import mongoose from 'mongoose';
+
 
 dotenv.config();
 
 const adminRoute=Router();
-const user=new Map();
-const certificate=new Map();
+// const user=new Map();
+// const certificate=new Map();
 const secretKey=process.env.SecretKey;
 
+const userSchema=mongoose.Schema({
+    FirstName:String,
+    LastName:String,
+    UserName:{type:String,unique:true},
+    Password:String,
+    Role:String
+})
 adminRoute.get('/',(req,res)=>{
     res.send("Hello World")
 })

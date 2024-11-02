@@ -4,110 +4,29 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="icon" type="image/png" href="/favicon.ico" />
+    <link rel="icon" type="image/png" href="./kbalogo.png" />
     <title>Blockchain Courses</title>
     
   </head>
-  <script>
-    window.onload=async()=>{
-        console.log("hi");
-        try{
-        
-       const response=await fetch("http://127.0.0.1:8000/viewuser",{
-        method:'GET',
-       credentials: 'include', 
-        });
-       
-       
-       const data =await response.json();
-       
-       if(data.user=='admin'){
-        
-        document.getElementById("admin").style.display='block';
-        
-       }}
-       catch(error){
-        console.log(error);}
-        
-
-    }
-    async function viewCourse(){
-        const response=await fetch("http://127.0.0.1:8000/viewcourse",{
-        method:'GET',
-       credentials: 'include', 
-        });
-        console.log(response.status);
-        
-         const data1=await response.json();
-         console.log(data1.length);
-         
-        if(response.status!=404){
-            console.log(data1,"data");
-            const container=document.getElementById("cards")
-            container.innerHTML='';
-            data1.forEach(course => {
-                console.log(course);
-                const coursediv=document.createElement("div");
-                coursediv.style.border='2px solid red';
-                coursediv.style.width='250px'
-
-               const coursename=document.createElement("h1");
-               coursename.id='name';
-               coursename.value=course[0]
-               coursename.innerHTML=course[0];
-               const image=document.createElement("img");
-               image.src="./download.png";
-               const description=document.createElement("p");
-               description.innerHTML=course[1].Description;
-               const more=document.createElement("input");
-               more.onclick=function(){
-                handleMore(course[0]);
-               };
-               more.type='submit';
-               more.value='View More'
-               more.style.border='2px solid black';
-               
-               
-               coursediv.appendChild(coursename);
-               coursediv.appendChild(image);
-               coursediv.appendChild(description);
-               coursediv.appendChild(more);
-               container.appendChild(coursediv);
-
-
-
-        })
-        
-    }
-    else{
-        window.location.href='/notfound.html';
-    }
-}
-function handleMore(value1){
-        // const value1=document.getElementById("name").value;
-        console.log(value1);
-        localStorage.setItem('course',value1);
-        window.location.href='./viewcourse.html'
-        
-    }
-</script>
 <body>
    <!-- navbar  -->
     <div class='bg-purple-100 text-purple-950 grid grid-cols-1 md:grid-cols-2 p-3 shadow-md'>
         <div class='flex items-center'>
 
             <a href="#" >
-                <img class='m-1p-2 size-12' src="./kbalogo.jpeg" alt="logo" />
+                <img class='m-1p-2 size-12' src="./kbalogo.png" alt="logo" />
             </a>
             
         </div>
         <div class='flex justify-center md:justify-end items-center mt-2 md:mt-0 space-x-5 md:space-x-10'>
-            <a href="#" class='ml-20'>Home</a>
+            <a href="homepage.html" class='ml-20'>Home</a>
             <a href="#" class='ml-20'>Courses</a>
             <a href="#" class='ml-20'>Contact Us</a>
             
             <a href="addcourse.html" id="admin" class='ml-20' style="display: none;">Add Course</a>
-            <a class='ml-20' href="#" onclick="logout()">Logout</a>
+            <button onclick="logout()" class="bg-red-500 text-white py-2 px-4 rounded-lg hover:bg-red-600 transition duration-300">
+                Logout
+            </button>
         </div>
     </div>
 
@@ -131,6 +50,114 @@ function handleMore(value1){
     <div class='flex justify-center mb-40'>
         <button class='w-80 h-10 rounded-full bg-purple-500 text-white font-medium  hover:bg-purple-600' onclick="viewCourse()" >View all Courses</button>
     </div>
+
+    <script>
+        window.onload=async()=>{
+            console.log("hi");
+            try{
+            
+           const response=await fetch("http://127.0.0.1:8000/viewuser",{
+            method:'GET',
+           credentials: 'include', 
+            });
+           
+           
+           const data =await response.json();
+           
+           if(data.user=='admin'){
+            
+            document.getElementById("admin").style.display='block';
+            
+           }}
+           catch(error){
+            console.log(error);}
+            
+    
+        }
+        async function viewCourse(){
+            const response=await fetch("http://127.0.0.1:8000/viewcourse",{
+            method:'GET',
+           credentials: 'include', 
+            });
+            console.log(response.status);
+            
+             const data1=await response.json();
+             console.log(data1.length);
+             
+            if(response.status!=404){
+                console.log(data1,"data");
+                const container=document.getElementById("cards")
+                container.innerHTML='';
+                data1.forEach(course => {
+                    console.log(course);
+                    const coursediv=document.createElement("div");
+                    coursediv.className='bg-white border-2 border-purple-500 rounded-lg shadow-md overflow-hidden transform transition-transform duration-300 hover:shadow-lg hover:-translate-y-1 w-64';
+                    coursediv.style.width='250px'
+    
+                   const coursename=document.createElement("h1");   
+                   coursename.id='name';
+                   coursename.className = 'text-xl font-semibold text-gray-800 p-4';
+                   coursename.value=course[0]
+                   coursename.innerHTML=course[1].CourseName;
+                   const image=document.createElement("img");
+                   image.src="./rp.png";
+                   const description=document.createElement("p");
+                   description.className = 'text-gray-600 p-4';
+                   description.innerHTML=course[1].Description||course[1].newDescription;
+                   const more=document.createElement("input");
+                   more.onclick=function(){
+                    handleMore(course[0]);
+                   };
+                   more.type='submit';
+                   more.value='View More'
+                   more.className='bg-purple-500 text-white border-none py-2 px-4 rounded-lg m-4 cursor-pointer transition-colors duration-300 hover:bg-purple-600';
+                   
+                   
+                   coursediv.appendChild(coursename);
+                   coursediv.appendChild(image);
+                   coursediv.appendChild(description);
+                   coursediv.appendChild(more);
+                   container.appendChild(coursediv);
+    
+    
+    
+            })
+            
+        }
+        else{
+            window.location.href='/notfound.html';
+        }
+    }
+    function handleMore(courseId){
+            // const value1=document.getElementById("name").value;
+            console.log(courseId);
+            localStorage.setItem('course',courseId);
+            window.location.href='./viewcourse.html'
+            
+        }
+    
+        async function logout(){
+            try {
+                const response = await fetch('http://127.0.0.1:8000/logout',{
+                method:"GET",
+                credentials:"include"
+            })
+            console.log(response.status);
+            if(response.ok){
+                localStorage.clear();
+                alert('Logout successfully');
+                window.location.href='./login.html'
+            }else{
+                alert('you are not login');
+                window.location.href='./login.html'
+            }
+            } catch (error) {
+                console.error(error);
+               
+            }
+            
+        }
+    </script>
 </body>
 </html>
 

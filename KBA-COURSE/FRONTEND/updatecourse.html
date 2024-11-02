@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Course</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script>
+        window.onload=async()=>{
+          const courseId=localStorage.getItem('course');
+              console.log(courseId);
+              if (!courseId) {
+                alert("No course selected!");
+                window.location.href = './viewcourse.html';
+                return;
+            }
+              try{
+              const response=await fetch(`http://127.0.0.1:8000/getcourse?CourseId=${courseId}`);
+              console.log(response);
+              
+              if(response.status===404){
+                window.location.href='/notfound.html';
+              }
+              const data=await response.json();
+              console.log(data);
+              document.getElementById("cname").value=data.CourseName;
+              document.getElementById("CourseId").value =courseId;
+              document.getElementById("type").value=data.CourseType;
+              document.getElementById("price").value=data.Price;
+              document.getElementById("description").value=data.Description;
+  
+            }
+                catch(error){
+                console.error("Error fetching course:", error);
+                alert("Failed to fetch course details. Please try again.");
+              }
+        };
+
+        async function handleUpdate(event){
+        event.preventDefault();
+    
+          const courseId = document.getElementById("CourseId").value;
+            const updatedCourse = {
+                CourseName: document.getElementById("cname").value,
+                CourseId: courseId,
+                CourseType: document.getElementById("type").value,
+                Price: document.getElementById("price").value,
+                Description: document.getElementById("description").value
+            };
+
+    try{
+        const response = await fetch(`http://127.0.0.1:8000/updatecourse`, {
+            method: "PATCH",
+            credentials:"include",
+            headers: {
+                "Content-Type": "application/json"},
+            body: JSON.stringify(updatedCourse)
+        
+        });
+
+        // console.log(response);
+        // const data=await response.json();
+        // console.log(data);
+        
+        if (response.status === 200) {
+            alert("course updated succesfully")
+            updateLocalStorage(courseId, updatedCourse);
+            window.location.href='./viewcourse.html';
+        }else if(response.status === 400) {
+                    alert("Course not found");
+                } else {
+                    alert("Failed to update course. Please try again.");
+                }
+            } catch (error) {
+                console.error("Error updating course:", error);
+                alert("An error occurred. Please try again.");
+            }
+            }
+           
+            
+         function updateLocalStorage(courseId, updatedCourse) {
+            let courses = JSON.parse(localStorage.getItem('courses')) || [];
+            const index = courses.findIndex(course => course.CourseId === courseId);
+
+            if (index !== -1) {
+                courses[index] = updatedCourse;
+            } else {
+                courses.push(updatedCourse);
+            }
+
+            localStorage.setItem('courses', JSON.stringify(courses));
+        }  
+        </script>
+
+
+</head>
+<body>
+    <!-- Navigation and Logo Section -->
+    <div class="bg-purple-400 h-20 flex items-center p-4">
+        <img class="w-16 h-16" src="./kbalogo.png" alt="KBA Logo">
+        <div class="ml-auto flex space-x-6">
+            <a href="homepage.html" class="text-white hover:underline">Home</a>
+            <a href="" class="text-white hover:underline">Courses</a>
+            <a href="addcourse.html" class="text-white hover:underline">Add Courses</a>
+            <a href="" class="text-white hover:underline">Contact Us</a>
+            <!-- <a href="login.html" class="text-white hover:underline">Logout</a> -->
+        </div>
+    </div>
+
+    <!-- Add Course Form Section -->
+    <div class="bg-purple-300 mt-32 p-8 max-w-md mx-auto rounded-lg">
+        <h1 class="font-mono text-2xl text-center font-bold">Update Course</h1>
+        
+        <form class="mt-4" onsubmit="handleUpdate(event)">
+            <!-- Course Name -->
+            <div class="mt-4">
+                <label for="cname" >Course Name:</label>
+                <input id="cname" class="w-full h-9 ring-2 hover:ring-4 p-2" type="text" placeholder="e.g., Certified Blockchain Associate">
+            </div>
+
+            <!-- Course ID -->
+            <div class="mt-4">
+                <label for="CourseId" >Course ID:</label>
+                <input id="CourseId" class="w-full h-9 ring-2 hover:ring-4 p-2" type="text" placeholder="e.g., 1">
+            </div>
+
+            <!-- Course Type -->
+            <div class="mt-4">
+                <label for="type" >Course Type:</label>
+                <select id="type" class="w-full h-9 ring-2 hover:ring-4 p-2">
+                    <option value="self-paced">Self-Paced</option>
+                    <option value="hybrid">Hybrid</option>
+                </select>
+            </div>
+
+            <!-- Description -->
+            <div class="mt-4">
+                <label for="description" >Description:</label>
+                <textarea id="description" class="w-full h-24 ring-2 hover:ring-4 p-2" rows="5" placeholder="Provide a brief description of the course"></textarea>
+            </div>
+
+            <!-- Price -->
+            <div class="mt-4">
+                <label for="price" >Price:</label>
+                <select id="price" class="w-full h-9 ring-2 hover:ring-4 p-2">
+                    <option value="5000">Rs. 5000</option>
+                    <option value="6000">Rs. 6000</option>
+                </select>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="mt-4 text-center">
+                <button type="submit"   class="bg-purple-600 text-white px-4 py-2 border-2 border-stone-950 focus:ring-2 ring-blue-500">Update Course</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
+        _

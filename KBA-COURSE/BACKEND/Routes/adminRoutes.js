@@ -91,10 +91,12 @@ adminRoute.post('/addcourse',authenticate, (req,res)=>{
             }
     }
     catch(error){
-        res.status(500).json(error)
+        console.error("Error adding course:", error);
+        return res.status(500).json(error)
     }
 }else{
     console.log('invalid');
+    return res.status(403).json({ message: 'Access denied' });
 }
 });
 
@@ -139,7 +141,7 @@ adminRoute.get('/getcourse/:name',authenticate,(req,res)=>{
                 })
     
 //using query
-adminRoute.get('/getcourse', authenticate,(req,res)=>{
+adminRoute.get('/getcourse',(req,res)=>{
   console.log(req.query.CourseId);
   try{
     if (course.has(req.query.CourseId)){
@@ -150,7 +152,7 @@ adminRoute.get('/getcourse', authenticate,(req,res)=>{
                     }else{
                         console.log('Course not found:');
                         res.status(404).json({message:"course not found"});
-                        res.send('Course not found:');
+                        // res.send('Course not found:');
                     }
                 
                     }catch(error){
@@ -159,34 +161,34 @@ adminRoute.get('/getcourse', authenticate,(req,res)=>{
     
 })
 
-// adminRoute.post('/updatecourse', authenticate,(req,res)=>{
-//     if(req.Role=='admin'){
-//         console.log('admin logged successfully')
-//         try{
-//             const data=req.body;
-//             const {newCourseName,CourseId,newCourseType,newDescription,newPrice}=data;
-//             // console.log(data);
+adminRoute.post('/updatecourse', authenticate,(req,res)=>{
+    if(req.Role=='admin'){
+        console.log('admin logged successfully')
+        try{
+            const data=req.body;
+            const {newCourseName,CourseId,newCourseType,newDescription,newPrice}=data;
+            // console.log(data);
 
-//             if(course.has(CourseId)){
+            if(course.has(CourseId)){
                 
-//                 course.set(CourseId,{newCourseName,newCourseType,newDescription,newPrice})
-//                 console.log(course.get(CourseId))
-//                 console.log('Course updated successfully!');
-//                 res.send('Course updated successfully!');
+                course.set(CourseId,{newCourseName,newCourseType,newDescription,newPrice})
+                console.log(course.get(CourseId))
+                console.log('Course updated successfully!');
+                res.send('Course updated successfully!');
                 
-//             }else{
-//                 res.status(400).json({message:"Course Already Exist!!"})
-//                 console.log("Course Already Exist!!")
-//                 res.send("Course Already Exist!!")
-//             }
-//     }
-//     catch(error){
-//         res.status(500).json(error)
-//     }
-// }else{
-//     console.log('invalid');
-// }
-// })
+            }else{
+                res.status(400).json({message:"Course Already Exist!!"})
+                console.log("Course Already Exist!!")
+                res.send("Course Already Exist!!")
+            }
+    }
+    catch(error){
+        res.status(500).json(error)
+    }
+}else{
+    console.log('invalid');
+}
+})
 
 adminRoute.put('/updatecourse', authenticate,(req,res)=>{
     if(req.Role=='admin'){
@@ -217,31 +219,96 @@ adminRoute.put('/updatecourse', authenticate,(req,res)=>{
 }
 })
 
+//update using patch
+adminRoute.patch('/updatecourse', authenticate, (req, res) => {
+    if (req.Role === 'admin') {
+        console.log('Admin logged in successfully');
+        try {
+            const data = req.body;
+            const { CourseName, CourseId, CourseType, Description, Price } = data;
+
+            // Check if the course exists using the CourseId
+            if (course.has(CourseId)) {
+                // Retrieve existing course details
+                const existingCourse = course.get(CourseId);
+
+                // Update only the fields provided in the request
+                // course.set(CourseId, {
+                    existingCourse.CourseName=CourseName || existingCourse.CourseName,
+                    existingCourse.CourseType=CourseType || existingCourse.CourseType,
+                    existingCourse.Description=Description || existingCourse.Description,
+                    existingCourse.Price= Price || existingCourse.Price,
+                // });
+
+                console.log(course.get(CourseId));
+                console.log('Course updated successfully!');
+                res.send('Course updated successfully!');
+                
+            } else {
+                res.status(404).json({ message: "Course does not exist!" });
+                console.log("Course does not exist!");
+            }
+        } catch (error) {
+            console.error('Error updating course:', error);
+            res.status(500).json({ message: "Something went wrong!" });
+        }
+    } else {
+        console.log('Invalid role');
+        res.status(403).json({ message: "You do not have permission!" });
+    }
+});
+
+
+
 //detele course
 
-adminRoute.delete('/deletecourse',authenticate,(req,res)=>{
-    const Role=req.Role;
-    console.log(Role);
-    const results=req.query.CourseId;
-    console.log(results);
+// adminRoute.delete('/deletecourse', authenticate, (req, res) => {
+//     const Role = req.Role;
+//     console.log(Role);
+//     const results = req.query.CourseId;
+//     console.log(results);
     
-    if(Role!=='admin'){
-      res.send('you dont have permission');
+//     if (Role !== 'admin') {
+//         res.status(403).send('You do not have permission.');
+//     } else {
+//         if (course.has(results)) {
+//             course.delete(results);
+//             console.log('Course deleted successfully');
+//             res.status(200).send(`Course "${results}" has been deleted successfully.`);
+//         } else {
+//             res.status(404).send('Course not found!');
+//         }
+//     }
+// });
+
+  // Assuming you're using Express and have set up `adminRoute` and `authenticate` middleware
+
+adminRoute.delete('/deletecourse', authenticate, (req, res) => {
+    const Role = req.Role;
+    const courseId = req.query.CourseId; // Retrieve the CourseId from query parameters
+  
+    console.log("Received delete request for Course ID:", courseId);
+    console.log("User Role:", Role);
+  
+    if (Role !== 'admin') {
+      return res.status(403).send('You do not have permission to delete this course.');
     }
-    else{
-        if(course.has(results))
-            {
-                
-                course.delete(results);
-                console.log('course deleted successfully ')
-                // res.send('veiw course details in console');
-                res.send(`Course "${results}" has been deleted successfully.`);
-            }
-        else{
-            res.send('course not found !')
-        }
+  
+    if (!courseId) {
+      return res.status(400).send('Course ID is required.');
     }
-})
+  
+    // Assuming `course` is a Map or other data structure holding course information
+    if (course.has(courseId)) {
+      course.delete(courseId);
+      console.log(`Course with ID ${courseId} deleted successfully`);
+      return res.status(200).send(`Course "${courseId}" has been deleted successfully.`);
+    } else {
+      console.log(`Course with ID ${courseId} not found`);
+      return res.status(404).send('Course not found.');
+    }
+  });
+  
 
 adminRoute.get('/viewuser',authenticate,(req,res)=>{
     try{
@@ -252,7 +319,7 @@ adminRoute.get('/viewuser',authenticate,(req,res)=>{
     }
 })
 
-adminRoute.get('/viewcourse',(req,res)=>{
+adminRoute.get('/viewcourse',(req,res)=>{                        //homepagile viewall
     try{
         console.log(course.size);
         if(course.size!=0){
@@ -271,10 +338,20 @@ adminRoute.get('/viewcourse',(req,res)=>{
 })
 
 //logout
-adminRoute.post('/logout',(req,res)=>{
-    res.clearCookie('authToken');
-    res.send('logout successfully');
-    console.log('logout successfully');
+
+adminRoute.get('/logout', authenticate, (req, res) => {
+    try {
+        if (req.Role) {
+            res.clearCookie('authToken');
+            res.status(200).json({ message: "Logout successfull" });
+        } else {
+            res.status(404).json({ message: "No user found!" })
+        }
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: "Server error" })
+    }
+
 })
 
 export {adminRoute};

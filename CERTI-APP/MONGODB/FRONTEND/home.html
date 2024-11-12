@@ -3,26 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <title>CERTIAPP HOME</title>
+
+    <script>
+      function searchcerti(event) {
+        event.preventDefault()
+        const Cid = document.getElementById('searchid').value.trim();
+
+        // alert('Searching for Certificate ID: ' + certiId);
+        // window.location.href="/viewcertificate.html";
+
+        if (Cid !== '') {
+          // Store certiId in local storage
+          localStorage.setItem('certi', Cid);           
+          // Redirect to viewcerti page
+          window.location.href = './viewcerti.html';
+          
+        } else {
+          alert('Please enter a certificate ID');
+        }
+      }
+    </script>
+    
+   
 </head>
-<body class="bg-gray-200">
-    <div class="flex justify-end p-2 shadow-lg shadow-cyan-500">
-         <a class="bg-sky-500 rounded w-24 h-10 p-2 pl-6 mr-4 text-justify text-slate-100" href="home.html">Home</a>
-                <a class="rounded w-40 h-10 p-2 pl-6 text-justify" href="issuecerti.html">Issue Certificate</a>
-                <a class="rounded w-40 h-10 p-2 pl-6 text-justify" href="login.html">Sign In</a>
-    </div>
-    <div class="text-center text-4xl font-extrabold mt-24">
-     <h1>Certificate Dapp</h1>
-    </div>
-    <div class="">
-        <div class="flex justify-center items-center mt-12">
-     <img class="w-40 h-40" src="online_course.png" alt="">
-    </div>
+<body class="bg-blue-100">
+    <div class=" grid grid-cols-2" >
+      <div class="mt-4 ml-4 text-xl">
+        <a href="login.html">Login</a>
+      </div>
+        <div class="flex justify-end mt-4">    
+           <a href="front.html" class="border border-slate-950 w-24 h-10 mr-10 text-xl   text-center bg-blue-600"><p class=" mt-1 text-white ">Home</p></a>
+            <a href="issuecerti.html" class="mr-32 text-xl mt-2">Issue Certificate</a> 
         </div>
-     <div class="flex justify-center items-center mt-12">
-        <input class="border border-sky-500 w-52" type="text"  value="Enter certificate ID to view">
-        <input class="border border-sky-500 bg-blue-300 w-24 ml-4" type="button" value="Search">
-     </div>
-</body>     
+        </div>
+        
+        <div class="mt-0 text-blue-100 ">Certificate Dapp</div> 
+         <div class="mt-24 text-center text-4xl font-bold ">Certificate Dapp</div> 
+              <div class="flex justify-center mt-12"><img src="./online_course.png" width="180" height="180" alt=""></div> 
+            </div>
+            <div class="flex justify-center mt-10 ml-7 "><input id="searchid" class="border border-cyan-400" type="text" placeholder="Enter certificate ID To View"> &nbsp;
+              <button class="bg-cyan-400 w-24 h-8" onclick="searchcerti(event)">Search</button>
+            <!-- <input class="bg-cyan-400 w-24 h-8" type="button" value="Search"></div> -->
+              
+</body>
 </html>

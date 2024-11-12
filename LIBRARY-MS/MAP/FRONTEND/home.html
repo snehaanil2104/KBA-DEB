@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LMS-Home</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="shortcut icon" href="lblogo.jpeg" type="image/x-icon">
+</head>
+
+<body class="bg-gray-100 min-h-screen flex flex-col">
+
+    <!-- Navbar -->
+    <div class="bg-white shadow-md p-4">
+        <div class="max-w-screen-xl mx-auto flex justify-between items-center">
+            <div>
+                <img src="lblogo.jpeg" alt="Logo" class="w-18 h-16">
+            </div>
+            <div class="flex space-x-8">
+                <a href="home.html" class="text-gray-700 hover:text-emerald-600">Home</a>
+                <a href="addbook.html" class="text-gray-700 hover:text-emerald-600">Add Book</a>
+                <a href="viewbook.html" class="text-gray-700 hover:text-emerald-600">View Book</a>
+                <a href="login.html" class="text-gray-700 hover:text-emerald-600">Login</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Section -->
+    <div class="grid grid-cols-1 md:grid-cols-2">
+        <!-- Left Side Image -->
+        <img src="lbg.jpeg" alt="Library Background" class=" object-cover">
+
+        <!-- Right Side Content -->
+        <div class="flex flex-col justify-center px-8 py-16">
+            <h1 class="font-mono font-extrabold text-emerald-700 text-2xl">Welcome To</h1>
+            <span class="font-mono font-extrabold text-teal-500 text-6xl">MAGIC LIBRARY!</span>
+            <p class="mt-4 font-mono text-gray-700">Discover a world of knowledge and adventure at our library! Our website is your gateway to accessing a vast collection of books. With an easy-to-navigate interface, you can search for titles, check availability, and reserve materials—all from the comfort of your home.</p>
+            <div>
+                <button class="mt-12 ml-56 border-2 border-teal-700 bg-teal-600 text-white px-8 py-2 rounded-full hover:bg-teal-700">
+                    <a href="signup.html">Get Started..</a>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="mt-auto">
+        <p class="text-center bg-teal-300 text-black py-2">&copy; LIBRARY MANAGEMENT SYSTEM 2024: All rights reserved</p>
+    </footer>
+
+</body>
+
+</html>

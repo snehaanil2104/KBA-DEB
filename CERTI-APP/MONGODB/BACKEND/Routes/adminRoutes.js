@@ -1,174 +1,188 @@
-import { Router } from "express";
-import bcrypt from 'bcrypt';
-import jwt from 'jsonwebtoken';
+import { Router } from 'express'
+import bcrypt from 'bcrypt'
+import jwt from 'jsonwebtoken'
 import { authenticate } from "../Middleware/auth.js";
-import dotenv, { config } from 'dotenv';
+import dotenv from 'dotenv';
 import mongoose from 'mongoose';
-
-
+ 
 dotenv.config();
+const adminrouter=Router()
+// const user= new Map()
+const secretkey=process.env.SecretKey
 
-const adminRoute=Router();
-// const user=new Map();
-// const certificate=new Map();
-const secretKey=process.env.SecretKey;
+const userSchema=new mongoose.Schema({
+    fname : String,
+    email : String,
+    username :{type:String,unique:true},
+    password : String,
+    role : String
 
-const userSchema=mongoose.Schema({
-    FirstName:String,
-    LastName:String,
-    UserName:{type:String,unique:true},
-    Password:String,
-    Role:String
 })
-adminRoute.get('/',(req,res)=>{
+
+const User = mongoose.model("userdetails",userSchema)
+
+//model foe certificate details
+const certiSchema=new mongoose.Schema({
+    course:String,
+    certiid:{type:String,unique:true},
+    name:String,
+    grade:String,
+    issuedt:String
+})
+const Certi =mongoose.model("Certificatedetails",certiSchema)
+
+mongoose.connect("mongodb://localhost:27017/CERTI-APP")
+
+
+adminrouter.get('/', (req,res)=>{ // 1 / means home page or index
     res.send("Hello World")
 })
 
-
-adminRoute.post('/signup', async(req,res)=>{
+adminrouter.post('/signup',async(req,res)=>{
     try{
-    const data = req.body;
-
-    const{ FirstName,LastName,UserName,Password, Role}=data;
-    if(user.has(UserName)){
-        res.status(409).json({message:"already exist"})
+     //mapping        
+        const {Fname,Email,Username,Password,Role}=req.body;   
+        if (!Username) {
+            return res.status(400).json({ message: "Username is required" });
+          }
+    //map start
+    const existinguser=await User.findOne({username:Username})
+    if(existinguser){
+        res.status(400).json({message:"User Already exist"})
     }else{
-        const newP = await bcrypt.hash(Password,10)
-    // console.log(newP);
-    user.set(UserName,{  FirstName,LastName,Password:newP,Role})
-    console.log(user.get(UserName));
-    res.status(201).json({message:"data saved"})
-    } }
-    catch(error){
-        res.status(500).json(error)
+         //password hashing
+         const newp=await bcrypt.hash(Password,10)
+        //creating new user
+        const newUser=new User({
+            fname:Fname,
+            email:Email,
+            username:Username,
+            password:newp,
+            role:Role
+        })
+        await newUser.save();
+        res.status(201).json({message:"account created successfully"})
     }
-})
-adminRoute.post('/login',async(req,res)=>{
-    const {UserName,Password}=req.body;
-    // console.log(UserName);
-    const result=user.get(UserName)
-    console.log(result);
-
-    if(!result){
-        res.status(404).json({message:"user not found"})
-    }else{
-        const valid=await bcrypt.compare(Password,result.Password);
-        console.log(valid);
-        if(valid){
-            const token = jwt.sign({UserName:UserName,Role:result.Role},secretKey,{expiresIn:'1h'});
-            res.cookie('authToken',token,{
-                httpOnly:true,
-
-            });
-            res.status(200).json({token});
-        }
-    }
+}        catch (error) {
+    res.status(500).json(error)   
+}
 })
 
-adminRoute.post('/issuecerti', authenticate, (req, res) => {
-    try {
-        if (req.Role == 'admin') {
+// adminrouter.post('/login',async(req,res)=>{
+//    try {
+//     const {Username,Password}=req.body
+// const result=await User.findOne({username:Username})
+//     console.log(result)
 
-            const data=req.body;
-            const {CourseName,CertiId,CandidateName,Grade,IssueDate}=data;
-
-            if (certificate.has(CertiId)) {
-                console.log("Already found an id !")
-            } else {
-                certificate.set(CertiId, {CourseName,CandidateName,Grade,IssueDate});
-                res.status(200).json({ message: "successfully added" });
-                console.log(certificate)
-            }
-
-        } else {
-            res.status(404).json({ message: "user not allowed" })
-        }
-    } catch (error) {
-        console.error(error)
-        res.status(500).json({ message: "server down!" })
-    }
-
-})
-
-adminRoute.get('/search/:id', (req, res) => {
-    try {
-        const CertiId = req.params.id;
-
-        if (certificate.has(CertiId)) {
-            const certificateDetails = certificate.get(CertiId);
-            res.status(200).json({ 
-                message: "Certificate found.",
-                data: certificateDetails 
-            });
-            console.log("Certificate details:");
-            console.log(certificateDetails);
-        } else {
-            res.status(404).json({ message: "Certificate with this ID is not found" });
-        }
-    } catch (error) {
-        res.status(500).json({ message: "Server error" });
-    }
-});
-
-
-adminRoute.get('/viewcertificate', (req, res) => {
-    try {
-        const CertiId = req.query.id; // Get the certificate ID from query parameters
-
-        if (!CertiId) {
-            return res.status(400).json({ message: "Certificate ID is required" });
-        }
-
-        if (certificate.has(CertiId)) {
-            const certificateDetails = certificate.get(CertiId);
-            res.status(200).json({message: "Certificate found",data: certificateDetails 
-            });
-            console.log(`This is to certify that ${certificateDetails.CandidateName} has successfully completed ${certificateDetails.CourseName} with ${certificateDetails.Grade} on ${certificateDetails.IssueDate}`);
+//     if(!result){ 
+//         res.status(404).json({message:"User not found"})
+//     }else{
+//         if(valid){
+//             const token =jwt.sign({Username:result.username,Role:result.role},secretkey,{expiresIn:"1 h"})
+//             res.cookie('authToken',token,{ httpOnly:true })
+//             res.status(200).json({token})
+//             console.log(token)
+//         }
+//         const valid =await bcrypt.compare(Password,result.password)
+//         console.log(valid)
         
+        
+//     }
+//    } catch (error) {
+//     res.status(500).json({ message: 'Internal Server Error' });
+
+    
+//    }
+// })
+// const certi=new Map()
+
+adminrouter.post('/login', async(req, res) => {
+    try {
+        const { Username, Password } = req.body;
+        const result = await User.findOne({ username: Username });
+        console.log(result);
+
+        if (!result) { 
+            return res.status(404).json({ message: "User not found" });
         } else {
-            res.status(404).json({ message: "Certificate with this ID is not found" });
+            // Check the password against the hashed password in the database
+            const valid = await bcrypt.compare(Password, result.password);
+            console.log(valid);
+
+            if (valid) {
+                // Only generate the token if the password is valid
+                const token = jwt.sign({ Username: result.username, Role: result.role }, secretkey, { expiresIn: "1h" });
+                res.cookie('authToken', token, { httpOnly: true });
+                return res.status(200).json({ token });
+                console.log(token)
+            } else {
+                return res.status(401).json({ message: "Invalid password" });
+            }
         }
     } catch (error) {
-        res.status(500).json({ message: "Internal server error" });
+        console.error(error); // Log the error for debugging
+        return res.status(500).json({ message: 'Internal Server Error' });
     }
 });
 
-  //logout
-  adminRoute.post('/logout',(req,res)=>{
-    res.clearCookie('authToken');
+
+adminrouter.post('/issuecerti',authenticate,async(req,res)=>{
+    try {
+        const {Course,Certiid,Name,Grade,Issuedt}=req.body
+
+        if(req.Role == 'admin'){
+            console.log("Admin Logged in Successful")
+
+            const existingcerti=await Certi.findOne({certiid:Certiid})
+            if(existingcerti){
+                console.log("Certificate Already issued!!")
+                return res.status(400).json({message:"Certificate issued already"})
+            }
+            //creating new certi
+            const  newCerti=new Certi({
+                course:Course,
+                certiid:Certiid,
+                name:Name,
+                grade:Grade,
+                issuedt:Issuedt
+            })
+            
+                await newCerti.save();
+                console.log("Certificate Issued Successfully")
+                return res.status(200).json({message:"Certificate Issued Successfully"})
+         }else {
+            console.log("You dont have Permission")
+            return res.status(400).json({message:"You dont have Permission"})                
+            }       
+         } catch (error) {
+            console.error(error.message);
+            res.status(500).json({message: "Internal Server Error" }) 
+         }   
+})
+adminrouter.get('/getcerti',async (req, res) => {
+    // console.log(req.query.Courseid)  
+    try {
+        const search = req.query.CertiId
+        console.log(search);
+
+        const result= await Certi.findOne({certiid:search})
+        if(result){
+            res.status(200).send(result)
+        }else{
+            res.status(400).json({message:"No Issued Certificate!"})
+        }
+    } catch (error) {
+      res.status(500).json({ message: 'Internal server error' })     
+    }
+  })
+
+
+adminrouter.post('/logout',(req,res)=>{
+    res.clearCookie('authtoken');
     res.send('logout successfully');
     console.log('logout successfully');
 })
 
-export {adminRoute};
 
 
-//     adminRoute.post('/issuecerti',authenticate, (req,res)=>{
-//         try{
-//             const data=req.body;
-//                 const {CourseName,CertiId,CandidateName,Grade,IssueDate}=data;
-       
-//                 if(req.Role=='admin'){
-//                 console.log("admin logged successfully")
-    
-//                 if(course.has(CertiId)){
-//                     res.status(400).json({message:"certificate issued!!"})
-//                     console.log("certificate already issued!!")
-                    
-//                 }else{
-//                     course.set(CertiId,{CourseName,CandidateName,Grade,IssueDate})
-//                     console.log(course.get(CertiId))
-//                     console.log('certificate issueing..!');
-//                     console.log(`This is to certify that ${CandidateName} has successfully completed ${CourseName} with ${Grade} on ${IssueDate}`);
-//                     res.send("certificate  issued successfully!!")
-//                 }
-       
-//     }else{
-//         console.log('invalid');
-//     }
-// }
-// catch(error){
-//     res.status(500).json(error)
-// }
-//     });
-  
+export {adminrouter}

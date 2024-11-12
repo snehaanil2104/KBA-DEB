@@ -3,23 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>View Certificate</title>
+    <title>Certificate View</title>
     <script src="https://cdn.tailwindcss.com"></script>
-</head>
-<body class="bg-gray-200">
-    <div class="flex justify-end p-2 shadow-lg shadow-cyan-500">
-        <a class="bg-sky-500 rounded w-24 h-10 p-2 pl-6 mr-4 text-justify text-slate-100" href="home.html">Home</a>
+    <script>
+        window.onload=async()=>{
+          
+          let certi=localStorage.getItem("certi")
+          console.log(certi);
+          if (!certi) {
+      alert("No certificate ID found. Please try again.");
+      window.location.href = 'front.html';
+      return;
+    }
 
+    // Assuming certificate data is stored in local storage with key equal to Cid
+    const data = JSON.parse(localStorage.getItem(certi));
+
+    if (!data) {
+      alert("Certificate data not found. Please try again.");
+      window.location.href = 'front.html';
+      return;
+    }
+
+    document.getElementById("name").textContent = data.CandidateName;
+    document.getElementById("grade").textContent = data.Grade;
+    document.getElementById("course").textContent = data.Coursename;
+    document.getElementById("issuedt").textContent = data.IssueDate;
+
+  };
+    </script>
+</head>
+<body class="bg-fuchsia-100" >
+    <div class="">
+        <div class=" mt-44 flex justify-center text-2xl font-semibold">
+        <label for="">Kerala Blockchain Academy</label></div>
+        <div class=" mt-8 flex justify-center"><img class="" src="./online_course.png" width="150" height="150"alt=""></div>
+        <div class=" mt-4 flex justify-center"><p class="ml-8">This is to certify that <b id="name"></b> </p></div>
+          <div class=" mt-4 flex justify-center"> <p> has successfully completed <b id="course"></b></p></div>
+           <div class=" mt-4 flex justify-center"> with  &nbsp;<b id="grade"></b> &nbsp;  &nbsp;<b id="issuedt"></b></p></div>
+            <div class=" mt-4 flex justify-center"><a href="issuecerti.html" align="right">back</a></div>
     </div>
-    <div class="text-center text-4xl font-extrabold mt-24">
-        <h2>Kerala Blockchain Academy</h2>
-    </div>
-    <div class="flex justify-center items-center mt-12">
-        <img class="w-40 h-40"  src="online_course.png" alt="">
-    </div>
-    <div class="text-center mt-12">
-            <p>This is to certify that ,<b>n</b><br>has successfully completed <b> Blockchain Foundation</b><br>with<b> S</b> on<b> 2024-08-07</b></p>
-    </div>
-    
+        
+
+
 </body>
 </html>

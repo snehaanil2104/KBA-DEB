@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Book</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        const handleAddBook = async (event) => {
+            event.preventDefault();
+
+            // Collect book details from form
+            const title = document.getElementById("title").value;
+            const author = document.getElementById("author").value;
+            const genre = document.getElementById("genre").value;
+            const publishedYear = document.getElementById("publishedYear").value;
+
+            try {
+                const response = await fetch("http://localhost:3000/addbook", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ Title: title, Author: author, Genre: genre, PublishedYear: publishedYear }),
+                });
+
+                if (response.status === 201) {
+                    alert("Book added successfully!");
+                    document.getElementById("addBookForm").reset();
+                } else {
+                    const data = await response.json();
+                    alert(data.message || "Failed to add book.");
+                }
+            } catch (error) {
+                console.error("Error:", error);
+                alert("An error occurred. Please try again.");
+            }
+        };
+    </script>
+</head>
+<body class="bg-gray-100 flex flex-col">
+    <!-- Navbar -->
+    <div class="bg-white shadow-md p-4">
+        <div class="max-w-screen-xl mx-auto flex justify-between items-center">
+            <div>
+                <img src="lblogo.jpeg" alt="Logo" class="w-18 h-16">
+            </div>
+            <div class="flex space-x-8">
+                <a href="home.html" class="text-gray-700 hover:text-emerald-600">Home</a>
+                <a href="addbook.html" class="text-gray-700 hover:text-emerald-600">Add Book</a>
+                <a href="viewbook.html" class="text-gray-700 hover:text-emerald-600">View Book</a>
+                <a href="login.html" class="text-gray-700 hover:text-emerald-600">Login</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Book Form -->
+    <div class="bg-white rounded-lg shadow-lg p-8 max-w-md mx-auto mt-8">
+        <h2 class="text-2xl font-bold text-center text-emerald-600 mb-6">Add a New Book</h2>
+        <form id="addBookForm" onsubmit="handleAddBook(event)">
+            <div class="mb-4">
+                <label for="title" class="text-sm font-medium text-gray-700">Title</label>
+                <input id="title" type="text" class="w-full p-2 border rounded-md" placeholder="Book Title" required>
+            </div>
+            <div class="mb-4">
+                <label for="author" class=" text-sm font-medium text-gray-700">Author</label>
+                <input id="author" type="text" class="w-full p-2 border rounded-md" placeholder="Author Name" required>
+            </div>
+            <div class="mb-4">
+                <label for="genre" class="text-sm font-medium text-gray-700">Genre</label>
+                <input id="genre" type="text" class="w-full p-2 border rounded-md" placeholder="Genre (e.g., Fiction)" required>
+            </div>
+            <div class="mb-6">
+                <label for="publishedYear" class="text-sm font-medium text-gray-700">Published Year</label>
+                <input id="publishedYear" type="number" class="w-full p-2 border rounded-md" placeholder="Year" required>
+            </div>
+            <button type="submit" class="w-full bg-emerald-600 text-white py-2 rounded-md hover:bg-emerald-700">Add Book</button>
+        </form>
+    </div>
+</body>
+</html>

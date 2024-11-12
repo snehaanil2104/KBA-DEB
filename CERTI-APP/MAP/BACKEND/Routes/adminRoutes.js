@@ -4,12 +4,15 @@ import jwt from 'jsonwebtoken';
 import { authenticate } from "../Middleware/auth.js";
 import dotenv, { config } from 'dotenv';
 
+
+
 dotenv.config();
 
 const adminRoute=Router();
 const user=new Map();
 const certificate=new Map();
 const secretKey=process.env.SecretKey;
+
 
 adminRoute.get('/',(req,res)=>{
     res.send("Hello World")
@@ -67,12 +70,12 @@ adminRoute.post('/issuecerti', authenticate, (req, res) => {
                 console.log("Already found an id !")
             } else {
                 certificate.set(CertiId, {CourseName,CandidateName,Grade,IssueDate});
-                res.status(200).json({ message: "successfully added" });
+                res.status(201).json({ message: "successfully added" });
                 console.log(certificate)
             }
 
         } else {
-            res.status(404).json({ message: "user not allowed" })
+            res.status(403).json({ message: "user not allowed" })
         }
     } catch (error) {
         console.error(error)
@@ -80,6 +83,9 @@ adminRoute.post('/issuecerti', authenticate, (req, res) => {
     }
 
 })
+
+
+
 
 adminRoute.get('/search/:id', (req, res) => {
     try {
@@ -123,6 +129,17 @@ adminRoute.get('/viewcertificate', (req, res) => {
         res.status(500).json({ message: "Internal server error" });
     }
 });
+
+adminRoute.get('/viewuser',authenticate,(req,res)=>{
+    try{
+    const user=req.Role;
+    // console.log(user);
+    res.json({user});
+    }
+    catch{
+        res.status(404).json({message:'user not authorized'});
+    }
+})
 
   //logout
   adminRoute.post('/logout',(req,res)=>{

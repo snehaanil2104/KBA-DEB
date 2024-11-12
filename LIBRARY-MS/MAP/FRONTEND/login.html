@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="shortcut icon" href="lblogo.jpeg" type="image/x-icon">
+    <script>
+        const loginUser = async (username, password) => {
+            try {
+                const response = await fetch('http://localhost:3000/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ UserName: username, Password: password }),
+                    credentials: 'include', // Include cookies
+                });
+
+                const data = await response.json();
+                if (response.status === 200) {
+                    alert("Login successful!");
+                    console.log("Token:", data.token);
+                    // Redirect or handle successful login
+                    window.location.href = "./home.html"; // Example redirect
+                } else {
+                    alert(data.message || "Login failed.");
+                }
+            } catch (error) {
+                console.error("Login error:", error);
+                alert("An error occurred. Please try again.");
+            }
+        };
+
+        const handleLogin = (event) => {
+            event.preventDefault(); // Prevent form from reloading the page
+
+            // Get input values
+            const username = document.getElementById("username").value;
+            const password = document.getElementById("password").value;
+
+            // Call loginUser function
+            loginUser(username, password);
+        };
+    </script>
+</head>
+<body class="bg-gray-100 flex items-center justify-center h-screen">
+    <div class="bg-white rounded-lg shadow-lg p-8 max-w-md w-full">
+        <h2 class="text-2xl font-semibold text-center mb-6">Magic Library</h2>
+        
+        <form id="loginForm" onsubmit="handleLogin(event)">
+            <div class="mb-4">
+                <label for="username" class="text-sm font-medium text-gray-700">UserName</label>
+                <input type="text" id="username" required class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring focus:ring-emerald-300" placeholder="Enter your username">
+            </div>
+
+            <div class="mb-6">
+                <label for="password" class=" text-sm font-medium text-gray-700">Password</label>
+                <input type="password" id="password" required class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring focus:ring-emerald-300" placeholder="••••••••">
+            </div>
+
+            <button type="submit" class="w-full bg-emerald-600 text-white py-2 rounded-md hover:bg-emerald-700 transition duration-200">Login</button>
+        </form>
+
+        <div class="mt-4 text-center">
+            <a href="#" class="text-sm text-emerald-600 hover:underline">Forgot Password?</a>
+        </div>
+        <div class="mt-6 text-center"><p>Don't have an account? <a href="signup.html" class="text-emerald-600">Sign up</a></p>
+        </div>
+    </div>
+</body>
+</html>

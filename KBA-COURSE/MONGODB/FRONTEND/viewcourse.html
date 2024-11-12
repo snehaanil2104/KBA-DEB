@@ -6,28 +6,106 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="icon" type="image/png" href="/favicon.ico" />
     <title>Blockchain Courses</title>
+
     <script>
       window.onload=async()=>{
         const courseId=localStorage.getItem('course');
-            console.log(courseId);
+        console.log("Retrieved Course ID from Local Storage:", courseId);
+            if (!courseId) {
+        alert("No course selected. Redirecting to courses page.");
+        window.location.href = './homepage.html'; // Redirect to courses page if no course ID is found
+        return;
+      }
+      try{
             const response=await fetch(`http://127.0.0.1:8000/getcourse?CourseId=${courseId}`);
-            console.log(response);
+            console.log("Fetch Response:",response);
+
+            if (!response.ok) {
+          console.error("Failed to fetch course data:", response.status);
+          alert("Course not found.");
+          window.location.href = './notfound.html';
+          return;
+        }
             const data=await response.json();
-            if(response.status!=404){
-            console.log(data);
+            console.log("Fetched Data:",data);
             document.getElementById("cname").textContent=data.CourseName;
             // document.getElementById("type").innerHTML=data.CourseType;
-            document.getElementById("price").innerHTML=data.Price;
-            document.getElementById("description").innerHTML=data.Description;
+            document.getElementById("price").textContent=data.Price;
+            document.getElementById("description").textContent=data.Description;
 
-            }
-            else{
-                window.location.href='/notfound.html';
-            }
+            }catch (error) {
+        console.error("Error fetching course data:", error);
+        alert("An error occurred. Please try again.");
       }
-      // function handleEdit(){
+    };
 
-      // }
+    async function removeCourse() {
+  const courseId = localStorage.getItem('course');
+  
+  if (!courseId) {
+    alert("Course ID not found.");
+    return;
+  }
+
+  if (!confirm("Are you sure you want to delete this course?")) return;
+
+  try {
+    console.log("Attempting to delete course with ID:", courseId);
+    const response = await fetch(`http://127.0.0.1:8000/deletecourse?CourseId=${courseId}`, {
+      method: 'DELETE',
+      credentials: 'include'
+    });
+
+    console.log("Response status:", response.status);
+
+    if (response.status === 200) {
+      const message = await response.text();
+      alert(message);
+      
+      console.log("Course deleted successfully. Clearing local storage and redirecting...");
+        // Get the current courses array from local storage
+        const courses = JSON.parse(localStorage.getItem('courses')) || [];
+      
+      // Filter out the deleted course
+      const updatedCourses = courses.filter(course => course.CourseId !== courseId);
+      
+      // Update the courses in local storage
+      localStorage.setItem('courses', JSON.stringify(updatedCourses));
+      
+      // Clear the individual course ID
+      localStorage.removeItem('course');
+      
+      // Redirect to viewcourse page
+      window.location.href = './viewcourse.html';
+    } else if (response.status === 404) {
+      alert("Course not found.");
+    } else if (response.status === 403) {
+      alert("You do not have permission to delete this course.");
+    } else {
+      alert("Failed to delete course. Please try again.");
+    }
+  } catch (error) {
+    console.error("Error deleting course:", error);
+    alert("An error occurred. Please try again.")
+  }
+  //     localStorage.removeItem('course'); // Clear course ID from local storage
+  //     window.location.href = './viewcourse.html'; // Redirect to viewcourse page
+
+  //   } else if (response.status === 404) {
+  //     alert("Course not found.");
+  //   } else if (response.status === 403) {
+  //     alert("You do not have permission to delete this course.");
+  //   } else {
+  //     alert("Failed to delete course. Please try again.");
+  //   }
+  // } catch (error) {
+  //   console.error("Error deleting course:", error);
+  //   alert("An error occurred. Please try again.");
+  // }
+}
+
+
+      
     </script>
   </head>
 <body>
@@ -37,15 +115,15 @@
         <div class='flex items-center'>
 
             <a href="#" >
-                <img class='m-1p-2 size-12' src="./images/kbalogo.png" alt="logo" />
+                <img class='m-1p-2 size-12' src="./kbalogo.png" alt="logo" />
             </a>
             
         </div>
         <div class='flex justify-center md:justify-end items-center mt-2 md:mt-0 space-x-5 md:space-x-10'>
-            <a href="/kbacourses html/Homepage.html" class='ml-20'>Home</a>
+            <a href="homepage.html" class='ml-20'>Home</a>
           
             <a href="#" class='ml-20'>Contact Us</a>
-            <a href="/kbacourses html/add-course.html" class='ml-20'>Add Course</a>
+            <a href="addcourse.html" class='ml-20'>Add Course</a>
         </div>
     </div>
     <!-- form -->
@@ -59,7 +137,7 @@
 
       <div class="bg-purple-100 shadow-lg rounded-lg overflow-hidden">
         <img
-          src="./banner-kba.png"
+          src="./rp.png"
           alt="Course Thumbnail"
           class="w-full h-64 object-cover"
         />
@@ -113,7 +191,7 @@
     </div>
     <div class="flex flex-row justify-end gap-4 mr-[205px] ">
       <a  class="flex bg-blue-500 hover:bg-blue-600 text-white font-bold  rounded-full h-10 w-32 focus:outline-none focus:shadow-outline justify-center items-center" href="updatecourse.html">Edit Course</a>
-      <a  class="flex bg-red-500 hover:bg-red-600 text-white font-bold  rounded-full h-10 w-32 focus:outline-none focus:shadow-outline  justify-center items-center">Remove Course</a>
+      <button  onclick="removeCourse()" class="flex bg-red-500 hover:bg-red-600 text-white font-bold  rounded-full h-10 w-32 focus:outline-none focus:shadow-outline  justify-center items-center">Remove Course</button>
      
       </div>
   </div>

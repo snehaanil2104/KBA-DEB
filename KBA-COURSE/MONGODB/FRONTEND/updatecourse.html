@@ -10,10 +10,19 @@
         window.onload=async()=>{
           const courseId=localStorage.getItem('course');
               console.log(courseId);
+              if (!courseId) {
+                alert("No course selected!");
+                window.location.href = './viewcourse.html';
+                return;
+            }
+              try{
               const response=await fetch(`http://127.0.0.1:8000/getcourse?CourseId=${courseId}`);
               console.log(response);
+              
+              if(response.status===404){
+                window.location.href='/notfound.html';
+              }
               const data=await response.json();
-              if(response.status!=404){
               console.log(data);
               document.getElementById("cname").value=data.CourseName;
               document.getElementById("CourseId").value =courseId;
@@ -21,67 +30,67 @@
               document.getElementById("price").value=data.Price;
               document.getElementById("description").value=data.Description;
   
-              }
-              else{
-                  window.location.href='/notfound.html';
+            }
+                catch(error){
+                console.error("Error fetching course:", error);
+                alert("Failed to fetch course details. Please try again.");
               }
         };
+
         async function handleUpdate(event){
         event.preventDefault();
     
-        const newcourseName = document.getElementById("cname").value;
-        const courseId = document.getElementById("CourseId").value;
-        const newcourseType = document.getElementById("type").value;
-        const newdescription = document.getElementById("description").value;
-        const newprice = document.getElementById("price").value;
+          const courseId = document.getElementById("CourseId").value;
+            const updatedCourse = {
+                CourseName: document.getElementById("cname").value,
+                CourseId: courseId,
+                CourseType: document.getElementById("type").value,
+                Price: document.getElementById("price").value,
+                Description: document.getElementById("description").value
+            };
 
-    
+    try{
         const response = await fetch(`http://127.0.0.1:8000/updatecourse`, {
-            method: "PUT",
+            method: "PATCH",
             credentials:"include",
             headers: {
                 "Content-Type": "application/json"},
-            body: JSON.stringify({
-                newCourseName: newcourseName,
-                CourseId: courseId,
-                newCourseType: newcourseType,
-                newPrice: newprice,
-                newDescription: newdescription
-            })
+            body: JSON.stringify(updatedCourse)
         
         });
 
-        console.log(response);
-        const data=await response.json();
-        console.log(data);
+        // console.log(response);
+        // const data=await response.json();
+        // console.log(data);
         
         if (response.status === 200) {
             alert("course updated succesfully")
-            window.location.href='./viewcourse.html'
-            let courses = JSON.parse(localStorage.getItem('courses')) || [];
-            
-            // Create a new course object
-            const newCourse = {
-                CourseName: newcourseName,
-                CourseId: courseId,
-                CourseType: newcourseType,
-                Price: newprice,
-                Description: newdescription
-            };
-            
-            // Add the new course to the array
-            const existingIndex = courses.findIndex(course => course.coursename === coursename);
-                if (existingIndex !== -1) {
-                    courses[existingIndex] = newCourse;
+            updateLocalStorage(courseId, updatedCourse);
+            window.location.href='./viewcourse.html';
+        }else if(response.status === 400) {
+                    alert("Course not found");
                 } else {
-                    courses.push(newCourse);
+                    alert("Failed to update course. Please try again.");
                 }
+            } catch (error) {
+                console.error("Error updating course:", error);
+                alert("An error occurred. Please try again.");
+            }
+            }
+           
             
-        }else if(response.status==400){
-            alert("course not found")
-        }
+         function updateLocalStorage(courseId, updatedCourse) {
+            let courses = JSON.parse(localStorage.getItem('courses')) || [];
+            const index = courses.findIndex(course => course.CourseId === courseId);
 
-        }    
+            if (index !== -1) {
+                courses[index] = updatedCourse;
+            } else {
+                courses.push(updatedCourse);
+            }
+
+            localStorage.setItem('courses', JSON.stringify(courses));
+        }  
         </script>
 
 
@@ -89,13 +98,13 @@
 <body>
     <!-- Navigation and Logo Section -->
     <div class="bg-purple-400 h-20 flex items-center p-4">
-        <img class="w-16 h-16" src="../TAILWIND/images/kbalogo.png" alt="KBA Logo">
+        <img class="w-16 h-16" src="./kbalogo.png" alt="KBA Logo">
         <div class="ml-auto flex space-x-6">
             <a href="homepage.html" class="text-white hover:underline">Home</a>
             <a href="" class="text-white hover:underline">Courses</a>
             <a href="addcourse.html" class="text-white hover:underline">Add Courses</a>
             <a href="" class="text-white hover:underline">Contact Us</a>
-            <a href="login.html" class="text-white hover:underline">Logout</a>
+            <!-- <a href="login.html" class="text-white hover:underline">Logout</a> -->
         </div>
     </div>
 
@@ -103,7 +112,7 @@
     <div class="bg-purple-300 mt-32 p-8 max-w-md mx-auto rounded-lg">
         <h1 class="font-mono text-2xl text-center font-bold">Update Course</h1>
         
-        <form class="mt-4">
+        <form class="mt-4" onsubmit="handleUpdate(event)">
             <!-- Course Name -->
             <div class="mt-4">
                 <label for="cname" >Course Name:</label>
@@ -142,7 +151,7 @@
 
             <!-- Submit Button -->
             <div class="mt-4 text-center">
-                <button type="submit"  onclick="handleUpdate(event)" class="bg-purple-600 text-white px-4 py-2 border-2 border-stone-950 focus:ring-2 ring-blue-500">Update Course</button>
+                <button type="submit"   class="bg-purple-600 text-white px-4 py-2 border-2 border-stone-950 focus:ring-2 ring-blue-500">Update Course</button>
             </div>
         </form>
     </div>

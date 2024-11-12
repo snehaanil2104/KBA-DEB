@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Books</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        // Function to load and display books
+        const loadBooks = async () => {
+            try {
+                const response = await fetch("http://localhost:3000/viewbooks");
+                const books = await response.json();
+
+                const bookList = document.getElementById("bookList");
+                bookList.innerHTML = ""; // Clear previous list
+
+                if (books.length === 0) {
+                    bookList.innerHTML = "<li>No books available.</li>";
+                }
+
+                books.forEach((book) => {
+                    const listItem = document.createElement("li");
+                    listItem.className = "p-4 border-b flex justify-between items-center";
+
+                    listItem.innerHTML = `
+                        <div>
+                            <strong>${book.Title}</strong> by ${book.Author} (${book.PublishedYear}) - Genre: ${book.Genre}
+                        </div>
+                        <button class="bg-red-500 text-white py-1 px-4 rounded-md hover:bg-red-600" onclick="removeBook('${book.Title}')">Remove</button>
+                    `;
+                    bookList.appendChild(listItem);
+                });
+            } catch (error) {
+                console.error("Error loading books:", error);
+                alert("An error occurred while fetching books.");
+            }
+        };
+
+        // Function to remove a book
+        const removeBook = async (title) => {
+            try {
+                const response = await fetch("http://localhost:3000/removebook", {
+                    method: "DELETE",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ Title: title })
+                });
+
+                const data = await response.json();
+                if (response.status === 200) {
+                    alert(data.message); // Show success message
+                    loadBooks(); // Reload the book list
+                } else {
+                    alert(data.message || "Failed to remove book.");
+                }
+            } catch (error) {
+                console.error("Error removing book:", error);
+                alert("An error occurred while removing the book.");
+            }
+        };
+
+        // Load books when the page is loaded
+        window.onload = loadBooks;
+    </script>
+</head>
+<body class="bg-gray-100">
+    <div class="bg-white shadow-md p-4">
+        <div class="max-w-screen-xl mx-auto flex justify-between items-center">
+            <div>
+                <img src="lblogo.jpeg" alt="Logo" class="w-18 h-16">
+            </div>
+            <div class="flex space-x-8">
+                <a href="home.html" class="text-gray-700 hover:text-emerald-600">Home</a>
+                <a href="addbook.html" class="text-gray-700 hover:text-emerald-600">Add Book</a>
+                <a href="viewbook.html" class="text-gray-700 hover:text-emerald-600">View Book</a>
+            </div>
+        </div>
+    </div>
+    <div class="container mx-auto p-8">
+        <h1 class="text-3xl font-bold text-center mb-6 text-emerald-600">Books in the Library</h1>
+        <ul id="bookList" class="bg-white rounded-lg shadow divide-y"></ul>
+    </div>
+</body>
+</html>

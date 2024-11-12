@@ -5,282 +5,221 @@ import { authenticate } from "../Middleware/auth.js";
 import dotenv from 'dotenv';
 import mongoose from 'mongoose'
 
+ 
 dotenv.config();
-
 const adminRoute=Router();
-const secretKey=process.env.SecretKey;
-//define user schema
-const userSchema=new mongoose.Schema(
-    {
-        firstName:String,
-        lastName:String,
-        userName:{type:String,unique:true},
-        password:String,
-        role:String
-    }
-)
-//create model
-const User=mongoose.model('Userdetails',userSchema)
-const CourseSchema=new mongoose.Schema({
-    courseName:String,
-    courseId:{type:String,unique:true},
-    courseType:String,
-    description:String,
-    price:String
+const secretKey=process.env.SecretKey
+//define user schema(designing) for signin  and login
+const userSchema=new mongoose.Schema({
+        FirstName: String,
+        LastName: String,
+        UserName: { type: String, unique: true, required: true },
+        Password: { type: String, required: true },
+        Role:  String 
+    });
+
+const User =mongoose.model('User',userSchema)
+
+ // create model for addcourse
+ const courseSchema= new mongoose.Schema({
+    CourseName: String,
+    CourseId: { type: String, unique: true },
+    CourseType: String,
+    Description: String,
+    Price: Number,
+})
+const Course =mongoose.model('courses',courseSchema)
+
+mongoose.connect("mongodb://localhost:27017/KBA-Courses")
+
+adminRoute.get('/',(req,res)=>{ //callbk func // eth index page venditt matgarm 
+    res.send("Hello World") 
 })
 
-//create course model
-const Course=mongoose.model('courses',CourseSchema);
+//signup
 
-mongoose.connect('mongodb://localhost:27017/KBA')
+adminRoute.post('/signup', async (req, res) => {
+    try {
+        const { FirstName, LastName, UserName, Password, Role } = req.body;
+        const existingUser = await User.findOne({ UserName });
 
+        if (existingUser) {
+            return res.status(400).json({ message: "User already exists" });
+        }
 
-adminRoute.get('/',(req,res)=>{
-    res.send("Hello World")
-})
-
-adminRoute.post('/signup', async(req,res)=>{
-    
-    const data=req.body
-    const{ FirstName,LastName,UserName,Password, Role}=data;
-    // console.log(FirstName)
-    const newP = await bcrypt.hash(Password,10)
-    // console.log(newP);
-    const existingUser=await User.findOne({userName:UserName})
-    if(existingUser){
-        res.status(400).json({message:"user already exist"})
-        console.log("user already exist")
-    }else{
-        //create new user
-        const newUser = new User({
-            firstName:FirstName,
-            lastName:LastName,
-            userName:UserName,
-            password:newP,
-            role:Role
-        });
-        //save user to mongodb
+        const hashedPassword = await bcrypt.hash(Password, 10);
+        const newUser = new User({ FirstName, LastName, UserName, Password: hashedPassword, Role });
         await newUser.save();
-        res.status(201).json({message:"user registered successfully"});
-        console.log("user registered successfully");
-        
+
+        res.status(201).json({ message: "User registered successfully" });
+    } catch (error) {
+        res.status(500).json({ error });
     }
+});
 
-})
-adminRoute.post('/login',async(req,res)=>{
-    try{
-    const {UserName,Password}=req.body;
-    // console.log(UserName);
-    const result=await User.findOne({userName:UserName})
-    console.log(result);
+//login
 
-    if(!result){
-        res.status(404).json({message:"user not found"})
-    }else{
-        console.log(Password);
-        console.log(result.password)
+adminRoute.post('/login', async (req, res) => {
+    try {
+        const { UserName, Password } = req.body;
+        console.log("Attempting login for:", UserName);
 
-        const valid=await bcrypt.compare(Password,result.password)
-        // console.log(valid);
-        if(valid){
-           const token= jwt.sign({userName:UserName,Role:result.role},secretKey,{expiresIn:'1h'});
-           res.cookie('authToken',token,{
-            httpOnly:true,
-
-           });
-        //    console.log(token);
-           
-           res.status(200).json({token});
-           console.log("logged in successfully")
-            
+        // Find the user by UserName in MongoDB
+        const result = await User.findOne({ UserName });
+        if (!result) {
+            return res.status(404).json({ message: "User not found" });
         }
-        
-    }
-}
-catch(error){
-    res.status(500).json(error)
-}
-    
-})
 
-adminRoute.post('/addcourse',authenticate,async (req,res)=>{
-    const user=req.Role;
-    const {CourseName,CourseId,CourseType,Description,Price}=req.body;
-
-    try{
-        if(user=="admin"){
-            try{
-                const existingCourse=await  Course.findOne({courseId:CourseId})
-                if(existingCourse){
-                    res.status(400).json({message:"Course already exist"})
-                }
-                else{
-                    //create new course
-                    const newCourse = new Course({
-                        courseName:CourseName,
-                        courseId:CourseId,
-                        courseType:CourseType,
-                        description:Description,
-                        price:parseInt(Price)
-                    });
-                    //save to mongodb
-                    await newCourse.save();
-                    res.status(200).json({message:"Course added successfully",course:newCourse})
-                    console.log(newCourse);
-                }
-            }
-            catch(error){
-                res.status(400).json({message:"check the course details"});
-            }
-        }
-        else{
-            res.status(400).json({message:"you don't have permission to add course"})
-        }
-    }
-    catch(error){
-        res.status(401).json({message:"check course details"});
-    }
-})
-
-adminRoute.get('/getcourse',async(req,res)=>{
-    try{
-        const courseDetails =req.query.CourseId;
-        console.log(courseDetails);
-        const result=await Course.findOne({courseId:courseDetails}) 
-        if(result){
-            res.status(200).json(result)
-           
-        }  else{
-            res.status(404).json({message:"Course not found"})
-    }
-}
-catch(error){
-    res.status(400).json({message:"check the input"})
-}
-})
-
-//update using patch
-adminRoute.patch('/updatecourse', authenticate, async(req, res) => {
-    const user=req.Role;
-    const data = req.body;
-            const { newCourseName, CourseId, newCourseType, newDescription, newPrice } = data;
-    try{
-           if (user=== 'admin') {
-            const result=await Course.updateOne(
-                {courseId:CourseId},
-                {
-                    $set:{
-                        courseName:newCourseName,
-                        courseType:newCourseType,
-                        description:newDescription,
-                        price:parseInt(newPrice)
-                    }
-                }
+        // Check if the provided password matches
+        const valid = await bcrypt.compare(Password, result.Password);
+        if (valid) {
+            const token = jwt.sign(
+                { UserName: result.UserName, Role: result.Role },
+                secretKey,
+                { expiresIn: '1h' }
             );
-            
-            if(result.matchedCount===0){
-                return res.status(400).json({ message: "No such course" });
-            }
-            res.status(201).json({ message: "Course Details Updated" });
+
+            // Set token in a cookie
+            res.cookie('authToken', token, { httpOnly: true });
+            return res.status(200).json({ token });
         } else {
-            res.status(400).json({ message: "Unauthorized Access" });
+            return res.status(401).json({ message: "Invalid password" });
         }
     } catch (error) {
-        // Error handling for any unexpected issues
-        res.status(400).json({ message: "Check the Course Details" });
+        console.error("Login error:", error);
+        res.status(500).json({ error: error.message || "Internal server error" });
     }
 });
+ 
 
+//addcourse
 
-adminRoute.put('/updatecourse', authenticate, async (req, res) => {
-  
-        
+// const course=new Map() // map declaring ourside updte and add course can use the same map
+
+adminRoute.post('/addcourse', authenticate, async (req, res) => {
+    if (req.Role === 'admin') {
         try {
-            
             const { CourseName, CourseId, CourseType, Description, Price } = req.body;
-            const existingCourse = await Course.findOne({ courseId:CourseId });
-            if (!existingCourse) {
-                return res.status(400).json({message:"course id is not exist"})
+            const existingCourse = await Course.findOne({ CourseId });
+
+            if (existingCourse) {
+                return res.status(400).json({ message: "Course already exists" });
             }
-            if (req.Role === 'admin') {
-                console.log('Admin logged in successfully');
-          
-            existingCourse.courseName=CourseName || existingCourse.courseName,
-            existingCourse.courseType=CourseType || existingCourse.courseType,
-            existingCourse.description=Description || existingCourse.description,
-            existingCourse.price=Price || existingCourse.price
-                // Update only the fields provided in the request
-            await existingCourse.save();
-            res.status(201).json({ message: "Course Details Updated" });
-            }else{
-                res.status(400).json({ message: "Unauthorized Access" });
-            }  
-            } catch (error) {
-                res.status(500).json({message:"internal server error"})
-               
-}
+
+            const newCourse = new Course({ CourseName, CourseId, CourseType, Description, Price });
+            await newCourse.save();
+
+            res.status(201).json({ message: "Course added successfully" });
+        } catch (error) {
+            res.status(500).json({ error });
+        }
+    } else {
+        res.status(403).json({ message: 'Access denied' });
+    }
 });
 
+//UPDATE COURSE
+adminRoute.patch('/updatecourse', authenticate, async (req, res) => {
+    if (req.Role === 'admin') {
+        try {
+            const { CourseId, CourseName, CourseType, Description, Price } = req.body;
 
+            // Find course and update fields if provided
+            const updatedCourse = await Course.findOneAndUpdate(
+                { CourseId },
+                {
+                    $set: {
+                        CourseName: CourseName || undefined,
+                        CourseType: CourseType || undefined,
+                        Description: Description || undefined,
+                        Price: Price || undefined
+                    }
+                },
+                { new: true } // Return the updated document
+            );
 
-//detele course
-
-adminRoute.delete('/deletecourse',authenticate,(req,res)=>{
-    const Role=req.Role;
-    console.log(Role);
-    const results=req.query.CourseId;
-    console.log(results);
-    
-    if(Role!=='admin'){
-      res.send('you dont have permission');
-    }
-    else{
-        if(course.has(results))
-            {
-                
-                course.delete(results);
-                console.log('course deleted successfully ')
-                // res.send('veiw course details in console');
-                res.send(`Course "${results}" has been deleted successfully.`);
+            if (updatedCourse) {
+                res.status(200).json({ message: "Course updated successfully", updatedCourse });
+            } else {
+                res.status(404).json({ message: "Course not found" });
             }
-        else{
-            res.send('course not found !')
+        } catch (error) {
+            res.status(500).json({ error });
         }
+    } else {
+        res.status(403).json({ message: "You do not have permission to update courses" });
     }
-})
+});
 
-adminRoute.get('/viewuser',authenticate,(req,res)=>{
-    try{
-        const user=req.Role;
-        res.json({user});}
-    catch{
-        res.status(404).json({message:"user not authorized"});
-    }
-})
+      
 
-adminRoute.get('/viewcourse',(req,res)=>{                        //homepagile viewall
-    try{
-        console.log(course.size);
-        if(course.size!=0){
-            // res.status(200).json({message:'successfull'})
-            res.send(Array.from(course.entries()))
+   //using params
+   adminRoute.get('/getcourse/:name', authenticate, async (req, res) => {
+    try {
+        const course = await Course.findOne({ CourseName: req.params.name });
+        if (course) {
+            res.status(200).json(course);
+        } else {
+            res.status(404).json({ message: "Course not found" });
         }
-        else{
-            res.status(404).json({message:'Not Found'});
+    } catch (error) {
+        res.status(500).json({ error });
+    }
+});
+
+adminRoute.delete('/deletecourse', authenticate, async (req, res) => {
+    if (req.Role === 'admin') {
+        const { CourseId } = req.query;
+        try {
+            const deletedCourse = await Course.findOneAndDelete({ CourseId });
+            if (deletedCourse) {
+                res.status(200).json({ message: `Course "${CourseId}" deleted successfully` });
+            } else {
+                res.status(404).json({ message: "Course not found" });
+            }
+        } catch (error) {
+            res.status(500).json({ error });
         }
-        
+    } else {
+        res.status(403).json({ message: "Access denied" });
     }
-    catch{
-        res.status(500).json({message:"internal server error"})
+});
+   
 
+
+adminRoute.get('/viewuser', authenticate, async (req, res) => {
+    try {
+        const user = await User.findOne({ UserName: req.UserName });
+        if (user) {
+            res.status(200).json(user);
+        } else {
+            res.status(404).json({ message: "User not found" });
+        }
+    } catch (error) {
+        res.status(500).json({ error });
     }
-})
+});
 
-//logout
-adminRoute.post('/logout',(req,res)=>{
-    res.clearCookie('authToken');
-    res.send('logout successfully');
-    console.log('logout successfully');
-})
+adminRoute.get('/viewcourse', async (req, res) => {
+    try {
+        const courses = await Course.find();
+        if (courses.length) {
+            res.status(200).json(courses);
+        } else {
+            res.status(404).json({ message: "No courses found" });
+        }
+    } catch (error) {
+        res.status(500).json({ error });
+    }
+});
 
-export {adminRoute};
+adminRoute.get('/logout', authenticate, (req, res) => {
+    try {
+        res.clearCookie('authToken');
+        res.status(200).json({ message: "Logout successful" });
+    } catch (error) {
+        res.status(500).json({ error });
+    }
+});
+
+export {adminRoute} ;

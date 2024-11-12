@@ -5,45 +5,109 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Issue Certificate</title>
     <script src="https://cdn.tailwindcss.com"></script>
+
+        <script>
+              async  function issuecerti(event){
+                    event.preventDefault()
+
+
+                    const course=document.getElementById('certicourse').value 
+                    const cid=document.getElementById('cid').value 
+                    const cname=document.getElementById('cname').value 
+                    const grade=document.getElementById('grade').value
+                    const issuedt=document.getElementById('issuedt').value
+
+                    console.log(course,cid,cname,grade,issuedt);
+
+                    const courseData = {Coursename: course,CandidateName: cname,Grade: grade,IssueDate: issuedt};
+                     localStorage.setItem(cid, JSON.stringify(courseData));
+
+                     try {
+                        const response=await fetch("http://127.0.0.1:4000/issuecerti",{
+                            method:'POST',
+                            credentials:'include',
+                            headers:{ "Content-Type": 'application/json' },
+                            body:JSON.stringify({
+                                Course:course,
+                                Certiid:cid,
+                                Name:cname,
+                                Grade:grade,
+                                Issuedt:issuedt
+                            })
+                        })
+                        const data=await response.json()
+                        console.log(data)
+
+                        if(response.status==400){
+                            alert("Invalid Credential")
+                        }else{
+                            alert("Certificate issued!!")
+                            window.location.href="./home.html"
+
+                        }                        
+                     } catch (error) {
+                        console.log(error)
+                        alert("Internal Server Error!!")                        
+                     }
+             }
+        </script>
+
+
+
 </head>
-<body>
-    <body class="bg-gray-200">
-        <div class="flex justify-end p-2 shadow-lg shadow-cyan-500">
-             <a class="rounded w-24 h-10 p-2 pl-6 mr-4 text-justify " href="home.html">Home</a>
-                    <a class="bg-sky-500 rounded w-40 h-10 p-2 pl-6 text-justify text-slate-100" href="issuecerti.html">Issue Certificate</a>
-        </div>
-        <div class="text-2xl font-extrabold mt-2">
-    <h2>Certificate Dapp</h2>
-        </div>
-    <div class="bg-blue-300 bg-blue-300 mt-32 p-8 max-w-lg mx-auto rounded-lg shadow-lg shadow-cyan-500">
-        <div class="font-mono text-2xl font-bold ml-16"><h1>Issue New Certificate</h1></div>
-        <div class="ml-16">
-            <div  class="mt-8"><label for="course">Select Course*</label></div>
-                <div  class="mt-4"><select class="w-80 h-9 ring-2 hover:ring-4" name="" id="course">
-                    <option value="Certified Blockchain Associate">Certified Blockchain Associate</option>
-                    <option value="Certified Ethereum Developer">Certified Ethereum Developer</option>
-                </select>
+<body> 
+    <div >
+        <nav class="flex float-right mt-4 ">
+          <a href="home.html" class="border border-slate-950 w-24 h-10 mr-10 text-xl   text-center bg-blue-600"><p class=" mt-1 text-white ">Home</p></a>
+         <a href="issuecerti.html" class="mr-32 text-xl mt-2">Issue Certificate</a> 
+        </nav>
+     </div>
+     <div class="mt-0 text-white ">Certificate Dapp</div> 
+     <div class="mt-8 text-2xl ml-12 font-bold  ">Certificate Dapp</div> 
+
+     <form action="" onsubmit="issuecerti(event)">
+        <div class="bg-blue-100  indent-0 w-[600px] max-h-screen mt-12 mx-auto  rounded-lg shadow-xl shadow-indigo-400">
+            <div class=" pl-4 ">
+                <p class="mt-14 pt-6 pl-1 text-2xl ">Issue New Certificate</p>
+                <div class="mt-4" >Select Course*</div>
+                <div class="mt-2">
+                    <select class="h-9 w-11/12" required id="certicourse">
+                        <option value="Certified Blockchain Associate" > Certified Blockchain Associate</option>
+                       
+                    </select>
                 </div>
-                <div  class="mt-4"><label for="">Course ID*</label></div>
-                <div  class="mt-4"><input class="w-80 h-9 ring-2 hover:ring-4" type="text" placeholder="Certificate ID"></div>
-                <div  class="mt-4"><label for="name">Candidate Name*</label></div> 
-                <div  class="mt-4"><input class="w-80 h-9 ring-2 hover:ring-4" type="text" placeholder="Name"></div>
-                <div  class="mt-4"><label for="grade">Select Grade*</label></div>
-                <div  class="mt-4"><select class="w-80 h-9 ring-2 hover:ring-4" name="" id="course">
-                    <option value="GRADE1">S</option>
-                    <option value="GRADE2">A+</option>
-                    <option value="GRADE3">B+</option>
-                    <option value="GRADE4">C+</option>
-                </select>
+                <div class="mt-4">Certificate ID*</div>
+                <div class="mt-2"><input id="cid" class="h-9 w-11/12" required type="text" placeholder="Certificate ID"></div>
+                <div class="mt-4">Candidate Name*</div>
+                <div class="mt-2"><input id="cname" class="h-9 w-11/12" required type="text" placeholder="Name"></div>
+                <div class="mt-4">Select Grade*</div>
+                <div class="mt-2">
+                    <select class="h-9 w-11/12" required name="" id="grade">
+                        <option value="S">Select</option>
+                        <option value="S">S</option>
+                        <option value="S">A+</option>
+                        <option value="S">B+</option>
+                        <option value="S">C+</option>
+                        <option value="S">D+</option>
+                    </select>
+        
                 </div>
-                <div class="mt-4"><label for="date">Issue Date</label></div>
-                <div  class="mt-4"><input class="w-80 h-9 ring-2 hover:ring-4" type="date"></div>
-                <div><button  class="mt-4 ml-28 border-2 border-violet-450 bg-violet-600 px-2  focus:ring-2 ring-blue-500">Add Course</button></div>
-            </div>
+                <div class="mt-4">Issue Date*</div>
+                <div class="mt-2"><input id="issuedt" class="h-9 w-11/12"  required type="date"></div>
+        
+                <div class="mt-4">
+                    <button class="h-9 w-32  bg-cyan-400">issue Certificate</button> 
+                    <div class="mt-0 text-purple-100">Certificate Dapp</div> 
+                    <a href="viewcerti.html">View Certificate</a>
+                    <br>
+                    
+                </div>
         </div>
-    </div>
-    <div>
-        <a href="viewcerti.html">View Certificate</a>
-    </div>
+         
+    
+         </div>
+     </form>
+
+
 </body>
 </html>

@@ -7,18 +7,60 @@
     <!-- <link rel="stylesheet" href="stylecss/style.css"> -->
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="flex justify-center mt-64">
-         <div class="bg-blue-300 max-w-96 p-8 rounded-lg shadow-2xl shadow-indigo-300	">
-        <p class="font-mono text-2xl indent-28 ">Login</p>
-        
-           <div class="mt-4"><label for="">Email:</label></div> 
-            <input type="email" placeholder="" class="ring-2 hover:ring-4"><br>
-            <div class="mt-4"><label for="">Password:</label></div>
-            <input type="password" placeholder=""class="ring-2 hover:ring-4">
-            <div><button class="mt-7 float-right border-2 border-stone-950 bg-violet-600 px-2  focus:ring-2 ring-blue-500">Login</button></div>
-            <div class="mt-14"><p><a href="#">Forgot Password?</a></p></div>
-        
-        <div class="mt-4"><p>Don't have an account? <a href="signup.html" class="text-sky-600">Sign Up</a></p></div>
-</div>
+
+<script>
+    async function submitLogin(event) {
+        event.preventDefault();
+        const userName = document.getElementById('userName').value;
+        const password = document.getElementById('password').value;
+        const respose = await fetch("http://127.0.0.1:4000/login", {
+            method: "POST",
+            credentials:'include',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                UserName: userName,
+                Password: password,
+            })
+
+        });
+        console.log(respose.status);
+        if (respose.status === 200) {
+            alert("login Successfully");
+            window.location.href='./home.html'
+        }
+        else if (respose.status == 403) {
+            alert("Password incorrect ")
+        }
+        else {
+            alert("Server Error! Try after sometimes")
+        }
+        const data = await respose.json();
+        console.log(data);
+
+    }
+</script>
+
+<body class="flex justify-center items-center min-h-screen bg-gray-100">
+    <div class="bg-blue-300 max-w-md w-full p-8 rounded-lg shadow-2xl shadow-indigo-300">
+        <form onsubmit="submitLogin(event)" class="flex flex-col">
+            <p class="font-mono font-bold text-3xl text-center mb-6">LOGIN</p>
+            
+            <label for="userName" class="mt-4 font-mono">User Name:</label>
+            <input type="text" id="userName" class="w-full h-12 rounded-lg border border-indigo-600 ring-2 ring-transparent focus:ring-indigo-500 focus:ring-2 hover:ring-indigo-400 transition" required>
+
+            <label for="password" class="mt-4 font-mono">Password:</label>
+            <input type="password" id="password" class="w-full h-12 rounded-lg border border-indigo-600 ring-2 ring-transparent focus:ring-indigo-500 focus:ring-2 hover:ring-indigo-400 transition" required>
+    
+            <button type="submit" class="mt-6 bg-gray-900 rounded-lg px-4 py-2 text-white border border-indigo-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition">
+                Login
+            </button>
+
+            <p class="mt-6 font-mono text-center"><a href="#" class="text-blue-600 hover:underline">Forgot Password?</a></p>
+            <p class="mt-4 font-mono text-center">Don't have an account? <a class="text-blue-600 hover:underline" href="signup.html">Signup</a></p>
+        </form>
+    </div>
 </body>
+
 </html>

@@ -1,19 +1,19 @@
 // Array of questions and answers
 const quizData = [
     {
-      question: "What is the capital of France?",
-      options: ["Berlin", "London", "Paris", "Madrid"],
+      question: " How many rings are on the Olympic flag?",
+      options: ["None", "4", "5", "7"],
       answer: 2
     },
     {
-      question: "Which planet is known as the Red Planet?",
-      options: ["Earth", "Mars", "Jupiter", "Saturn"],
-      answer: 1
+      question: "How did Spider-Man get his powers?",
+      options: ["Bitten by a radioactive spider", "Born with them", "Military experiment gone awry", "Woke up with them after a strange dream"],
+      answer: 0
     },
     {
-      question: "What is 2 + 2?",
-      options: ["3", "4", "5", "6"],
-      answer: 1
+      question: "In darts, what's the most points you can score with a single throw?",
+      options: ["20", "30", "50", "60"],
+      answer: 3
     }
   ];
   
@@ -46,6 +46,8 @@ const quizData = [
   function startTimer() {
     const timerEl = document.getElementById('timer');
     timerEl.innerText = `Time left: ${timeLeft}s`;
+
+
     
     timer = setInterval(() => {
       timeLeft--;

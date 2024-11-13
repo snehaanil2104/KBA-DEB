@@ -1,20 +1,29 @@
 import React from 'react'
-import Navbar from './components/Navbar.jsx'
-import Hero from './components/Hero.jsx'
-import TopCourses from './components/TopCourses.jsx'
-import CourseGrid from './components/CourseGrid.jsx'
-import courseData from './data/courses.json'
-import ViewAllCourses from './components/ViewAllCourses.jsx'
+import {BrowserRouter as Router,Routes,Route} from 'react-router-dom'
 
-const App = () => {
+import Home from './Pages/Home.jsx'
+import AddCourse from './Pages/AddCourse.jsx'
+import CoursePage from './Pages/CoursePage.jsx'
+import Contact from './Pages/Contact.jsx'
+
+export const App = () => {
   return (
     <div>
-      <Navbar />
-      <Hero/>
-      <TopCourses />
-      <CourseGrid courses={courseData} />
-      
-      <ViewAllCourses />
+      <Router>
+        <Routes>
+            {/*Home Pages  1) app lunch avumbol home povum*/}
+            <Route path='/' element={<Home />} /> 
+            {/*Course Pages  1)*/}
+            <Route path='/courses' element={<CoursePage />} /> 
+            <Route path='/contact' element={<Contact/>} />
+            <Route path='/addcourse' element={<AddCourse />} />
+            <Route path='/course/:id' element={<CoursePage />} />
+
+
+        </Routes>
+      </Router>
+     
+
     </div>
   )
 }

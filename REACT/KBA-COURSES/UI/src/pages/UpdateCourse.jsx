@@ -1,22 +1,48 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import MainLayout from '../layouts/MainLayout';
-import coursesData from '../data/courses.json';
 
 const UpdateCourse = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const existingCourse = coursesData.find((course) => course.courseId === id);
+  const [course,setCourse]=useState(null);
+  const [loading,setLoading]=useState(true);
 
-  const [course, setCourse] = useState(
-    existingCourse || {
-      title: '',
-      id: '',
-      type: '',
-      description: '',
-      price: '',
-    }
-  );
+  useEffect(() =>{
+    const fetchCourse = async () => {
+      try{
+        const res =await fetch(`http://localhost:5000/courses/${id}`);
+        const data =await res.json();
+        setCourse(data);
+      }catch(error){
+        console.log('Error fetching courses:',error);
+      }finally{
+        setLoading(false);
+      }
+    };
+    fetchCourse();
+    },[id]);
+
+    const submitForm = async (e) =>{
+      e.preventDefault();
+      try{
+        const res =await fetch(`http://localhost:5000/courses/${id}`,{
+          method:'PUT',
+          headers:{'Content-Type':'application/json'},
+          body:JSON.stringify(course),
+            });
+        if(res.ok){
+          navigate(`/courses/${id}`);
+        }else{
+            console.error('Failed to load course');
+        }
+           
+      }catch(error){
+        console.error('Error updating course:',error);
+      }
+    
+}
+
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -26,17 +52,15 @@ const UpdateCourse = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Simulate updating the course in coursesData
-    const index = coursesData.findIndex((c) => c.courseId === id);
-    if (index !== -1) {
-      coursesData[index] = course;
-    }
-    navigate(`/course/${id}`);
-  };
+  if(loading){
+    return (
+      <MainLayout>
+        <div className="text-center mt-10">Loading...</div>
+      </MainLayout>
+    );
+  }
 
-  if (!existingCourse) {
+  if (!course) {
     return (
       <MainLayout>
         <div className="text-center mt-10">Course not found</div>
@@ -49,7 +73,7 @@ const UpdateCourse = () => {
     <section className="bg-white mb-20">
   <div className="container m-auto max-w-2xl py-2">
     <div className="bg-purple-100 px-6 py-8 mb-4 shadow-md rounded-md border m-4 md:m-0">
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={submitForm}>
         <h2 className="text-3xl text-purple-800 text-center font-semibold mb-6">
           Update Course
         </h2>

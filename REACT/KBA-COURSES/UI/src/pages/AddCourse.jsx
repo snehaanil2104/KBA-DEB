@@ -2,39 +2,50 @@ import React from 'react'
 import MainLayout from '../layouts/MainLayout'
 import { useNavigate } from 'react-router-dom'
 import { useState } from 'react'
-import courseData from '../data/courses.json'
-
 
 const AddCourse = () => {
-    const navigate = useNavigate();
-    const [course,setCourse] = useState({
-        title:'',
-        courseId:'',
-        type:'',
-        description:'',
-        price:'',
-    })
+  const [title,setTitle]=useState('');
+  const [courseId,setcourseId]=useState('');
+  const [type,setType]=useState('Self-Paced');
+  const [description,setDescription]=useState('');
+  const [price,setPrice]=useState('RS.5000');
 
-    const handleChange = (e) =>{
-        const {name,value}=e.target;
-        setCourse((prevCourse)=>({
-            ...prevCourse,
-            [name]:value,
-        }));
-    }
+  const navigate = useNavigate();
+  
+  const submitForm=async (e)=>{
+    e.preventDefault();
 
-    const handleSubmit = (e) =>{
-        e.preventDefault();
-        courseData.push(course);  //local simulation of adding course
-        navigate('/courses');     //navigate to courses pages
+    const newCourse = {
+      title,
+      courseId,
+      type,
+      description,
+      price,
     }
+    try {
+      const res = await fetch('http://localhost:5000/courses', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(newCourse),
+          });
+          if(res.ok){
+            navigate('/courses');
+          }else{
+            console.log('Failed to add error');
+          }
+        }catch(error){
+          console.log('Error adding course');
+        }
+  }
   return (
  <MainLayout>
     <section className="bg-white mb-20">
     <div className="container m-auto max-w-2xl py-2">
       <div className="bg-purple-100 px-6 py-8 mb-4 shadow-md rounded-md border m-4 md:m-0">
         
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={submitForm}>
           <h2 className="text-3xl text-purple-800 text-center font-semibold mb-6">
             Add Course
           </h2>
@@ -50,8 +61,8 @@ const AddCourse = () => {
               className="border rounded w-full py-2 px-3 mb-2"
               placeholder="eg. Certified Blockchain Associate"
               required
-              value={course.title}
-              onChange={handleChange}
+              value={title}
+              onChange={(e)=>setTitle(e.target.value)}
               
             />
           </div>
@@ -67,8 +78,8 @@ const AddCourse = () => {
               className="border rounded w-full py-2 px-3 mb-2"
               placeholder="eg. 1"
               required
-              value={course.id}
-              onChange={handleChange}
+              value={courseId}
+              onChange={(e)=>setcourseId(e.target.value)}
               
             />
           </div>
@@ -85,8 +96,8 @@ const AddCourse = () => {
               name="type"
               className="border rounded w-full py-2 px-3"
               required
-              value={course.type}
-              onChange={handleChange}
+              value={type}
+              onChange={(e)=>setType(e.target.value)}
             
             >
               <option value="Self-Paced">Self-Paced</option>
@@ -108,8 +119,8 @@ const AddCourse = () => {
               className="border rounded w-full py-2 px-3"
               rows="4"
               placeholder="Small description on the course"
-              value={course.description}
-              onChange={handleChange}
+              value={description}
+              onChange={(e)=>setDescription(e.target.value)}
             ></textarea>
           </div>
 
@@ -125,8 +136,8 @@ const AddCourse = () => {
               name="price"
               className="border rounded w-full py-2 px-3"
               required
-              value={course.price}
-              onChange={handleChange}
+              value={price}
+              onChange={(e)=>setPrice(e.target.value)}
               
             >
               <option value="Rs.5000">Rs.5000</option>

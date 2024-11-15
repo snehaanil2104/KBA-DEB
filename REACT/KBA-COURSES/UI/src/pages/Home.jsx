@@ -1,19 +1,18 @@
 import React from 'react'
-import Navbar from '../components/Navbar'
+import Hero from '../components/Hero'
 import TopCourses from '../components/TopCourses'
 import CourseGrid from "../components/CourseGrid";
-import courseData from '../data/courses.json'
 import ViewAllCoursesButton from '../components/ViewAllCourses';
+import MainLayout from '../layouts/MainLayout';
 
 const Home = () => {
-  const topCourses = courseData.slice(0,3);
   return (
-    <>
-    <Navbar />
+    <MainLayout>
+    <Hero />
     <TopCourses />
-    <CourseGrid courses={topCourses}/>
+    <CourseGrid isHome={true}/>
     <ViewAllCoursesButton />
-    </>
+    </MainLayout>
   )
 }
 

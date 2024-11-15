@@ -1,19 +1,44 @@
-import React from 'react'
+import React,{useEffect,useState} from 'react'
 import MainLayout from '../layouts/MainLayout'
-import banner from '../assets/images/banner-kba.png'
+import bannerImg from '../assets/images/banner-kba.png'
 import { useParams,Link } from 'react-router-dom'
-import courseData from '../data/courses.json'
 import NotFound from './NotFound'
 
 const CoursePage = () => {
     const {id} =useParams();
-    const course= courseData.find((course)=>course.courseId===id)
+    const [course,setCourse]=useState(null);
+    const [loading,setLoading]=useState(true);
+
+    useEffect(() =>{
+      const fetchCourse = async () => {
+        try{
+          const res =await fetch(`http://localhost:5000/courses/${id}`);
+          const data =await res.json();
+          setCourse(data);
+        }catch(error){
+          console.log('Error fetching courses:',error);
+        }finally{
+          setLoading(false);
+        }
+      };
+      fetchCourse();
+      },[id]);
+
+    if(loading){
+      return (
+        <MainLayout>
+          <div className="text-center mt-10">Loading...</div>
+        </MainLayout>
+      );
+    }
+
     if(!course){
         return(
     <MainLayout>
         <NotFound />
     </MainLayout>
     )}
+    
   return (
     <MainLayout>
         <div className="bg-white text-gray-900 mb-10 pb-10">   
@@ -25,7 +50,7 @@ const CoursePage = () => {
 
       <div className="bg-purple-100 shadow-lg rounded-lg overflow-hidden">
         <img
-          src={banner}
+          src={bannerImg}
           alt="Course Thumbnail"
           className="w-full h-64 object-cover"
         />
@@ -78,7 +103,7 @@ const CoursePage = () => {
     </div>
     <div className="flex flex-row justify-end gap-4 mr-[205px] ">
       <Link to={`/edit-course/${course.courseId}`} className="flex bg-blue-500 hover:bg-blue-600 text-white font-bold  rounded-full h-10 w-32 focus:outline-none focus:shadow-outline justify-center items-center">Edit Course</Link>
-      <Link  className="flex bg-red-500 hover:bg-red-600 text-white font-bold  rounded-full h-10 w-32 focus:outline-none focus:shadow-outline  justify-center items-center">Remove Course</Link>
+      <button  className="flex bg-red-500 hover:bg-red-600 text-white font-bold  rounded-full h-10 w-32 focus:outline-none focus:shadow-outline  justify-center items-center" onClick={()=>alert('Remove functionality is not implemented')}>Remove Course</button>
      
       </div>
   </div>

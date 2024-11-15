@@ -1,5 +1,6 @@
 import React,{useState} from 'react'
 import rpImage from  '../assets/images/rp.png'
+import {Link} from 'react-router-dom'
 
 const CourseCard = ({course}) => {
   const [likes,setLikes]=useState(0);
@@ -32,7 +33,7 @@ const CourseCard = ({course}) => {
             </button>
             </div>
 
-            <a href="#" className="bg-purple-500 text-white px-4 py-2 rounded hover:bg-purple-600 self-start mx-5">Learn More</a>
+            <Link to={`/course/${course.courseId}`} className="bg-purple-500 text-white px-4 py-2 rounded hover:bg-purple-600 self-start mx-5">Learn More</Link>
         </div>
   )
 }

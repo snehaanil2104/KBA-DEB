@@ -1,10 +1,8 @@
 import React from 'react'
-import Navbar from '../components/Navbar'
 
 const Contact = () => {
   return (
-   <>
-   <Navbar />
+  
    <section class="bg-white my-1 py-10 ">
         <div class="container px-6 py-12 mx-auto">
             <div class="text-center">
@@ -55,7 +53,7 @@ const Contact = () => {
             </div>
         </div>
     </section>
-   </>
+   
   )
 }
 

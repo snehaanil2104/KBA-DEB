@@ -11,7 +11,7 @@ const UpdateCourse = () => {
   useEffect(() =>{
     const fetchCourse = async () => {
       try{
-        const res =await fetch(`http://localhost:5000/courses/${id}`);
+        const res =await fetch(`/api/courses/${id}`);
         const data =await res.json();
         setCourse(data);
       }catch(error){
@@ -26,13 +26,13 @@ const UpdateCourse = () => {
     const submitForm = async (e) =>{
       e.preventDefault();
       try{
-        const res =await fetch(`http://localhost:5000/courses/${id}`,{
+        const res =await fetch(`/api/courses/${id}`,{
           method:'PUT',
           headers:{'Content-Type':'application/json'},
           body:JSON.stringify(course),
             });
         if(res.ok){
-          navigate(`/courses/${id}`);
+          navigate(`/course/${id}`);
         }else{
             console.error('Failed to load course');
         }
@@ -54,22 +54,21 @@ const UpdateCourse = () => {
 
   if(loading){
     return (
-      <MainLayout>
+      <>
         <div className="text-center mt-10">Loading...</div>
-      </MainLayout>
+      </>
     );
   }
 
   if (!course) {
     return (
-      <MainLayout>
+      < >
         <div className="text-center mt-10">Course not found</div>
-      </MainLayout>
+      </>
     );
   }
 
   return (
-    <MainLayout>
     <section className="bg-white mb-20">
   <div className="container m-auto max-w-2xl py-2">
     <div className="bg-purple-100 px-6 py-8 mb-4 shadow-md rounded-md border m-4 md:m-0">
@@ -168,7 +167,7 @@ const UpdateCourse = () => {
     </div>
   </div>
 </section>
-</MainLayout>
+
   );
 };
 

@@ -1,39 +1,43 @@
 import React from 'react'
-import {BrowserRouter as Router,Routes,Route} from 'react-router-dom'
+import {createBrowserRouter,createRoutesFromElements,RouterProvider,Route,} from 'react-router-dom'
+import LoginPage from './pages/LoginPage'
+import SignupPage from './pages/SignupPage'
+import AuthLayout from './layouts/AuthLayout'
+import MainLayout from './layouts/MainLayout'
+import Home from './pages/Home'
+import Courses from './pages/Courses'
+import Contact from './pages/Contact'
+import AddCourse from './pages/AddCourse'
+import UpdateCourse from './pages/UpdateCourse'
+import  CoursePage,{courseLoader} from './pages/CoursePage'
+import NotFound from './pages/NotFound'
 
-import Home from './pages/Home.jsx'
-import AddCourse from './pages/AddCourse.jsx'
-import CoursePage from './pages/CoursePage.jsx'
-import Contact from './pages/Contact.jsx'
-import UpdateCourse from './pages/UpdateCourse.jsx'
-import NotFound  from './pages/NotFound.jsx'
-import Courses from './pages/Courses.jsx' 
-
- const App = () => {
+const App = () => {
+  const router = createBrowserRouter(
+    createRoutesFromElements(
+      <>
+      {/* public routes */}
+      <Route path="/" element={<LoginPage/>} />
+      <Route path="/signup" element={<SignupPage/>} />
+      <Route path="/login" element={<LoginPage/>} />
+      {/* authenticated routes */}
+      <Route element={<AuthLayout/>}>
+        <Route element={<MainLayout/>} >
+        <Route path="/home" element={<Home/>}  />
+        <Route path="/courses" element={<Courses/>}  />
+        <Route path="/contact" element={<Contact/>} />
+        <Route path="/add-course" element={<AddCourse/>} />
+        <Route path="/edit-course/:id" element={<UpdateCourse />} loader={courseLoader} /> 
+        <Route path="/course/:id" element={<CoursePage />} loader={courseLoader} />
+        </Route>
+        </Route>
+        {/* not found route*/}
+        <Route path="*" element={<NotFound />} />
+        </>
+    )
+  )
   return (
-    
-      <Router>
-        <Routes>
-            {/*Home Pages*/}
-            <Route path='/' element={<Home />} /> 
-            {/*Course Page*/}
-            <Route path='/courses' element={<Courses />} /> 
-             {/*Contact Page*/}
-            <Route path='/contact' element={<Contact/>} />
-             {/*Add Course*/}
-            <Route path='/addcourse' element={<AddCourse />} />
-             {/*Course Details Page*/}
-            <Route path='/course/:id' element={<CoursePage />} />
-             {/*Update Course Page*/}
-             <Route path='/edit-course/:id' element={<UpdateCourse />} />
-              {/*Not Found*/}
-              <Route path='/*' element={<NotFound />} />
-
-        </Routes>
-      </Router>
-     
-
-   
+    <RouterProvider router={router} />
   )
 }
 

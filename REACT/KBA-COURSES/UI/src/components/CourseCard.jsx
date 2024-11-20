@@ -31,9 +31,10 @@ const CourseCard = ({course}) => {
             <button className="mt-4 px-4 py-2 bg-purple-600 text-white rounded hover:bg-puple-700" onClick={()=>setLikes(likes+1)}>
                 likes:{likes}
             </button>
-            </div>
+           
 
-            <Link to={`/course/${course.courseId}`} className="bg-purple-500 text-white px-4 py-2 rounded hover:bg-purple-600 self-start mx-5">Learn More</Link>
+            <Link to={`/course/${course.courseId}`} className="bg-cyan-600 text-white px-4 py-2 rounded hover:bg-purple-600 self-start mx-5">Learn More</Link>
+            </div>
         </div>
   )
 }

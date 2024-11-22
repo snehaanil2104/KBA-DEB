@@ -8,7 +8,7 @@ import cookieParser  from 'cookie-parser'; //
 dotenv.config();
 const app=express()
 app.use(cors({
-    origin:'http://127.0.0.1:5501', //http//:127.0.0.1:8000
+    origin:'http://127.0.0.1:5500', //http//:127.0.0.1:8000
     credentials: true
 
 }))

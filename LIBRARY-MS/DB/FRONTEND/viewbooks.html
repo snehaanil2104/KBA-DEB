@@ -6,6 +6,24 @@
     <title>LMS</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
+         window.onload=async()=>{
+            try{
+            
+           const response=await fetch("http://127.0.0.1:3011/viewuser",{
+            method:'GET',
+           credentials: 'include', 
+            });          
+           
+           const data =await response.json();
+           
+           if(data.user=='Admin'){
+            
+            document.getElementById("admin").style.display='block';
+            
+           }}
+           catch(error){
+            console.log(error);}
+           }
         async function viewBook() {
             try {
                 const response = await fetch("http://127.0.0.1:3011/viewallbook", {
@@ -90,7 +108,7 @@
 <body class="bg-emerald-100"> 
     <div class="flex justify-center gap-16 text-2xl mt-5 text-emerald-800 p-4">
         <a href="home.html">Home</a>
-        <a href="addbook.html">Add Book</a>
+        <a href="addbook.html"style="display:none" id="admin">Add Book</a>
         <a href="viewbooks.html">View Book</a>
         <a href="login.html" onclick="logout()">Logout</a>
     </div>

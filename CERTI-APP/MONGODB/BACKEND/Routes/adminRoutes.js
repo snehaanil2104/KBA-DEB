@@ -68,33 +68,6 @@ adminrouter.post('/signup',async(req,res)=>{
 }
 })
 
-// adminrouter.post('/login',async(req,res)=>{
-//    try {
-//     const {Username,Password}=req.body
-// const result=await User.findOne({username:Username})
-//     console.log(result)
-
-//     if(!result){ 
-//         res.status(404).json({message:"User not found"})
-//     }else{
-//         if(valid){
-//             const token =jwt.sign({Username:result.username,Role:result.role},secretkey,{expiresIn:"1 h"})
-//             res.cookie('authToken',token,{ httpOnly:true })
-//             res.status(200).json({token})
-//             console.log(token)
-//         }
-//         const valid =await bcrypt.compare(Password,result.password)
-//         console.log(valid)
-        
-        
-//     }
-//    } catch (error) {
-//     res.status(500).json({ message: 'Internal Server Error' });
-
-    
-//    }
-// })
-// const certi=new Map()
 
 adminrouter.post('/login', async(req, res) => {
     try {
@@ -183,6 +156,13 @@ adminrouter.post('/logout',(req,res)=>{
     console.log('logout successfully');
 })
 
-
+adminrouter.get('/viewuser',authenticate,(req,res)=>{
+    try{
+    const user=req.Role;
+    res.json({user});}
+    catch{
+        res.status(404).json({message:'user not authorized'});
+    }
+})
 
 export {adminrouter}

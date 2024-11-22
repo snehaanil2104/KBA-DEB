@@ -11,8 +11,6 @@
         event.preventDefault()
         const Cid = document.getElementById('searchid').value.trim();
 
-        // alert('Searching for Certificate ID: ' + certiId);
-        // window.location.href="/viewcertificate.html";
 
         if (Cid !== '') {
           // Store certiId in local storage
@@ -24,27 +22,68 @@
           alert('Please enter a certificate ID');
         }
       }
+      window.onload=async()=>{
+            try{
+            
+           const response=await fetch("http://127.0.0.1:4000/viewuser",{
+            method:'GET',
+           credentials: 'include', 
+            });          
+           
+           const data =await response.json();
+           
+           if(data.user=='Admin'){
+            
+            document.getElementById("admin").style.display='block';
+            
+           }}
+           catch(error){
+            console.log(error);}
+            
+      async function logout(){
+
+try {
+    const responce= await fetch("http://127.0.0.1:4000/logout",{
+method:'POST',
+credentials: 'include', 
+});
+if(responce.ok){
+    localStorage.removeItem('library');
+    console.log('logout successfully');
+    window.location.href="./signup.html"
+    alert("Logout Successfullly!")
+
+}else{
+    console.log('logout failed');
+}
+
+} catch (error) {
+    console.error('Logout failed:', error);
+}          
+}
+      }
     </script>
     
    
 </head>
-<body class="bg-blue-100">
+<body class="bg-purple-200">
     <div class=" grid grid-cols-2" >
       <div class="mt-4 ml-4 text-xl">
-        <a href="login.html">Login</a>
+        <div class="mt-0 text-purple-900 ">Certificate Dapp</div> 
       </div>
         <div class="flex justify-end mt-4">    
-           <a href="front.html" class="border border-slate-950 w-24 h-10 mr-10 text-xl   text-center bg-blue-600"><p class=" mt-1 text-white ">Home</p></a>
-            <a href="issuecerti.html" class="mr-32 text-xl mt-2">Issue Certificate</a> 
+           <a href="home.html" class="border border-slate-950 w-24 h-10 mr-10 text-xl   text-center bg-purple-400"><p class=" mt-1 text-black ">Home</p></a>
+            <a href="issuecerti.html" class="mr-32 text-xl mt-2 " style="display: none" id="admin">Issue Certificate</a> 
+            <a href="login.html" class="border border-slate-950 w-24 h-10 mr-10 text-xl   text-center bg-purple-400" onclick="logout()">Logout</a>
         </div>
         </div>
         
-        <div class="mt-0 text-blue-100 ">Certificate Dapp</div> 
+        
          <div class="mt-24 text-center text-4xl font-bold ">Certificate Dapp</div> 
               <div class="flex justify-center mt-12"><img src="./online_course.png" width="180" height="180" alt=""></div> 
             </div>
-            <div class="flex justify-center mt-10 ml-7 "><input id="searchid" class="border border-cyan-400" type="text" placeholder="Enter certificate ID To View"> &nbsp;
-              <button class="bg-cyan-400 w-24 h-8" onclick="searchcerti(event)">Search</button>
+            <div class="flex justify-center mt-10 ml-7 "><input id="searchid" class="border border-purple-400" type="text" placeholder="Enter certificate ID To View"> &nbsp;
+              <button class="bg-purple-400 w-24 h-8" onclick="searchcerti(event)">Search</button>
             <!-- <input class="bg-cyan-400 w-24 h-8" type="button" value="Search"></div> -->
               
 </body>

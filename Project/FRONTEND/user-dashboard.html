@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="/logo.jpeg" type="image/x-icon">
+    <title>User Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100">
+    <!-- Navbar -->
+    <nav class="bg-orange-600 p-4 shadow-md">
+        <div class=" mx-auto flex justify-between items-center">
+            <h1 class="text-white text-2xl font-bold">Payroll Dashboard</h1>
+            <div class="space-x-4">
+                <a href="user-profile.html" class="text-white hover:text-black">Profile</a>
+                <a href="user-settings.html" class="text-white hover:text-black">User Settings</a>
+                <a href="user-notification.html" class="text-white hover:text-black">Notifications</a>
+                <a href="signin.html" class="text-white hover:text-black">Logout</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class=" mx-auto p-6">
+        <h2 class="text-3xl font-bold mb-6">Welcome, [Employee Name]</h2>
+
+        <!-- Quick Actions -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <a href="user-payslip-view.html" class="bg-white p-6 rounded-lg shadow-md text-center hover:shadow-lg">
+                <h3 class="text-xl font-bold">View Payslip</h3>
+            </a>
+            <a href="user-attendance-leave-mngmnt.html" class="bg-white p-6 rounded-lg shadow-md text-center hover:shadow-lg">
+                <h3 class="text-xl font-bold">Attendance</h3>
+            </a>
+            <a href="user-salary-structure-view.html" class="bg-white p-6 rounded-lg shadow-md text-center hover:shadow-lg">
+                <h3 class="text-xl font-bold">Salary Structure</h3>
+            </a>
+        </div>
+    </div>
+</body>
+</html>

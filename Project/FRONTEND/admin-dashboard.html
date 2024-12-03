@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="/logo.jpeg" type="image/x-icon">
+    <title>Payroll Management System - Dashboard</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100">
+
+    <!-- Navbar -->
+    <nav class="bg-orange-600 p-4 shadow-md">
+        <div class=" mx-auto flex justify-between items-center">
+            <h1 class="text-white text-2xl font-bold">Payroll System</h1>
+            <div>
+                <a href="admin-profile.html" class="text-white hover:text-black mr-4">Profile</a>
+                <a href="settings2.html" class="text-white hover:text-black mr-4">Settings</a>
+                <a href="signin.html" class="text-white hover:text-black">Logout</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Dashboard Section -->
+    <div class="mx-auto p-6">
+        <h2 class="text-3xl font-bold text-gray-800 mb-6">Welcome, [Admin]!</h2>
+
+        <!-- Quick Access Buttons -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="bg-white p-4 shadow-md rounded-lg flex items-center justify-between">
+                <div>
+                    <h3 class="text-xl font-bold text-gray-700">Employee Management</h3>
+                    <p class="text-gray-500">Add, edit, or remove employees</p>
+                </div>
+                <a href="employee-management.html" class="bg-orange-500  hover:bg-orange-700 text-white px-4 py-2 rounded">Manage</a>
+            </div>
+
+            <div class="bg-white p-4 shadow-md rounded-lg flex items-center justify-between">
+                <div>
+                    <h3 class="text-xl font-bold text-gray-700">Payroll</h3>
+                    <p class="text-gray-500">Process and generate payslips</p>
+                </div>
+                <a href="payroll-processing.html" class="bg-orange-500  hover:bg-orange-700 text-white px-4 py-2 rounded">Process</a>
+            </div>
+
+            <div class="bg-white p-4 shadow-md rounded-lg flex items-center justify-between">
+                <div>
+                    <h3 class="text-xl font-bold text-gray-700">Attendance</h3>
+                    <p class="text-gray-500">View employee attendance records</p>
+                </div>
+                <a href="admin-attendance-leave-mngmnt.html" class="bg-orange-500  hover:bg-orange-700 text-white px-4 py-2 rounded">View</a>
+            </div>
+
+            <div class="bg-white p-4 shadow-md rounded-lg flex items-center justify-between">
+                <div>
+                    <h3 class="text-xl font-bold text-gray-700">Salary Structure</h3>
+                    <p class="text-gray-500">Manage salary structures and components</p>
+                </div>
+                <a href="admin-salary-struct.html" class="bg-orange-500  hover:bg-orange-700 text-white px-4 py-2 rounded">Setup</a>
+            </div>
+
+            <div class="bg-white p-4 shadow-md rounded-lg flex items-center justify-between">
+                <div>
+                    <h3 class="text-xl font-bold text-gray-700">Reports</h3>
+                    <p class="text-gray-500">Generate payroll, tax, and other reports</p>
+                </div>
+                <a href="admin-generate-reports.html" class="bg-orange-500  hover:bg-orange-700 text-white px-4 py-2 rounded">Generate</a>
+            </div>
+
+            <div class="bg-white p-4 shadow-md rounded-lg flex items-center justify-between">
+                <div>
+                    <h3 class="text-xl font-bold text-gray-700">Tax & Compliance</h3>
+                    <p class="text-gray-500">Manage tax calculations and compliance</p>
+                </div>
+                <a href="tax-compliance.html" class="bg-orange-500  hover:bg-orange-700 text-white px-4 py-2 rounded">Manage</a>
+            </div>
+        </div>
+
+        <!-- Dashboard Summary -->
+        <div class="mt-10">
+            <h3 class="text-2xl font-bold text-gray-800 mb-4">Monthly Payroll Summary</h3>
+            <div class="bg-white p-6 shadow-md rounded-lg">
+                <p class="text-gray-700">Total Salaries: <span class="font-bold">₹50,000</span></p>
+                <p class="text-gray-700">Total Taxes: <span class="font-bold">₹5,000</span></p>
+                <p class="text-gray-700">Total Deductions: <span class="font-bold">₹2,000</span></p>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

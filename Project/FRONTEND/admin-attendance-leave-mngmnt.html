@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attendance and Leave Management</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100">
+    <!-- Navbar -->
+    <nav class="bg-orange-600 p-4 shadow-md">
+        <div class=" mx-auto flex justify-between items-center">
+            <h1 class="text-white text-2xl font-bold">Payroll Management</h1>
+            <div class="space-x-4">
+                <a href="admin-dashboard.html" class="text-white hover:text-black mr-4">Dashboard</a>
+                <a href="settings2.html" class="text-white hover:text-black">Settings</a>
+                <a href="signin.html" class="text-white hover:text-black">Logout</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Attendance and Leave Management Section -->
+    <div class=" mx-auto p-6">
+        <h2 class="text-3xl font-bold mb-6">Attendance and Leave Management</h2>
+
+        <!-- Calendar View -->
+        <div class="bg-white shadow-md rounded-lg p-6 mb-6">
+            <h3 class="text-xl font-semibold mb-4">Attendance Calendar</h3>
+            <div class="grid grid-cols-7 gap-4">
+                <!-- Example Calendar with Tailwind CSS (for illustration) -->
+                <div class="p-4 bg-gray-200 text-center">Sun</div>
+                <div class="p-4 bg-gray-200 text-center">Mon</div>
+                <div class="p-4 bg-gray-200 text-center">Tue</div>
+                <div class="p-4 bg-gray-200 text-center">Wed</div>
+                <div class="p-4 bg-gray-200 text-center">Thu</div>
+                <div class="p-4 bg-gray-200 text-center">Fri</div>
+                <div class="p-4 bg-gray-200 text-center">Sat</div>
+                <!-- Dynamic calendar data here -->
+                <div class="p-4 bg-green-100 text-center">1</div>
+                <div class="p-4 bg-red-100 text-center">2</div>
+                <div class="p-4 bg-green-100 text-center">3</div>
+                <!-- Continue for all days of the month... -->
+            </div>
+        </div>
+
+        <!-- Leave Requests -->
+        <div class="bg-white shadow-md rounded-lg p-6 mb-6">
+            <h3 class="text-xl font-semibold mb-4">Leave Requests</h3>
+            <table class="w-full table-auto">
+                <thead>
+                    <tr class="bg-gray-100">
+                        <th class="px-4 py-2">Employee Name</th>
+                        <th class="px-4 py-2">Leave Type</th>
+                        <th class="px-4 py-2">Start Date</th>
+                        <th class="px-4 py-2">End Date</th>
+                        <th class="px-4 py-2">Status</th>
+                        <th class="px-4 py-2">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Example leave request -->
+                    <tr>
+                        <td class="border px-4 py-2">Adhya Sharma</td>
+                        <td class="border px-4 py-2">Sick Leave</td>
+                        <td class="border px-4 py-2">2024-10-10</td>
+                        <td class="border px-4 py-2">2024-10-12</td>
+                        <td class="border px-4 py-2">Pending</td>
+                        <td class="border px-4 py-2">
+                            <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-1 px-2 rounded">
+                                Approve
+                            </button>
+                            <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 rounded">
+                                Reject
+                            </button>
+                        </td>
+                    </tr>
+                    <!-- More leave requests here -->
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Attendance Tracking -->
+        <div class="bg-white shadow-md rounded-lg p-6 mb-6">
+            <h3 class="text-xl font-semibold mb-4">Attendance Tracking</h3>
+            <label class=" mb-2 font-bold">Select Employee</label>
+            <select class="w-full p-2 border rounded-md">
+                <option>Select Employee</option>
+                <option>Adhya Sharma - IT</option>
+                <option>Arjun Madhav - HR</option>
+                <!-- More employees -->
+            </select>
+
+            <label class=" mt-4 mb-2 font-bold">Total Days Worked</label>
+            <input type="number" class="w-full p-2 border rounded-md" placeholder="Enter number of days worked">
+
+            <label class=" mt-4 mb-2 font-bold">Overtime Hours</label>
+            <input type="number" class="w-full p-2 border rounded-md" placeholder="Enter overtime hours">
+        </div>
+
+        <!-- Filter by Employee or Date -->
+        <div class="bg-white shadow-md rounded-lg p-6 mb-6">
+            <h3 class="text-xl font-semibold mb-4">Filter Attendance Records</h3>
+            <div class="flex space-x-4">
+                <input type="text" class="w-full p-2 border rounded-md" placeholder="Filter by Employee">
+                <input type="date" class="w-full p-2 border rounded-md">
+                <input type="date" class="w-full p-2 border rounded-md">
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="/logo.jpeg" type="image/x-icon">
+    <title>Payroll Processing</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100">
+    <!-- Navbar -->
+    <nav class="bg-orange-600 p-4 shadow-md">
+        <div class=" mx-auto flex justify-between items-center">
+            <h1 class="text-white text-2xl font-bold">Payroll System</h1>
+            <div>
+                <a href="admin-dashboard.html" class="text-white hover:text-black mr-4">Dashboard</a>
+                <a href="settings2.html" class="text-white hover:text-black mr-4">Settings</a>
+                <a href="signin.html" class="text-white hover:text-black">Logout</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Payroll Processing Section -->
+    <div class=" mx-auto p-6">
+        <h2 class="text-3xl font-bold mb-6">Payroll Processing</h2>
+        
+        <form class="bg-white shadow-md rounded-lg p-6">
+            <!-- Select Employee(s) -->
+            <label for="employee-select" class="block text-gray-700 font-bold mb-2">Select Employee(s):</label>
+            <select id="employee-select" multiple class="mb-4 p-2 border border-gray-300 rounded w-full">
+                <option value="1">Adhya Sharma</option>
+                <option value="2">Arjun Madhav</option>
+                <option value="3">Radhay Madhav</option>
+                <!-- Add more employee options here -->
+            </select>
+
+            <!-- Gross Salary Calculation -->
+            <label for="gross-salary" class=" text-gray-700 font-bold mb-2">Gross Salary:</label>
+            <input type="number" id="gross-salary" class="mb-4 p-2 border border-gray-300 rounded w-full" placeholder="Enter Gross Salary" />
+
+            <!-- Tax Deductions -->
+            <label for="tax-deductions" class="text-gray-700 font-bold mb-2">Tax Deductions (%):</label>
+            <input type="number" id="tax-deductions" class="mb-4 p-2 border border-gray-300 rounded w-full" placeholder="Enter Tax Deductions" />
+
+            <!-- Bonus and Incentives -->
+            <label for="bonus-incentives" class=" text-gray-700 font-bold mb-2">Bonus and Incentives:</label>
+            <input type="number" id="bonus-incentives" class="mb-4 p-2 border border-gray-300 rounded w-full" placeholder="Enter Bonus/Incentives" />
+
+            <!-- Net Pay Calculation -->
+            <label for="net-pay" class=" text-gray-700 font-bold mb-2">Net Pay:</label>
+            <input type="text" id="net-pay" class="mb-4 p-2 border border-gray-300 rounded w-full" placeholder="Net Pay will be calculated" readonly />
+
+            <div class="flex justify-end">
+                <button type="button" id="calculate-btn" class="bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded">
+                    Calculate Net Pay
+                </button>
+                <button type="button" id="preview-btn" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded ml-4" onclick="previewPayslip()">
+                    Preview Payslip
+                </button>
+                <button type="submit" class="bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded ml-4"><a href="payslip-generation.html">Generate Payslip</a>
+                    
+                </button>
+            </div>
+        </form>
+    </div>
+
+  
+</body>
+</html>

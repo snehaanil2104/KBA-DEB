@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="/logo.jpeg" type="image/x-icon">
+    <title>Payslip Generation</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100">
+    <!-- Navbar -->
+    <nav class="bg-orange-600 p-4 shadow-md">
+        <div class=" mx-auto flex justify-between items-center">
+            <h1 class="text-white text-2xl font-bold">Payroll System</h1>
+            <div>
+                <a href="employee-management.html" class="text-white hover:text-black mr-4">Employee Management</a>
+                <a href="settings2.html" class="text-white hover:text-black mr-4">Settings</a>
+                <a href="signin.html" class="text-white hover:text-black">Logout</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Payslip Generation Section -->
+    <div class=" mx-auto p-6">
+        <h2 class="text-3xl font-bold mb-6">Payslip for Adhya sharma</h2>
+        
+        <div class="bg-white shadow-md rounded-lg p-6 mb-4">
+            <h3 class="text-xl font-semibold mb-4">Employee Details</h3>
+            <p><strong>Name:</strong> Adhya Sharma</p>
+            <p><strong>Position:</strong> Software Engineer</p>
+            <p><strong>Department:</strong> IT Department</p>
+        </div>
+
+        <div class="bg-white shadow-md rounded-lg p-6 mb-4">
+            <h3 class="text-xl font-semibold mb-4">Salary Details</h3>
+            <p><strong>Gross Salary:</strong> ₹80,000.00</p>
+            <p><strong>Tax Deductions:</strong> 20% (₹16,000.00)</p>
+            <p><strong>Bonuses/Incentives:</strong> ₹5,000.00</p>
+            <p class="font-bold"><strong>Net Pay:</strong> ₹69,000.00</p>
+        </div>
+
+        <div class="flex justify-end">
+            <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mr-4" onclick="downloadPayslip()">
+                Download Payslip
+            </button>
+            <button class="bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded" onclick="printPayslip()">
+                Print Payslip
+            </button>
+        </div>
+
+        <div class="flex justify-start mt-6">
+            <a href="payroll-processing.html" class="bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded">
+                Back to Payroll Processing
+            </a>
+        </div>
+    </div>
+
+    <script>
+        function downloadPayslip() {
+            // Logic to download payslip (placeholder)
+            alert('Payslip downloaded!');
+        }
+
+        function printPayslip() {
+            // Logic to print payslip (placeholder)
+            window.print();
+        }
+    </script>
+</body>
+</html>

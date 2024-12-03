@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="/logo.jpeg" type="image/x-icon">
+    <title>User Settings - Payroll Management System</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100">
+
+    <!-- Navbar -->
+    <nav class="bg-orange-600 p-4">
+        <div class=" mx-auto flex justify-between items-center">
+            <h1 class="text-white text-2xl font-bold">Payroll System</h1>
+            <a href="user-dashboard.html" class="bg-white text-orange-600 px-4 py-2 rounded hover:bg-orange-200 transition">Dashboard</a>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="bg-orange-600 text-white text-center py-8">
+        <h2 class="text-3xl font-bold">User Settings</h2>
+        <p class="mt-4">Manage your account, notification preferences, and security settings.</p>
+    </header>
+
+    <!-- Main Content -->
+    <main class=" mx-auto p-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <!-- Profile Settings -->
+            <div class="bg-white p-6 rounded-lg shadow-lg">
+                <h3 class="text-xl font-bold mb-4">Profile Settings</h3>
+                <form>
+                    <div class="mb-4">
+                        <label class=" text-sm font-medium mb-2">Full Name</label>
+                        <input type="text" placeholder="" class="w-full px-4 py-2 border rounded-lg focus:outline-none">
+                    </div>
+                    <div class="mb-4">
+                        <label class=" text-sm font-medium mb-2">Email Address</label>
+                        <input type="email" placeholder="" class="w-full px-4 py-2 border rounded-lg focus:outline-none">
+                    </div>
+                    <div class="mb-4">
+                        <label class=" text-sm font-medium mb-2">Phone Number</label>
+                        <input type="text" placeholder="" class="w-full px-4 py-2 border rounded-lg focus:outline-none">
+                    </div>
+                    <button class="bg-orange-600 text-white font-bold px-4 py-2 rounded-lg hover:bg-orange-700">Save Changes</button>
+                </form>
+            </div>
+
+            <!-- Notification Settings -->
+            <div class="bg-white p-6 rounded-lg shadow-lg">
+                <h3 class="text-xl font-bold mb-4">Notification Settings</h3>
+                <form>
+                    <div class="mb-4">
+                        <label class=" text-sm font-medium mb-2">Email Notifications</label>
+                        <input type="checkbox" id="emailNotifications" class="mr-2">
+                        <label for="emailNotifications">Receive email notifications for payroll updates</label>
+                    </div>
+                    <div class="mb-4">
+                        <label class=" text-sm font-medium mb-2">SMS Notifications</label>
+                        <input type="checkbox" id="smsNotifications" class="mr-2">
+                        <label for="smsNotifications">Receive SMS notifications for important alerts</label>
+                    </div>
+                    <button class="bg-orange-600 text-white font-bold px-4 py-2 rounded-lg hover:bg-orange-700">Save Preferences</button>
+                </form>
+            </div>
+
+            <!-- Security Settings -->
+            <div class="bg-white p-6 rounded-lg shadow-lg">
+                <h3 class="text-xl font-bold mb-4">Security Settings</h3>
+                <form>
+                    <div class="mb-4">
+                        <label class=" text-sm font-medium mb-2">Current Password</label>
+                        <input type="password" placeholder="Enter current password" class="w-full px-4 py-2 border rounded-lg focus:outline-none">
+                    </div>
+                    <div class="mb-4">
+                        <label class=" text-sm font-medium mb-2">New Password</label>
+                        <input type="password" placeholder="Enter new password" class="w-full px-4 py-2 border rounded-lg focus:outline-none">
+                    </div>
+                    <div class="mb-4">
+                        <label class=" text-sm font-medium mb-2">Confirm New Password</label>
+                        <input type="password" placeholder="Confirm new password" class="w-full px-4 py-2 border rounded-lg focus:outline-none">
+                    </div>
+                    <button class="bg-orange-600 text-white font-bold px-4 py-2 rounded-lg hover:bg-orange-700">Update Password</button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+   
+
+</body>
+</html>

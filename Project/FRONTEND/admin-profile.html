@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="/logo.jpeg" type="image/x-icon">
+    <title>Admin Profile - Payroll Management System</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100">
+
+    <!-- Navbar -->
+    <nav class="bg-orange-600 p-4">
+        <div class=" mx-auto flex justify-between items-center">
+            <h1 class="text-white text-2xl font-bold">Payroll System - Admin</h1>
+            <a href="admin-dashboard.html" class="bg-white text-orange-600 px-4 py-2 rounded hover:bg-orange-200 transition">Dashboard</a>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="bg-orange-600 text-white text-center py-8">
+        <h2 class="text-3xl font-bold">Admin Profile</h2>
+        <p class="mt-4">Manage your profile and admin settings.</p>
+    </header>
+
+    <!-- Main Content -->
+    <main class="mx-auto p-8">
+        <div class="bg-white p-6 rounded-lg shadow-lg max-w-2xl mx-auto">
+            <!-- Profile Picture and Name -->
+            <div class="text-center mb-6">
+                <img class="w-32 h-32 rounded-full mx-auto mb-4" src="/adminprofile.jpeg" alt="Profile Picture">
+                <h3 class="text-2xl font-bold">Admin Name</h3>
+                <p class="text-gray-600">admin@example.com</p>
+            </div>
+
+            <!-- Profile Form -->
+            <form>
+                <div class="mb-4">
+                    <label class=" text-sm font-medium mb-2">Full Name</label>
+                    <input type="text" value="Dakshina raizada" class="w-full px-4 py-2 border rounded-lg focus:outline-none">
+                </div>
+
+                <div class="mb-4">
+                    <label class=" text-sm font-medium mb-2">Email Address</label>
+                    <input type="email" value="admin@example.com" class="w-full px-4 py-2 border rounded-lg focus:outline-none">
+                </div>
+
+                <div class="mb-4">
+                    <label class=" text-sm font-medium mb-2">Phone Number</label>
+                    <input type="text" value="+1234567890" class="w-full px-4 py-2 border rounded-lg focus:outline-none">
+                </div>
+
+                <div class="mb-4">
+                    <label class=" text-sm font-medium mb-2">Address</label>
+                    <input type="text" value="Admin Office,Mumbai" class="w-full px-4 py-2 border rounded-lg focus:outline-none">
+                </div>
+
+                <!-- Admin-Specific Actions -->
+                <div class="mb-4">
+                    <label class=" text-sm font-medium mb-2">Admin Role</label>
+                    <select class="w-full px-4 py-2 border rounded-lg focus:outline-none">
+                        <option>Super Admin</option>
+                        <option>HR Manager</option>
+                        <option>Finance Admin</option>
+                    </select>
+                </div>
+
+                <!-- Buttons -->
+                <div class="flex justify-between items-center">
+                    <button class="bg-orange-600 text-white font-bold px-4 py-2 rounded-lg hover:bg-orange-700">Update Profile</button>
+                    <button class="bg-gray-600 text-white font-bold px-4 py-2 rounded-lg hover:bg-gray-700">Change Password</button>
+                </div>
+            </form>
+        </div>
+    </main>
+
+   
+
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="/logo.jpeg" type="image/x-icon">
+    <title>Edit Employee</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100">
+    <!-- Navbar -->
+    <nav class="bg-orange-600 p-4 shadow-md">
+        <div class=" mx-auto flex justify-between items-center">
+            <h1 class="text-white text-2xl font-bold">Payroll System</h1>
+            <div>
+                <a href="employee-management.html" class="text-white hover:text-black mr-4">Employee Management</a>
+                <a href="settings2.html" class="text-white hover:text-black mr-4">Settings</a>
+                <a href="signin.html" class="text-white hover:text-black">Logout</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Edit Employee Form Section -->
+    <div class=" mx-auto p-6">
+        <h2 class="text-3xl font-bold text-gray-800 mb-6">Edit Employee</h2>
+
+        <form class="bg-white shadow-md rounded-lg px-8 pt-6 pb-8 mb-4">
+            <div class="mb-4">
+                <label for="name" class=" text-gray-700 text-sm font-bold mb-2">Full Name</label>
+                <input type="text" id="name" value="Adhya Sharma" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
+            </div>
+
+            <div class="mb-4">
+                <label for="position" class=" text-gray-700 text-sm font-bold mb-2">Position</label>
+                <input type="text" id="position" value="Software Engineer" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
+            </div>
+
+            <div class="mb-4">
+                <label for="department" class="text-gray-700 text-sm font-bold mb-2">Department</label>
+                <input type="text" id="department" value="IT Department" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
+            </div>
+
+            <div class="mb-4">
+                <label for="salary" class=" text-gray-700 text-sm font-bold mb-2">Salary</label>
+                <input type="number" id="salary" value="80000" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
+            </div>
+
+            <div class="mb-4">
+                <label for="startDate" class=" text-gray-700 text-sm font-bold mb-2">Start Date</label>
+                <input type="date" id="startDate" value="2022-01-01" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
+            </div>
+
+            <div class="flex items-center justify-between">
+                <button type="submit" class="bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"><a href="admin-employee-updated.html">Update Employee</a>
+                    
+                </button>
+                <a href="employee-management.html" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Cancel</a>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

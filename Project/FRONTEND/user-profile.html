@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="/logo.jpeg" type="image/x-icon">
+    <title>User Profile - Payroll Management System</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100">
+
+    <!-- Navbar -->
+    <nav class="bg-orange-600 p-4">
+        <div class=" mx-auto flex justify-between items-center">
+            <h1 class="text-white text-2xl font-bold">Payroll System </h1>
+            <a href="user-dashboard.html" class="bg-white text-orange-600 px-4 py-2 rounded hover:bg-orange-200 transition">Dashboard</a>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="bg-orange-600 text-white text-center py-8">
+        <h2 class="text-3xl font-bold">My Profile</h2>
+        <p class="mt-4">View and update your personal details.</p>
+    </header>
+
+    <!-- Main Content -->
+    <main class=" mx-auto p-8">
+        <div class="bg-white p-6 rounded-lg shadow-lg max-w-2xl mx-auto">
+            <!-- Profile Picture and Name -->
+            <div class="text-center mb-6">
+                <img class="w-32 h-32 rounded-full mx-auto mb-4" src="user.jpeg" alt="Profile Picture">
+                <h3 class="text-2xl font-bold">Adhya Sharma</h3>
+                <p class="text-gray-600">adhyasharma@example.com</p>
+            </div>
+
+            <!-- Profile Form -->
+            <form>
+                <div class="mb-4">
+                    <label class=" text-sm font-medium mb-2">Full Name</label>
+                    <input type="text" value="Adhya Sharma" class="w-full px-4 py-2 border rounded-lg focus:outline-none">
+                </div>
+
+                <div class="mb-4">
+                    <label class=" text-sm font-medium mb-2">Email Address</label>
+                    <input type="email" value="adhyasharma@example.com" class="w-full px-4 py-2 border rounded-lg focus:outline-none">
+                </div>
+
+                <div class="mb-4">
+                    <label class=" text-sm font-medium mb-2">Phone Number</label>
+                    <input type="text" value="1234567890" class="w-full px-4 py-2 border rounded-lg focus:outline-none">
+                </div>
+
+                <div class="mb-4">
+                    <label class=" text-sm font-medium mb-2">Address</label>
+                    <input type="text" value="ABC nagar,Mumbai" class="w-full px-4 py-2 border rounded-lg focus:outline-none">
+                </div>
+
+                <!-- Buttons -->
+                <div class="flex justify-between items-center">
+                    <button class="bg-orange-600 text-white font-bold px-4 py-2 rounded-lg hover:bg-orange-700"><a href="user-settings.html">Update Profile</a></button>
+                    <button class="bg-gray-600 text-white font-bold px-4 py-2 rounded-lg hover:bg-gray-700"><a href="user-settings.html">Change Password</a></button>
+                </div>
+            </form>
+        </div>
+    </main>
+
+   
+
+</body>
+</html>

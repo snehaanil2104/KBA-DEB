@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="/logo.jpeg" type="image/x-icon">
+    <title>Employee Profile</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-orange-100">
+    <!-- Navbar -->
+    <nav class="bg-orange-600 p-4 shadow-md">
+        <div class=" mx-auto flex justify-between items-center">
+            <h1 class="text-white text-2xl font-bold">Payroll Management</h1>
+            <div class="space-x-4">
+                <a href="admin-dashboard.html" class="text-white hover:text-black mr-4">Dashboard</a>
+                <a href="settings2.html" class="text-white hover:text-black">Settings</a>
+                <a href="signin.html" class="text-white hover:text-black">Logout</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Employee Profile Section -->
+    <div class=" mx-auto p-6">
+        <h2 class="text-3xl font-bold mb-6">Employee Profile</h2>
+
+        <!-- Employee Information -->
+        <div class="bg-white shadow-md rounded-lg p-6 mb-6">
+            <h3 class="text-xl font-semibold mb-4">Personal Information</h3>
+            <p><strong>Name:</strong> Adhya Sharma</p>
+            <p><strong>Position:</strong> Software Engineer</p>
+            <p><strong>Department:</strong> IT</p>
+            <p><strong>Email:</strong> adhyasharma@example.com</p>
+            <p><strong>Phone:</strong> 1234567890</p>
+            <button class="mt-4 bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded"><a href="admin-edit-employee.html"> Edit Employee Information</a>
+               
+            </button>
+        </div>
+
+        <!-- Attendance Records -->
+        <div class="bg-white shadow-md rounded-lg p-6 mb-6">
+            <h3 class="text-xl font-semibold mb-4">Attendance Records</h3>
+            <table class="w-full table-auto">
+                <thead>
+                    <tr class="bg-gray-100">
+                        <th class="px-4 py-2">Date</th>
+                        <th class="px-4 py-2">Status</th>
+                        <th class="px-4 py-2">Overtime Hours</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="border px-4 py-2">2024-10-01</td>
+                        <td class="border px-4 py-2">Present</td>
+                        <td class="border px-4 py-2">2</td>
+                    </tr>
+                    <tr>
+                        <td class="border px-4 py-2">2024-10-02</td>
+                        <td class="border px-4 py-2">Absent</td>
+                        <td class="border px-4 py-2">0</td>
+                    </tr>
+                    <!-- More records here -->
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Salary Information -->
+        <div class="bg-white shadow-md rounded-lg p-6 mb-6">
+            <h3 class="text-xl font-semibold mb-4">Salary Information</h3>
+            <p><strong>Current Salary:</strong> ₹75,000</p>
+            <p><strong>Last Salary Review:</strong> 2024-06-15</p>
+            <table class="w-full table-auto">
+                <thead>
+                    <tr class="bg-gray-100">
+                        <th class="px-4 py-2">Period</th>
+                        <th class="px-4 py-2">Salary</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="border px-4 py-2">2024-07</td>
+                        <td class="border px-4 py-2">₹6,250</td>
+                    </tr>
+                    <tr>
+                        <td class="border px-4 py-2">2024-08</td>
+                        <td class="border px-4 py-2">₹6,250</td>
+                    </tr>
+                    <!-- More salary records here -->
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Leave History -->
+        <div class="bg-white shadow-md rounded-lg p-6 mb-6">
+            <h3 class="text-xl font-semibold mb-4">Leave History</h3>
+            <table class="w-full table-auto">
+                <thead>
+                    <tr class="bg-gray-100">
+                        <th class="px-4 py-2">Leave Type</th>
+                        <th class="px-4 py-2">Start Date</th>
+                        <th class="px-4 py-2">End Date</th>
+                        <th class="px-4 py-2">Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="border px-4 py-2">Sick Leave</td>
+                        <td class="border px-4 py-2">2024-10-10</td>
+                        <td class="border px-4 py-2">2024-10-12</td>
+                        <td class="border px-4 py-2">Approved</td>
+                    </tr>
+                    <tr>
+                        <td class="border px-4 py-2">Vacation</td>
+                        <td class="border px-4 py-2">2024-11-05</td>
+                        <td class="border px-4 py-2">2024-11-10</td>
+                        <td class="border px-4 py-2">Pending</td>
+                    </tr>
+                    <!-- More leave records here -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</body>
+</html>

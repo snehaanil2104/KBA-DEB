@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="/logo.jpeg" type="image/x-icon">
+    <title>Salary Structure Setup</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100">
+    <!-- Navbar -->
+    <nav class="bg-orange-600 p-4 shadow-md">
+        <div class=" mx-auto flex justify-between items-center">
+            <h1 class="text-white text-2xl font-bold">Payroll Management</h1>
+            <div class="space-x-4">
+                <a href="admin-dashboard.html" class="text-white hover:text-black mr-4">Dashboard</a>
+                <a href="settings2.html" class="text-white hover:text-black mr-4">Settings</a>
+                <a href="signin.html" class="text-white hover:text-black">Logout</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Salary Structure Setup Section -->
+    <div class=" mx-auto p-6">
+        <h2 class="text-3xl font-bold mb-6">Salary Structure Setup</h2>
+
+        <!-- Salary Components -->
+        <div class="bg-white shadow-md rounded-lg p-6 mb-6">
+            <h3 class="text-xl font-semibold mb-4">Add Salary Components</h3>
+            <label class=" mb-2" for="basicSalary">Basic Salary:</label>
+            <input type="number" id="basicSalary" placeholder="Enter Basic Salary" class="border border-gray-300 rounded-lg p-2 mb-4 w-full">
+            
+            <label class=" mb-2" for="hra">HRA:</label>
+            <input type="number" id="hra" placeholder="Enter House Rent Allowance" class="border border-gray-300 rounded-lg p-2 mb-4 w-full">
+        </div>
+
+        <!-- Allowances & Deductions Section -->
+        <div class="bg-white shadow-md rounded-lg p-6 mb-6">
+            <h3 class="text-xl font-semibold mb-4">Allowances & Deductions</h3>
+            <label class=" mb-2" for="pf">Provident Fund (PF):</label>
+            <input type="number" id="pf" placeholder="Enter PF Deduction" class="border border-gray-300 rounded-lg p-2 mb-4 w-full">
+            
+            <label class=" mb-2" for="healthInsurance">Health Insurance:</label>
+            <input type="number" id="healthInsurance" placeholder="Enter Health Insurance Deduction" class="border border-gray-300 rounded-lg p-2 mb-4 w-full">
+        </div>
+
+        <!-- Bonus/Incentives Section -->
+        <div class="bg-white shadow-md rounded-lg p-6 mb-6">
+            <h3 class="text-xl font-semibold mb-4">Bonus/Incentives</h3>
+            <label class=" mb-2" for="bonus">Bonus Percentage:</label>
+            <input type="number" id="bonus" placeholder="Enter Bonus Percentage" class="border border-gray-300 rounded-lg p-2 mb-4 w-full">
+        </div>
+
+        <!-- Save/Update Button -->
+        <div class="flex justify-end">
+            <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mr-4" onclick="saveUpdate()">
+                Save/Update
+            </button>
+        </div>
+    </div>
+    <script>
+        function saveUpdate() {
+            alert('Updated successfully!');
+        }
+    </script>
+</body>
+</html>
